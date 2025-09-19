@@ -12,7 +12,7 @@ A comprehensive collection of scripts and templates designed to streamline AI-po
 
 ## 📚 Acknowledgments
 
-The Specs CLI templates and project structure methodology were originally developed and documented in the book ["Mastering AI Agents"](https://mastering-ai-agents.com). This CLI tool brings those proven concepts to life as a practical development toolkit.
+The Specs CLI templates and project structure methodology were originally developed and documented in the book [Mastering AI Agents](https://mastering-ai-agents.com). This CLI tool brings those proven concepts to life as a practical development toolkit.
 
 ## 📦 Installation
 
