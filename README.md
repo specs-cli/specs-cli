@@ -260,4 +260,4 @@ bash specs.sh init /c/Users/username/my-project
 
 **Happy Spec-Driven Development!** 🚀
 
-*Start your next project with `./specs.sh init` and experience the power of SDD.*
+*Start your next project with `specs init` and experience the power of SDD.*
