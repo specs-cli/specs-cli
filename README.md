@@ -1,6 +1,6 @@
 # Specs CLI
 
-A comprehensive collection of scripts and templates designed to streamline AI-powered development workflows using the specification-driven development methodology. Specs CLI provides automated project setup and structured specification templates that optimize collaboration between developers and AI assistants.
+A tool-independent CLI for specification-driven development (SDD) that enables seamless agentic coding workflows in any IDE. Specs CLI automates project initialization with structured specification templates, optimizing AI-assisted development through systematic spec-first methodology that enhances collaboration between developers and AI coding agents.
 
 ## 🚀 Key Benefits
 
@@ -9,10 +9,6 @@ A comprehensive collection of scripts and templates designed to streamline AI-po
 - **Time Efficiency**: Eliminates manual setup and reduces project initialization overhead
 - **AI Optimization**: Project layouts specifically designed for seamless AI assistance
 - **Production Focus**: Templates built for maintainable, scalable software systems
-
-## 📚 Acknowledgments
-
-The Specs CLI templates and project structure methodology were originally developed and documented in the book [Mastering AI Agents](https://mastering-ai-agents.com). This CLI tool brings those proven concepts to life as a practical development toolkit.
 
 ## 📦 Installation
 
@@ -224,6 +220,10 @@ For detailed contribution guidelines, development setup, coding standards, and t
 - Add tests for new functionality
 - Update documentation for user-facing changes
 - Ensure backward compatibility
+
+## 📚 Acknowledgments
+
+The Specs CLI templates and project structure methodology were originally developed and documented in the book [Mastering AI Agents](https://mastering-ai-agents.com). This CLI tool brings those proven concepts to life as a practical development toolkit.
 
 ## 📄 License
 
