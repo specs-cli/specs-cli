@@ -200,6 +200,33 @@ Run the test suite to verify Specs CLI functionality:
 # - CLI argument parsing
 ```
 
+## 🆘 Troubleshooting
+
+### Common Issues
+
+**Permission Errors (Unix/Linux/macOS)**
+```bash
+chmod +x specs.sh
+```
+
+**Windows Usage**
+```bash
+# Use Git Bash (recommended)
+bash specs.sh init /c/Users/username/my-project
+```
+
+**Path Issues**
+- Use absolute paths: `/home/user/projects/myapp`
+- Tilde expansion supported: `~/projects/myapp`
+- Avoid spaces in paths or use quotes
+
+### Getting Help
+
+- 📖 **Documentation**: Check this README and template files
+- 🐛 **Issues**: Report bugs on GitHub Issues
+- 💬 **Discussions**: Join GitHub Discussions for questions
+- 📧 **Contact**: Open an issue for direct support
+
 ## 🤝 Contributing
 
 We welcome contributions! Here's how to get started:
@@ -228,36 +255,3 @@ The Specs CLI templates and project structure methodology were originally develo
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Troubleshooting
-
-### Common Issues
-
-**Permission Errors (Unix/Linux/macOS)**
-```bash
-chmod +x specs.sh
-```
-
-**Windows Usage**
-```bash
-# Use Git Bash (recommended)
-bash specs.sh init /c/Users/username/my-project
-```
-
-**Path Issues**
-- Use absolute paths: `/home/user/projects/myapp`
-- Tilde expansion supported: `~/projects/myapp`
-- Avoid spaces in paths or use quotes
-
-### Getting Help
-
-- 📖 **Documentation**: Check this README and template files
-- 🐛 **Issues**: Report bugs on GitHub Issues
-- 💬 **Discussions**: Join GitHub Discussions for questions
-- 📧 **Contact**: Open an issue for direct support
-
----
-
-**Happy Spec-Driven Development!** 🚀
-
-*Start your next project with `specs init` and experience the power of SDD.*

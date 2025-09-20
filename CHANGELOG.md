@@ -5,7 +5,7 @@ All notable changes to Specs CLI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0] - 2025-09-19
+## [0.0.1] - 2025-09-19
 
 ### Added
 - Initial release of Specs CLI
@@ -43,8 +43,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Contributing guidelines
 - License information
 - This changelog
-
----
-
-**Note**: Specs CLI implements the specification-first development methodology,
-optimizing project structure for AI-assisted development workflows.
