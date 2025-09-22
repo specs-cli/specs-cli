@@ -94,10 +94,11 @@ Specs CLI creates a standardized project structure optimized for AI collaboratio
 ```
 my-project/
 ├── PROGRESS.md                # Main workflow - START HERE
+├── ISSUES.md                  # Automatic issue tracking
 ├── specs/                     # All specifications
 │   ├── system-overview.md     # High-level system design
 │   ├── infrastructure.md      # Infrastructure specifications
-│   └── features-name/         # Feature-specific specs
+│   └── feature-name/          # Feature-specific specs
 │       ├── api-contract.md    # API definitions
 │       ├── data-model.md      # Data structures
 │       ├── ui-design.md       # UI/UX specifications
