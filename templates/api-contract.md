@@ -5,7 +5,7 @@ Purpose: Define interfaces, endpoints, and data contracts
 Usage: Document all APIs, services, and data exchange formats
 
 Placeholders:
-- {{NAME}}: Will be replaced with the project/feature name
+- {{NAME}}: Will be replaced with the feature name
 -->
 
 # API Contract: {{NAME}}

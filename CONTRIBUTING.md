@@ -52,7 +52,7 @@ cd specs-cli
 4. **Commit your changes**
    ```bash
    git add .
-   git commit -m "brief description of your changes"
+   git commit -m "brief description of your change"
    ```
 
 5. **Push and create a Pull Request**
@@ -73,7 +73,8 @@ cd specs-cli
 
 ### Template Guidelines
 
-- **Use `{{NAME}}` placeholder** for project/feature names
+- **Use `{{NAME}}` placeholder** for project/feature name
+- **Use `{{SANITIZED_NAME}}` placeholder** for feature directory
 - **Include documentation** in template comments
 - **Maintain consistent structure** across similar templates
 - **Provide examples** where helpful

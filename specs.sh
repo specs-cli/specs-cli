@@ -6,7 +6,7 @@
 set -e
 
 # Version
-VERSION="0.0.1"
+VERSION="0.0.2"
 
 # Colors for output
 RED='\033[0;31m'
@@ -17,15 +17,21 @@ NC='\033[0m' # No Color
 
 # Function to print colored output
 print_info() {
-    echo -e "${BLUE}[INFO]${NC} $1"
+    if [ "$QUIET" != "true" ]; then
+        echo -e "${BLUE}[INFO]${NC} $1"
+    fi
 }
 
 print_success() {
-    echo -e "${GREEN}[SUCCESS]${NC} $1"
+    if [ "$QUIET" != "true" ]; then
+        echo -e "${GREEN}[SUCCESS]${NC} $1"
+    fi
 }
 
 print_warning() {
-    echo -e "${YELLOW}[WARNING]${NC} $1"
+    if [ "$QUIET" != "true" ]; then
+        echo -e "${YELLOW}[WARNING]${NC} $1"
+    fi
 }
 
 print_error() {
@@ -84,9 +90,7 @@ show_version() {
 create_dir() {
     if [ ! -d "$1" ]; then
         mkdir -p "$1"
-        if [ "$QUIET" != "true" ]; then
-             print_info "Created directory: $1"
-         fi
+        print_info "Created directory: $1"
     fi
 }
 
@@ -135,9 +139,7 @@ safe_copy_template() {
     fi
     
     if [ -f "$target_path" ] && [ "$FORCE" != "true" ]; then
-        if [ "$QUIET" != "true" ]; then
-            print_warning "File already exists, skipping: $target_path"
-        fi
+        print_warning "File already exists, skipping: $target_path"
         return 0
     fi
     
@@ -146,14 +148,13 @@ safe_copy_template() {
     
     # Replace placeholders with actual values
     content=${content//"{{NAME}}"/$target_name}
+    content=${content//"{{SANITIZED_NAME}}"/$(sanitize_name "$target_name")}
     
     # Transform template comments for generated files
     content=$(transform_template_comments "$content" "$target_name")
     
     echo "$content" > "$target_path"
-    if [ "$QUIET" != "true" ]; then
-        print_success "Created: $target_path"
-    fi
+    print_success "Created: $target_path"
 }
 
 # Function to validate path
@@ -184,7 +185,7 @@ has_existing_code() {
     local project_path="$1"
     
     # Check for code files
-    if find "$project_path" -maxdepth 3 -type f \( -name "*.js" -o -name "*.ts" -o -name "*.py" -o -name "*.java" -o -name "*.cpp" -o -name "*.c" -o -name "*.go" -o -name "*.rs" -o -name "*.php" -o -name "*.rb" -o -name "*.cs" -o -name "*.swift" -o -name "*.kt" -o -name "*.scala" -o -name "*.dart" -o -name "*.vue" -o -name "*.jsx" -o -name "*.tsx" \) -not -path "*/node_modules/*" -not -path "*/vendor/*" -not -path "*/.git/*" | head -1 | grep -q .; then
+    if find "$project_path" -maxdepth 3 -type f \( -name "*.js" -o -name "*.ts" -o -name "*.py" -o -name "*.java" -o -name "*.cpp" -o -name "*.c" -o -name "*.go" -o -name "*.rs" -o -name "*.php" -o -name "*.rb" -o -name "*.cs" -o -name "*.swift" -o -name "*.kt" -o -name "*.scala" -o -name "*.dart" -o -name "*.vue" -o -name "*.jsx" -o -name "*.tsx" \) -not -path "*/node_modules/*" -not -path "*/vendor/*" -not -path "*/.git/*" 2>/dev/null | head -1 | grep -q .; then
         return 0
     fi
     
@@ -216,9 +217,7 @@ init_project() {
             print_error "Use --force to add specs structure to existing directory"
             return 1
         else
-            if [ "$QUIET" != "true" ]; then
-                 print_warning "Directory exists, adding specs structure: $project_path"
-             fi
+            print_warning "Directory exists, adding specs structure: $project_path"
         fi
     else
         # Try to create the directory
@@ -227,9 +226,7 @@ init_project() {
             print_error "Please check permissions and try again"
             return 1
         fi
-        if [ "$QUIET" != "true" ]; then
-            print_success "Created project directory: $project_path"
-        fi
+        print_success "Created project directory: $project_path"
     fi
     
     # Set project name
@@ -237,10 +234,8 @@ init_project() {
         project_name=$(basename "$project_path")
     fi
     
-    if [ "$QUIET" != "true" ]; then
-        print_info "Creating specs project: $project_name"
-        print_info "Location: $project_path"
-    fi
+    print_info "Creating specs project: $project_name"
+    print_info "Location: $project_path"
     
     # Get script directory to find templates (before changing directories)
     # Handle symlinks by resolving to the actual script location
@@ -254,31 +249,20 @@ init_project() {
     cd "$project_path"
     
     # Create main project structure
-    if [ "$QUIET" != "true" ]; then
-        print_info "Creating project structure..."
-    fi
+    print_info "Creating project structure..."
     
     # Create main directories
     create_dir "specs"
-    create_dir "specs/shared"
-    create_dir "specs/features"
-    create_dir "features"
     
     # Copy template files for new project
-    if [ "$QUIET" != "true" ]; then
-        print_info "Creating project files from templates..."
-    fi
+    print_info "Creating project files from templates..."
     
     # Detect existing code
     if has_existing_code "$project_path"; then
-        if [ "$QUIET" != "true" ]; then
-            print_info "Existing codebase detected - using PROGRESS_FROM_CODE template"
-        fi
+        print_info "Existing codebase detected - using PROGRESS_FROM_CODE template"
         safe_copy_template "$script_dir/templates/PROGRESS_FROM_CODE.md" "PROGRESS.md" "$project_name"
     else
-        if [ "$QUIET" != "true" ]; then
-            print_info "No existing codebase detected - using PROGRESS_FROM_SCRATCH template"
-        fi
+        print_info "No existing codebase detected - using PROGRESS_FROM_SCRATCH template"
         safe_copy_template "$script_dir/templates/PROGRESS_FROM_SCRATCH.md" "PROGRESS.md" "$project_name"
     fi
     
@@ -288,19 +272,11 @@ init_project() {
     # Copy infrastructure specification
     safe_copy_template "$script_dir/templates/infrastructure.md" "specs/infrastructure.md" "$project_name"
     
-    # Copy shared specification templates
-    safe_copy_template "$script_dir/templates/api-contract.md" "specs/shared/api-contract.md" "$project_name"
-    safe_copy_template "$script_dir/templates/data-model.md" "specs/shared/data-model.md" "$project_name"
-    safe_copy_template "$script_dir/templates/ui-design.md" "specs/shared/ui-design.md" "$project_name"
-    safe_copy_template "$script_dir/templates/business-logic.md" "specs/shared/business-logic.md" "$project_name"
-    
-    if [ "$QUIET" != "true" ]; then
-        print_success "\n✅ Project structure created successfully!"
-        print_info "\nNext steps:"
-        echo "  1. Open the project in your AI-powered IDE (e.g. Trae AI, VS Code + Roo Code)"
-        echo "  2. Open PROGRESS.md and work through tasks step by step"
-        echo "  3. Use AI to generate specifications and code"
-    fi
+    print_success "\n✅ Project structure created successfully!"
+    print_info "\nNext steps:"
+    print_info "  1. Open the project in your AI-powered IDE (e.g. Trae AI, VS Code + Roo Code)"
+    print_info "  2. Open PROGRESS.md and work through tasks step by step"
+    print_info "  3. Use AI to generate specifications and code"
 }
 
 # Function to add feature
@@ -327,7 +303,7 @@ add_feature() {
     local feature_dir=$(sanitize_name "$feature_name")
     
     # Check if feature already exists
-    if [ -d "$project_path/specs/features/$feature_dir" ] && [ "$FORCE" != "true" ]; then
+    if [ -d "$project_path/specs/$feature_dir" ] && [ "$FORCE" != "true" ]; then
         print_error "Feature '$feature_name' already exists"
         print_error "Use --force to overwrite existing files"
         return 1
@@ -342,10 +318,8 @@ add_feature() {
         fi
     fi
     
-    if [ "$QUIET" != "true" ]; then
-        print_info "Adding feature '$feature_name' to project: $project_name"
-        print_info "Location: $project_path"
-    fi
+    print_info "Adding feature '$feature_name' to project: $project_name"
+    print_info "Location: $project_path"
     
     # Get script directory to find templates (before changing directories)
     # Get script directory to find templates (handle symlinks)
@@ -359,31 +333,25 @@ add_feature() {
     cd "$project_path"
     
     # Create feature structure
-    if [ "$QUIET" != "true" ]; then
-        print_info "Creating feature structure..."
-    fi
+    print_info "Creating feature structure..."
     
     # Create feature directories
-    create_dir "specs/features/$feature_dir"
-    create_dir "features/$feature_dir"
+    create_dir "specs/$feature_dir"
     
     # Copy feature template files
-    if [ "$QUIET" != "true" ]; then
-        print_info "Creating feature specification files..."
-    fi
+    print_info "Creating feature specification files..."
     
-    safe_copy_template "$script_dir/templates/api-contract.md" "specs/features/$feature_dir/api-contract.md" "$feature_name"
-    safe_copy_template "$script_dir/templates/data-model.md" "specs/features/$feature_dir/data-model.md" "$feature_name"
-    safe_copy_template "$script_dir/templates/ui-design.md" "specs/features/$feature_dir/ui-design.md" "$feature_name"
-    safe_copy_template "$script_dir/templates/business-logic.md" "specs/features/$feature_dir/business-logic.md" "$feature_name"
+    safe_copy_template "$script_dir/templates/api-contract.md" "specs/$feature_dir/api-contract.md" "$feature_name"
+    safe_copy_template "$script_dir/templates/data-model.md" "specs/$feature_dir/data-model.md" "$feature_name"
+    safe_copy_template "$script_dir/templates/ui-design.md" "specs/$feature_dir/ui-design.md" "$feature_name"
+    safe_copy_template "$script_dir/templates/business-logic.md" "specs/$feature_dir/business-logic.md" "$feature_name"
+    safe_copy_template "$script_dir/templates/ai-workflow.md" "specs/$feature_dir/ai-workflow.md" "$feature_name"
     
-    if [ "$QUIET" != "true" ]; then
-        print_success "\n✅ Feature '$feature_name' added successfully!"
-        print_info "\nNext steps:"
-        echo "  1. Update PROGRESS.md with new feature tasks"
-        echo "  2. Find specifications in specs/features/$feature_dir/"
-        echo "  3. Use AI to generate specifications and code"
-    fi
+    print_success "\n✅ Feature '$feature_name' added successfully!"
+    print_info "\nNext steps:"
+    print_info "  1. Update PROGRESS.md with new feature tasks"
+    print_info "  2. Find specifications in specs/$feature_dir/"
+    print_info "  3. Use AI to generate specifications and code"
 }
 
 # Function to install specs as a system command
@@ -393,18 +361,14 @@ install_system_command() {
     local fallback_dir="$HOME/.local/bin"
     local command_name="specs"
     
-    if [ "$QUIET" != "true" ]; then
-        print_info "Installing specs as a system command..."
-    fi
+    print_info "Installing specs as a system command..."
     
     # Make script executable
     chmod +x "$script_path"
     
     # Try to install to /usr/local/bin first
     if [ -w "$install_dir" ] || sudo -n true 2>/dev/null; then
-        if [ "$QUIET" != "true" ]; then
-            print_info "Installing to $install_dir/$command_name"
-        fi
+        print_info "Installing to $install_dir/$command_name"
         
         if [ -w "$install_dir" ]; then
             ln -sf "$script_path" "$install_dir/$command_name"
@@ -412,15 +376,11 @@ install_system_command() {
             sudo ln -sf "$script_path" "$install_dir/$command_name"
         fi
         
-        if [ "$QUIET" != "true" ]; then
-            print_success "✅ Successfully installed 'specs' command!"
-            print_info "You can now use 'specs' from anywhere in your terminal."
-        fi
+        print_success "✅ Successfully installed 'specs' command!"
+        print_info "You can now use 'specs' from anywhere in your terminal."
     else
         # Fallback to user's local bin directory
-        if [ "$QUIET" != "true" ]; then
-            print_info "Installing to $fallback_dir/$command_name"
-        fi
+        print_info "Installing to $fallback_dir/$command_name"
         
         mkdir -p "$fallback_dir"
         ln -sf "$script_path" "$fallback_dir/$command_name"
@@ -448,28 +408,20 @@ install_system_command() {
                 echo "" >> "$shell_config"
                 echo "# Added by specs install command" >> "$shell_config"
                 echo "$path_export" >> "$shell_config"
-                if [ "$QUIET" != "true" ]; then
-                    print_info "Added ~/.local/bin to PATH in $shell_config"
-                fi
+                print_info "Added ~/.local/bin to PATH in $shell_config"
             elif [ ! -f "$shell_config" ]; then
                 echo "$path_export" > "$shell_config"
-                if [ "$QUIET" != "true" ]; then
-                    print_info "Created $shell_config and added ~/.local/bin to PATH"
-                fi
+                print_info "Created $shell_config and added ~/.local/bin to PATH"
             fi
             
-            if [ "$QUIET" != "true" ]; then
-                 print_success "✅ Successfully installed 'specs' command!"
-                 print_info "PATH updated for future terminal sessions."
-                 print_warning "⚠️  To use 'specs' in this current session, run:"
-                 echo "    export PATH=\"\$HOME/.local/bin:\$PATH\""
-                 print_info "Or open a new terminal window."
-             fi
+            print_success "✅ Successfully installed 'specs' command!"
+            print_info "PATH updated for future terminal sessions."
+            print_warning "⚠️  To use 'specs' in this current session, run:"
+            echo "    export PATH=\"\$HOME/.local/bin:\$PATH\""
+            print_info "Or open a new terminal window."
         else
-            if [ "$QUIET" != "true" ]; then
-                print_success "✅ Successfully installed 'specs' command!"
-                print_info "You can now use 'specs' from anywhere in your terminal."
-            fi
+            print_success "✅ Successfully installed 'specs' command!"
+            print_info "You can now use 'specs' from anywhere in your terminal."
         fi
     fi
 }
@@ -558,9 +510,7 @@ case "$COMMAND" in
         # Use current directory as default if no path provided
         if [ -z "$PROJECT_PATH" ]; then
             PROJECT_PATH="$(pwd)"
-            if [ "$QUIET" != "true" ]; then
-                print_info "No path specified, using current directory: $PROJECT_PATH"
-            fi
+            print_info "No path specified, using current directory: $PROJECT_PATH"
         fi
         init_project "$PROJECT_PATH" "$PROJECT_NAME"
         ;;
@@ -573,9 +523,7 @@ case "$COMMAND" in
         # Use current directory as default if no path provided
         if [ -z "$PROJECT_PATH" ]; then
             PROJECT_PATH="$(pwd)"
-            if [ "$QUIET" != "true" ]; then
-                print_info "No path specified, using current directory: $PROJECT_PATH"
-            fi
+            print_info "No path specified, using current directory: $PROJECT_PATH"
         fi
         add_feature "$PROJECT_PATH" "$FEATURE_NAME"
         ;;
@@ -594,10 +542,8 @@ case "$COMMAND" in
         ;;
 esac
 
-if [ "$QUIET" != "true" ]; then
-    echo ""
-    print_success "Happy Spec-Driven Development!"
-fi
+echo ""
+print_success "Happy Spec-Driven Development!"
 
 # Ensure successful exit
 exit 0

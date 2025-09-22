@@ -5,7 +5,7 @@ Purpose: Define data structures, relationships, and storage requirements
 Usage: Document all data entities, their properties, and relationships
 
 Placeholders:
-- {{NAME}}: Will be replaced with the project/feature name
+- {{NAME}}: Will be replaced with the feature name
 -->
 
 # Data Model: {{NAME}}

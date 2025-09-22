@@ -5,7 +5,7 @@ Purpose: Define business rules, workflows, and domain-specific logic
 Usage: Document all business processes, rules, and decision-making logic
 
 Placeholders:
-- {{NAME}}: Will be replaced with the project/feature name
+- {{NAME}}: Will be replaced with the feature name
 -->
 
 # Business Logic: {{NAME}}

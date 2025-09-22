@@ -1,6 +1,6 @@
 # Specs CLI
 
-A tool-independent CLI for specification-driven development (SDD) that enables seamless agentic coding workflows in any IDE. Specs CLI automates project initialization with structured specification templates, optimizing AI-assisted development through systematic spec-first methodology that enhances collaboration between developers and AI coding agents.
+A tool-independent CLI for specification-driven development (SDD) that enables seamless agentic coding workflows in any AI-powered IDE. Specs CLI automates project initialization with structured specification templates, optimizing AI-assisted development through systematic spec-first methodology that enhances collaboration between developers and AI coding agents.
 
 ## 🚀 Key Benefits
 
@@ -31,10 +31,10 @@ chmod +x specs.sh
 For easier access, you can install `specs` as a system-wide command:
 
 ```bash
-# Install specs globally
+# Install specs commandglobally
 ./specs.sh install
 
-# Follow the instructions to update your current session:
+# Follow the instructions to update your current session
 export PATH="$HOME/.local/bin:$PATH"
 
 # Now you can use 'specs' from your target project directory
@@ -93,19 +93,16 @@ Specs CLI creates a standardized project structure optimized for AI collaboratio
 
 ```
 my-project/
-├── PROGRESS.md              # Main workflow file - START HERE
-├── specs/                   # All specifications
-│   ├── system-overview.md   # High-level system design
-│   ├── infrastructure.md    # Infrastructure specifications
-│   ├── shared/              # Shared specifications
-│   │   ├── api-contract.md  # API definitions
-│   │   ├── data-model.md    # Data structures
-│   │   ├── ui-design.md     # UI/UX specifications
-│   │   └── business-logic.md # Business rules
-│   └── features/            # Feature-specific specs
-│       └── feature-name/    # Individual feature specs
-└── features/                # Implementation code
-    └── feature-name/        # Feature implementations
+├── PROGRESS.md                # Main workflow - START HERE
+├── specs/                     # All specifications
+│   ├── system-overview.md     # High-level system design
+│   ├── infrastructure.md      # Infrastructure specifications
+│   └── features-name/         # Feature-specific specs
+│       ├── api-contract.md    # API definitions
+│       ├── data-model.md      # Data structures
+│       ├── ui-design.md       # UI/UX specifications
+│       ├── business-logic.md  # Business rules
+│       └── ai-workflow.md     # AI implementation workflow
 ```
 
 ## 🎯 Core Workflow
@@ -152,22 +149,8 @@ Specs CLI automatically detects existing code and adapts:
 ./specs.sh add-feature ~/my-project "User Authentication"
 
 # This creates:
-# specs/features/user-authentication/
-# features/user-authentication/
+# specs/user-authentication/    # Feature-specific specs
 ```
-
-### Customizing Templates
-
-All templates are located in the `templates/` directory:
-
-- `PROGRESS_FROM_CODE.md` - For existing codebases
-- `PROGRESS_FROM_SCRATCH.md` - For new projects
-- `system-overview.md` - System architecture template
-- `infrastructure.md` - Infrastructure specifications
-- `api-contract.md` - API design template
-- `data-model.md` - Data structure template
-- `ui-design.md` - UI/UX design template
-- `business-logic.md` - Business rules template
 
 ## 🤖 AI Collaboration Best Practices
 

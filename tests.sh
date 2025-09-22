@@ -186,20 +186,11 @@ test_init_new_project() {
         
         # Verify directory structure
         verify_directory "$project_dir/specs" "Init"
-        verify_directory "$project_dir/specs/shared" "Init"
-        verify_directory "$project_dir/specs/features" "Init"
-        verify_directory "$project_dir/features" "Init"
         
         # Verify main files exist
         verify_file "$project_dir/PROGRESS.md" "" "Init"
         verify_file "$project_dir/specs/system-overview.md" "" "Init"
         verify_file "$project_dir/specs/infrastructure.md" "" "Init"
-        
-        # Verify shared spec files exist
-        verify_file "$project_dir/specs/shared/api-contract.md" "" "Init"
-        verify_file "$project_dir/specs/shared/data-model.md" "" "Init"
-        verify_file "$project_dir/specs/shared/ui-design.md" "" "Init"
-        verify_file "$project_dir/specs/shared/business-logic.md" "" "Init"
         
         # Check template replacement worked
         if [ -f "$project_dir/PROGRESS.md" ]; then
@@ -211,7 +202,7 @@ test_init_new_project() {
         fi
         
         # Verify PROGRESS_FROM_SCRATCH template was used (no existing code)
-        if grep -q "Generate global project files, shared implementation and infrastructure parts" "$project_dir/PROGRESS.md"; then
+        if grep -q "This guide helps you systematically develop your project from scratch" "$project_dir/PROGRESS.md"; then
             test_pass "Init: Correct template selected for new project"
         else
             test_fail "Init: Wrong template selected for new project"
@@ -247,7 +238,6 @@ test_init_existing_code() {
         
         # Verify directory structure was added
         verify_directory "$project_dir/specs" "Init Existing"
-        verify_directory "$project_dir/specs/shared" "Init Existing"
         
         # Verify original files still exist
         verify_file "$project_dir/app.js" "Hello World" "Init Existing"
@@ -257,7 +247,7 @@ test_init_existing_code() {
         verify_file "$project_dir/PROGRESS.md" "" "Init Existing"
         
         # Verify PROGRESS_FROM_CODE template was used (existing code detected)
-        if grep -q "Read the whole project and fill out" "$project_dir/PROGRESS.md"; then
+        if grep -q "This guide helps you systematically enhance your existing project" "$project_dir/PROGRESS.md"; then
             test_pass "Init Existing: Correct template selected for existing code"
         else
             test_fail "Init Existing: Wrong template selected for existing code"
@@ -335,18 +325,18 @@ test_add_feature() {
         test_pass "Add Feature: Command executed successfully"
         
         # Verify feature directory structure
-        verify_directory "$project_dir/specs/features/user-authentication" "Add Feature"
-        verify_directory "$project_dir/features/user-authentication" "Add Feature"
+        verify_directory "$project_dir/specs/user-authentication" "Add Feature"
         
         # Verify feature spec files
-        verify_file "$project_dir/specs/features/user-authentication/api-contract.md" "" "Add Feature"
-        verify_file "$project_dir/specs/features/user-authentication/data-model.md" "" "Add Feature"
-        verify_file "$project_dir/specs/features/user-authentication/ui-design.md" "" "Add Feature"
-        verify_file "$project_dir/specs/features/user-authentication/business-logic.md" "" "Add Feature"
+        verify_file "$project_dir/specs/user-authentication/api-contract.md" "" "Add Feature"
+        verify_file "$project_dir/specs/user-authentication/data-model.md" "" "Add Feature"
+        verify_file "$project_dir/specs/user-authentication/ui-design.md" "" "Add Feature"
+        verify_file "$project_dir/specs/user-authentication/business-logic.md" "" "Add Feature"
+        verify_file "$project_dir/specs/user-authentication/ai-workflow.md" "" "Add Feature"
         
         # Check template replacement worked
-        if [ -f "$project_dir/specs/features/user-authentication/api-contract.md" ]; then
-            if grep -q "User Authentication" "$project_dir/specs/features/user-authentication/api-contract.md" && ! grep -q "{{NAME}}" "$project_dir/specs/features/user-authentication/api-contract.md"; then
+        if [ -f "$project_dir/specs/user-authentication/api-contract.md" ]; then
+            if grep -q "User Authentication" "$project_dir/specs/user-authentication/api-contract.md" && ! grep -q "{{NAME}}" "$project_dir/specs/user-authentication/api-contract.md"; then
                 test_pass "Add Feature: Template placeholders replaced correctly"
             else
                 test_fail "Add Feature: Template placeholders not replaced correctly"
@@ -420,15 +410,15 @@ test_name_sanitization() {
         test_pass "Name Sanitization: Command executed successfully"
         
         # Verify sanitized directory name was created
-        if ls "$project_dir/specs/features/"user-auth* >/dev/null 2>&1; then
+        if ls "$project_dir/specs/"user-auth* >/dev/null 2>&1; then
             test_pass "Name Sanitization: Special characters properly sanitized"
             # Show what directory was actually created
-            sanitized_dir=$(ls "$project_dir/specs/features/" | grep "user-auth")
+            sanitized_dir=$(ls "$project_dir/specs/user-authentication/" | grep "user-authentication")
             test_info "Created directory: $sanitized_dir"
         else
             test_fail "Name Sanitization: Directory name not properly sanitized"
             echo "Available directories:"
-            ls -la "$project_dir/specs/features/" 2>/dev/null || echo "No features directory found"
+            ls -la "$project_dir/specs/user-authentication/" 2>/dev/null || echo "No user-authentication directory found"
         fi
         
     else
@@ -490,10 +480,69 @@ test_force_mode() {
         test_pass "Force Mode: Command executed successfully"
         
         # Verify feature directory still exists
-        verify_directory "$project_dir/specs/features/test-feature" "Force Mode"
+        verify_directory "$project_dir/specs/test-feature" "Force Mode"
         
     else
         test_fail "Force Mode: Command execution failed"
+    fi
+    
+    cleanup_temp_dir "$temp_dir"
+}
+
+# Test SANITIZED_NAME placeholder replacement
+test_sanitized_name_placeholder() {
+    run_test "SANITIZED_NAME Placeholder Replacement"
+    
+    local temp_dir=$(create_temp_dir)
+    local project_dir="$temp_dir/spec-project"
+    local output_file="$temp_dir/sanitized_name_output.log"
+    
+    # First create a specs project
+    run_cli_command "\"$SPECS_SCRIPT\" init \"$project_dir\" --quiet" "/dev/null"
+    
+    # Add a feature with special characters that need sanitization
+    local feature_name="User Profile & Settings!"
+    local expected_sanitized="user-profile---settings-"
+    
+    if run_cli_command "\"$SPECS_SCRIPT\" add-feature \"$project_dir\" \"$feature_name\" --quiet" "$output_file"; then
+        test_pass "SANITIZED_NAME: Feature creation command executed successfully"
+        
+        # Check that the ai-workflow.md file exists and contains the sanitized name
+        local ai_workflow_file="$project_dir/specs/$expected_sanitized/ai-workflow.md"
+        
+        if [ -f "$ai_workflow_file" ]; then
+            test_pass "SANITIZED_NAME: ai-workflow.md file created"
+            
+            # Verify {{SANITIZED_NAME}} placeholder was replaced with sanitized version
+            if grep -q "$expected_sanitized" "$ai_workflow_file" && ! grep -q "{{SANITIZED_NAME}}" "$ai_workflow_file"; then
+                test_pass "SANITIZED_NAME: {{SANITIZED_NAME}} placeholder replaced correctly in ai-workflow.md"
+            else
+                test_fail "SANITIZED_NAME: {{SANITIZED_NAME}} placeholder not replaced correctly in ai-workflow.md"
+                # Show what was actually found for debugging
+                echo "Expected sanitized name: $expected_sanitized"
+                echo "File contents (first few lines with sanitized name references):"
+                grep -n "sanitized\|SANITIZED" "$ai_workflow_file" | head -5 || echo "No sanitized name references found"
+            fi
+            
+            # Also verify {{NAME}} placeholder was replaced with original name
+            if grep -q "$feature_name" "$ai_workflow_file" && ! grep -q "{{NAME}}" "$ai_workflow_file"; then
+                test_pass "SANITIZED_NAME: {{NAME}} placeholder also replaced correctly"
+            else
+                test_fail "SANITIZED_NAME: {{NAME}} placeholder not replaced correctly"
+            fi
+            
+        else
+            test_fail "SANITIZED_NAME: ai-workflow.md file not created at expected location: $ai_workflow_file"
+            echo "Available files in feature directory:"
+            ls -la "$project_dir/specs/$expected_sanitized/" 2>/dev/null || echo "Feature directory not found"
+        fi
+        
+    else
+        test_fail "SANITIZED_NAME: Feature creation command failed"
+        if [ -f "$output_file" ]; then
+            echo "Command output:"
+            cat "$output_file"
+        fi
     fi
     
     cleanup_temp_dir "$temp_dir"
@@ -571,6 +620,8 @@ echo ""
 test_add_feature_error_handling
 echo ""
 test_name_sanitization
+echo ""
+test_sanitized_name_placeholder
 echo ""
 test_quiet_mode
 echo ""
