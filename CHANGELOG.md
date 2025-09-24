@@ -5,6 +5,18 @@ All notable changes to Specs CLI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.3] - 2025-09-24
+
+### Changed
+- Switched to AI workflows for all development phases
+- Adapted PROGRESS.md to support new AI workflows
+- Adapted specs.sh and tests.sh to support new AI workflows
+
+### Added
+- generate-system-specs.md
+- generate-feature-specs.md
+- generate-feature-code.md
+
 ## [0.0.2] - 2025-09-22
 
 ### Changed
