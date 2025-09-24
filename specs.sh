@@ -6,7 +6,7 @@
 set -e
 
 # Version
-VERSION="0.0.2"
+VERSION="0.0.3"
 
 # Colors for output
 RED='\033[0;31m'
@@ -47,8 +47,8 @@ USAGE:
     $(basename "$0") <command> [options]
 
 COMMANDS:
-    init [<path>]               Initialize a new specs project
-    add-feature [<path>] <name> Add a feature to existing project
+    init [<project-path>]               Initialize a new specs project
+    add-feature [<project-path>] <name> Add a feature to existing project
     install                     Install specs as a system command
     help                        Show this help message
     version                     Show version information
@@ -102,31 +102,6 @@ sanitize_name() {
     echo "$name" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-\|-$//g'
 }
 
-# Function to transform template comments for generated files
-transform_template_comments() {
-    local content="$1"
-    local target_name="$2"
-    
-    # Check if content starts with template comment block
-    if echo "$content" | head -1 | grep -q "^<!--$"; then
-        # Extract the template type from the second line
-        local template_type=$(echo "$content" | sed -n '2s/ TEMPLATE$//p')
-        
-        # Create user-friendly comment for generated files (using printf for proper newlines)
-        local new_comment
-        new_comment=$(printf "<!--\nGenerated from %s specification template\n\nThis file contains the %s specification for: %s\n\nTo modify this specification:\n1. Update the content below as needed\n2. Use this as a reference for implementation\n3. Keep this file updated as requirements change\n-->" "$template_type" "$template_type" "$target_name")
-        
-        # Replace the entire template comment block with the new comment
-        # First, get content after the template comment block
-        local content_after_comment=$(echo "$content" | sed -n '/^-->$/,$p' | tail -n +2)
-        
-        # Combine new comment with remaining content
-        content="$new_comment\n$content_after_comment"
-    fi
-    
-    echo -e "$content"
-}
-
 # Function to safely copy template file
 safe_copy_template() {
     local template_path="$1"
@@ -149,9 +124,6 @@ safe_copy_template() {
     # Replace placeholders with actual values
     content=${content//"{{NAME}}"/$target_name}
     content=${content//"{{SANITIZED_NAME}}"/$(sanitize_name "$target_name")}
-    
-    # Transform template comments for generated files
-    content=$(transform_template_comments "$content" "$target_name")
     
     echo "$content" > "$target_path"
     print_success "Created: $target_path"
@@ -178,23 +150,6 @@ validate_path() {
     fi
     
     echo "$path"
-}
-
-# Function to detect existing code
-has_existing_code() {
-    local project_path="$1"
-    
-    # Check for code files
-    if find "$project_path" -maxdepth 3 -type f \( -name "*.js" -o -name "*.ts" -o -name "*.py" -o -name "*.java" -o -name "*.cpp" -o -name "*.c" -o -name "*.go" -o -name "*.rs" -o -name "*.php" -o -name "*.rb" -o -name "*.cs" -o -name "*.swift" -o -name "*.kt" -o -name "*.scala" -o -name "*.dart" -o -name "*.vue" -o -name "*.jsx" -o -name "*.tsx" \) -not -path "*/node_modules/*" -not -path "*/vendor/*" -not -path "*/.git/*" 2>/dev/null | head -1 | grep -q .; then
-        return 0
-    fi
-    
-    # Check for project structure indicators
-    if [ -d "$project_path/src" ] || [ -d "$project_path/lib" ] || [ -d "$project_path/app" ] || [ -f "$project_path/package.json" ] || [ -f "$project_path/requirements.txt" ] || [ -f "$project_path/Cargo.toml" ] || [ -f "$project_path/go.mod" ] || [ -f "$project_path/pom.xml" ] || [ -f "$project_path/build.gradle" ]; then
-        return 0
-    fi
-    
-    return 1
 }
 
 # Function to initialize new project
@@ -256,27 +211,15 @@ init_project() {
     
     # Copy template files for new project
     print_info "Creating project files from templates..."
-    
-    # Detect existing code
-    if has_existing_code "$project_path"; then
-        print_info "Existing codebase detected - using PROGRESS_FROM_CODE template"
-        safe_copy_template "$script_dir/templates/PROGRESS_FROM_CODE.md" "PROGRESS.md" "$project_name"
-    else
-        print_info "No existing codebase detected - using PROGRESS_FROM_SCRATCH template"
-        safe_copy_template "$script_dir/templates/PROGRESS_FROM_SCRATCH.md" "PROGRESS.md" "$project_name"
-    fi
-    
-    # Copy system overview
-    safe_copy_template "$script_dir/templates/system-overview.md" "specs/system-overview.md" "$project_name"
-    
-    # Copy infrastructure specification
-    safe_copy_template "$script_dir/templates/infrastructure.md" "specs/infrastructure.md" "$project_name"
+
+    safe_copy_template "$script_dir/templates/PROGRESS.md" "PROGRESS.md" "$project_name"
+    safe_copy_template "$script_dir/templates/generate-system-specs.md" "specs/generate-system-specs.md" "$project_name"
     
     print_success "\n✅ Project structure created successfully!"
     print_info "\nNext steps:"
-    print_info "  1. Open the project in your AI-powered IDE (e.g. Trae AI, VS Code + Roo Code)"
+    print_info "  1. Open the project in your AI-powered IDE (e.g. Cline, Roo Code, Trae AI, ...)"
     print_info "  2. Open PROGRESS.md and work through tasks step by step"
-    print_info "  3. Use AI to generate specifications and code"
+    print_info "  3. Use AI to generate project specifications"
 }
 
 # Function to add feature
@@ -332,6 +275,10 @@ add_feature() {
     # Change to project directory
     cd "$project_path"
     
+    # Clean up any existing ai-generate-*.md workflow files to avoid confusion
+    print_info "Cleaning up existing workflow files..."
+    find . -name "generate-*.md" -type f -exec rm -f {} \; 2>/dev/null || true
+    
     # Create feature structure
     print_info "Creating feature structure..."
     
@@ -341,17 +288,14 @@ add_feature() {
     # Copy feature template files
     print_info "Creating feature specification files..."
     
-    safe_copy_template "$script_dir/templates/api-contract.md" "specs/$feature_dir/api-contract.md" "$feature_name"
-    safe_copy_template "$script_dir/templates/data-model.md" "specs/$feature_dir/data-model.md" "$feature_name"
-    safe_copy_template "$script_dir/templates/ui-design.md" "specs/$feature_dir/ui-design.md" "$feature_name"
-    safe_copy_template "$script_dir/templates/business-logic.md" "specs/$feature_dir/business-logic.md" "$feature_name"
-    safe_copy_template "$script_dir/templates/ai-workflow.md" "specs/$feature_dir/ai-workflow.md" "$feature_name"
+    safe_copy_template "$script_dir/templates/generate-feature-specs.md" "specs/$feature_dir/generate-feature-specs.md" "$feature_name"
+    safe_copy_template "$script_dir/templates/generate-feature-code.md" "specs/$feature_dir/generate-feature-code.md" "$feature_name"
     
     print_success "\n✅ Feature '$feature_name' added successfully!"
     print_info "\nNext steps:"
-    print_info "  1. Update PROGRESS.md with new feature tasks"
-    print_info "  2. Find specifications in specs/$feature_dir/"
-    print_info "  3. Use AI to generate specifications and code"
+    print_info "  1. Open PROGRESS.md and continue working through tasks"
+    print_info "  2. Use AI to generate feature specifications"
+    print_info "  3. Use AI to generate feature implementation"
 }
 
 # Function to install specs as a system command
@@ -517,7 +461,7 @@ case "$COMMAND" in
     add-feature)
         if [ -z "$FEATURE_NAME" ]; then
             print_error "Feature name is required for add-feature command"
-            echo "Usage: $(basename "$0") add-feature [<path>] <feature-name> [--force] [--quiet]"
+            echo "Usage: $(basename "$0") add-feature [<project-path>] <feature-name> [--force] [--quiet]"
             exit 1
         fi
         # Use current directory as default if no path provided

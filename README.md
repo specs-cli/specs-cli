@@ -1,6 +1,6 @@
 # Specs CLI
 
-A tool-independent CLI for specification-driven development (SDD) that enables seamless agentic coding workflows in any AI-powered IDE. Specs CLI automates project initialization with structured specification templates, optimizing AI-assisted development through systematic spec-first methodology that enhances collaboration between developers and AI coding agents.
+A tool-independent CLI for specification-driven development (SDD) that enables seamless agentic coding workflows in any AI-powered IDE. Specs CLI automates project initialization with structured specifications, optimizing AI-assisted development through systematic spec-first methodology that enhances collaboration between developers and AI coding agents.
 
 ## 🚀 Key Benefits
 
@@ -94,16 +94,15 @@ Specs CLI creates a standardized project structure optimized for AI collaboratio
 ```
 my-project/
 ├── PROGRESS.md                # Main workflow - START HERE
-├── ISSUES.md                  # Automatic issue tracking
+├── ISSUES.md                  # Automatic issue reporting
 ├── specs/                     # All specifications
 │   ├── system-overview.md     # High-level system design
 │   ├── infrastructure.md      # Infrastructure specifications
-│   └── feature-name/          # Feature-specific specs
+│   └── [feature-name]/        # Feature-specific specs
 │       ├── api-contract.md    # API definitions
 │       ├── data-model.md      # Data structures
 │       ├── ui-design.md       # UI/UX specifications
-│       ├── business-logic.md  # Business rules
-│       └── ai-workflow.md     # AI implementation workflow
+│       └── business-logic.md  # Business rules
 ```
 
 ## 🎯 Core Workflow
@@ -133,25 +132,6 @@ After initialization, **open `PROGRESS.md`** - this is your primary workflow fil
 2. **Use AI Assistance**: Leverage provided prompts in `PROGRESS.md`
 3. **Iterative Refinement**: Refine specs based on implementation learnings
 4. **Feature Isolation**: Add new features using the `add-feature` command
-
-## 🔧 Advanced Usage
-
-### Working with Existing Codebases
-
-Specs CLI automatically detects existing code and adapts:
-
-- **Existing Code Detected**: Uses `PROGRESS_FROM_CODE.md` template
-- **New Project**: Uses `PROGRESS_FROM_SCRATCH.md` template
-
-### Adding Features
-
-```bash
-# Add a new feature with dedicated specs
-./specs.sh add-feature ~/my-project "User Authentication"
-
-# This creates:
-# specs/user-authentication/    # Feature-specific specs
-```
 
 ## 🤖 AI Collaboration Best Practices
 

@@ -1,17 +1,30 @@
 <!--
-AI IMPLEMENTATION WORKFLOW TEMPLATE
-
+🚀 AI EXECUTABLE WORKFLOW 🚀
+This file contains executable instructions for AI agents
 Purpose: Systematic implementation workflow for AI agents/assistants
-Usage: This template guides AI agents through complete feature implementation following specification-driven development
-
-Placeholders:
-- {{NAME}}: Will be replaced with the project/feature name
-- {{SANITIZED_NAME}}: Will be replaced with the sanitized name (used for file/folder naming)
-
-Note: This file is referenced by PROGRESS.md workflows and provides the systematic 5-phase implementation approach
 -->
 
-# AI Agent Feature Implementation Workflow: {{NAME}}
+# Feature Implementation Workflow: {{NAME}}
+
+## ⚠️ CRITICAL WORKFLOW VALIDATION ⚠️
+
+**MANDATORY PRE-EXECUTION CHECKS**:
+
+1. **TEMPLATE VERIFICATION**: You are executing `specs/{{SANITIZED_NAME}}/generate-feature-code.md` workflow ONLY. Do NOT execute any other AI generation workflows (generate-feature-specs.md, generate-system-specs.md, etc.)
+
+2. **PREREQUISITE VALIDATION**: All specification files must exist before implementation:
+   - `specs/{{SANITIZED_NAME}}/business-logic.md`
+   - `specs/{{SANITIZED_NAME}}/data-model.md`
+   - `specs/{{SANITIZED_NAME}}/api-contract.md`
+   - `specs/{{SANITIZED_NAME}}/ui-design.md`
+
+3. **SCOPE LIMITATION**: This workflow implements features based on existing specifications only. Do NOT generate new specifications.
+
+**VALIDATION CONFIRMATION**: Before proceeding, confirm:
+- [ ] I am executing generate-feature-code.md workflow only
+- [ ] All required specification files exist and are complete
+- [ ] I will implement based on existing specifications only
+- [ ] I will not generate new specification files during implementation
 
 ## Overview
 
@@ -95,7 +108,7 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 
 - **Consistency Validation**: Check for conflicts between specification files:
   - Data model entities match API contract references
-  - UI design components align with business logic workflows
+  - UI design components align with business logic specifications
   - Infrastructure requirements support system architecture choices
   - Security requirements consistent across all specification files
 
@@ -185,7 +198,7 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 #### [ ] Step 2.1: Core Business Rules & Services
 **AI Agent Tasks**:
 - Read `/specs/{{SANITIZED_NAME}}/business-logic.md` thoroughly and map all user scenarios
-- **Document missing business rules, unclear workflows, or incomplete user scenarios** in ISSUES.md
+- **Document missing business rules, unclear specifications, or incomplete user scenarios** in ISSUES.md
 - Implement every business rule with exact "When/Then" logic as specified
 - **Document any assumed business logic** when specifications are unclear or missing
 - Create service layer components that orchestrate data and API interactions
@@ -212,8 +225,8 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 - Validate business rule enforcement works correctly across all scenarios
 - Test integration between business logic and data layer thoroughly
 - **Track any integration issues** or missing integration specifications in ISSUES.md
-- Create integration tests for complete user workflows
-- **Document any untestable workflows** due to incomplete specifications
+- Create integration tests for complete user scenarios
+- **Document any untestable user scenarios** due to incomplete specifications
 - Document any implementation decisions or specification clarifications made in ISSUES.md
 
 ### Phase 3: User Interface Development
@@ -432,7 +445,7 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 - Comprehensive test suite passes with complete validation across all layers:
   - All unit tests execute successfully without failures
   - All integration tests verify cross-component functionality
-  - All end-to-end tests validate complete user workflows
+  - All end-to-end tests validate complete user scenarios
   - All API contracts tested with comprehensive input validation
   - All UI components tested with accessibility and responsiveness verification
 - **All untestable scenarios documented** in ISSUES.md with workarounds applied

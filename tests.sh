@@ -130,7 +130,7 @@ test_help_command() {
         fi
         
         # Verify specific commands are documented
-        if grep -q "init \[<path>\]" "$output_file" && grep -q "add-feature \[<path>\] <name>" "$output_file"; then
+        if grep -q "init \[<project-path>\]" "$output_file" && grep -q "add-feature \[<project-path>\] <name>" "$output_file"; then
             test_pass "Help: Documents all main commands"
         else
             test_fail "Help: Missing command documentation"
@@ -189,8 +189,7 @@ test_init_new_project() {
         
         # Verify main files exist
         verify_file "$project_dir/PROGRESS.md" "" "Init"
-        verify_file "$project_dir/specs/system-overview.md" "" "Init"
-        verify_file "$project_dir/specs/infrastructure.md" "" "Init"
+        verify_file "$project_dir/specs/generate-system-specs.md" "" "Init"
         
         # Check template replacement worked
         if [ -f "$project_dir/PROGRESS.md" ]; then
@@ -201,60 +200,8 @@ test_init_new_project() {
             fi
         fi
         
-        # Verify PROGRESS_FROM_SCRATCH template was used (no existing code)
-        if grep -q "This guide helps you systematically develop your project from scratch" "$project_dir/PROGRESS.md"; then
-            test_pass "Init: Correct template selected for new project"
-        else
-            test_fail "Init: Wrong template selected for new project"
-        fi
-        
     else
         test_fail "Init: Command execution failed"
-        if [ -f "$output_file" ]; then
-            echo "Command output:"
-            cat "$output_file"
-        fi
-    fi
-    
-    cleanup_temp_dir "$temp_dir"
-}
-
-# Test init command with existing code
-test_init_existing_code() {
-    run_test "Init With Existing Code"
-    
-    local temp_dir=$(create_temp_dir)
-    local project_dir="$temp_dir/existing-project"
-    local output_file="$temp_dir/init_existing_output.log"
-    
-    # Create project directory with some existing code
-    mkdir -p "$project_dir"
-    echo "console.log('Hello World');" > "$project_dir/app.js"
-    echo '{"name": "test", "version": "1.0.0"}' > "$project_dir/package.json"
-    
-    # Run init command with force flag
-    if run_cli_command "\"$SPECS_SCRIPT\" init \"$project_dir\" --name \"ExistingProject\" --force" "$output_file"; then
-        test_pass "Init Existing: Command executed successfully"
-        
-        # Verify directory structure was added
-        verify_directory "$project_dir/specs" "Init Existing"
-        
-        # Verify original files still exist
-        verify_file "$project_dir/app.js" "Hello World" "Init Existing"
-        verify_file "$project_dir/package.json" "test" "Init Existing"
-        
-        # Verify new spec files were created
-        verify_file "$project_dir/PROGRESS.md" "" "Init Existing"
-        
-        # Verify PROGRESS_FROM_CODE template was used (existing code detected)
-        if grep -q "This guide helps you systematically enhance your existing project" "$project_dir/PROGRESS.md"; then
-            test_pass "Init Existing: Correct template selected for existing code"
-        else
-            test_fail "Init Existing: Wrong template selected for existing code"
-        fi
-        
-    else
-        test_fail "Init Existing: Command execution failed"
         if [ -f "$output_file" ]; then
             echo "Command output:"
             cat "$output_file"
@@ -328,15 +275,12 @@ test_add_feature() {
         verify_directory "$project_dir/specs/user-authentication" "Add Feature"
         
         # Verify feature spec files
-        verify_file "$project_dir/specs/user-authentication/api-contract.md" "" "Add Feature"
-        verify_file "$project_dir/specs/user-authentication/data-model.md" "" "Add Feature"
-        verify_file "$project_dir/specs/user-authentication/ui-design.md" "" "Add Feature"
-        verify_file "$project_dir/specs/user-authentication/business-logic.md" "" "Add Feature"
-        verify_file "$project_dir/specs/user-authentication/ai-workflow.md" "" "Add Feature"
+        verify_file "$project_dir/specs/user-authentication/generate-feature-specs.md" "" "Add Feature"
+        verify_file "$project_dir/specs/user-authentication/generate-feature-code.md" "" "Add Feature"
         
         # Check template replacement worked
-        if [ -f "$project_dir/specs/user-authentication/api-contract.md" ]; then
-            if grep -q "User Authentication" "$project_dir/specs/user-authentication/api-contract.md" && ! grep -q "{{NAME}}" "$project_dir/specs/user-authentication/api-contract.md"; then
+        if [ -f "$project_dir/specs/user-authentication/generate-feature-specs.md" ]; then
+            if grep -q "User Authentication" "$project_dir/specs/user-authentication/generate-feature-specs.md" && ! grep -q "{{NAME}}" "$project_dir/specs/user-authentication/generate-feature-specs.md"; then
                 test_pass "Add Feature: Template placeholders replaced correctly"
             else
                 test_fail "Add Feature: Template placeholders not replaced correctly"
@@ -413,7 +357,7 @@ test_name_sanitization() {
         if ls "$project_dir/specs/"user-auth* >/dev/null 2>&1; then
             test_pass "Name Sanitization: Special characters properly sanitized"
             # Show what directory was actually created
-            sanitized_dir=$(ls "$project_dir/specs/user-authentication/" | grep "user-authentication")
+            sanitized_dir=$(ls -d "$project_dir/specs/"user-auth* 2>/dev/null | xargs basename)
             test_info "Created directory: $sanitized_dir"
         else
             test_fail "Name Sanitization: Directory name not properly sanitized"
@@ -508,16 +452,16 @@ test_sanitized_name_placeholder() {
         test_pass "SANITIZED_NAME: Feature creation command executed successfully"
         
         # Check that the ai-workflow.md file exists and contains the sanitized name
-        local ai_workflow_file="$project_dir/specs/$expected_sanitized/ai-workflow.md"
+        local ai_workflow_file="$project_dir/specs/$expected_sanitized/generate-feature-specs.md"
         
         if [ -f "$ai_workflow_file" ]; then
-            test_pass "SANITIZED_NAME: ai-workflow.md file created"
+            test_pass "SANITIZED_NAME: generate-feature-specs.md file created"
             
             # Verify {{SANITIZED_NAME}} placeholder was replaced with sanitized version
             if grep -q "$expected_sanitized" "$ai_workflow_file" && ! grep -q "{{SANITIZED_NAME}}" "$ai_workflow_file"; then
-                test_pass "SANITIZED_NAME: {{SANITIZED_NAME}} placeholder replaced correctly in ai-workflow.md"
+                test_pass "SANITIZED_NAME: {{SANITIZED_NAME}} placeholder replaced correctly in generate-feature-specs.md"
             else
-                test_fail "SANITIZED_NAME: {{SANITIZED_NAME}} placeholder not replaced correctly in ai-workflow.md"
+                test_fail "SANITIZED_NAME: {{SANITIZED_NAME}} placeholder not replaced correctly in generate-feature-specs.md"
                 # Show what was actually found for debugging
                 echo "Expected sanitized name: $expected_sanitized"
                 echo "File contents (first few lines with sanitized name references):"
@@ -604,31 +548,53 @@ fi
 test_info "Found specs.sh at: $SPECS_SCRIPT"
 echo ""
 
-# Run all tests
-test_help_command
-echo ""
-test_version_command
-echo ""
-test_init_new_project
-echo ""
-test_init_existing_code
-echo ""
-test_init_error_handling
-echo ""
-test_add_feature
-echo ""
-test_add_feature_error_handling
-echo ""
-test_name_sanitization
-echo ""
-test_sanitized_name_placeholder
-echo ""
-test_quiet_mode
-echo ""
-test_force_mode
-echo ""
-test_invalid_commands
-echo ""
+# Check if a specific test function was provided as argument
+if [ $# -eq 1 ]; then
+    # Run specific test function
+    test_function="$1"
+    if declare -f "$test_function" > /dev/null; then
+        "$test_function"
+    else
+        echo -e "${RED}Error: Test function '$test_function' not found.${NC}"
+        echo "Available test functions:"
+        echo "  test_help_command"
+        echo "  test_version_command"
+        echo "  test_init_new_project"
+        echo "  test_init_error_handling"
+        echo "  test_add_feature"
+        echo "  test_add_feature_error_handling"
+        echo "  test_name_sanitization"
+        echo "  test_sanitized_name_placeholder"
+        echo "  test_quiet_mode"
+        echo "  test_force_mode"
+        echo "  test_invalid_commands"
+        exit 1
+    fi
+else
+    # Run all tests
+    test_help_command
+    echo ""
+    test_version_command
+    echo ""
+    test_init_new_project
+    echo ""
+    test_init_error_handling
+    echo ""
+    test_add_feature
+    echo ""
+    test_add_feature_error_handling
+    echo ""
+    test_name_sanitization
+    echo ""
+    test_sanitized_name_placeholder
+    echo ""
+    test_quiet_mode
+    echo ""
+    test_force_mode
+    echo ""
+    test_invalid_commands
+    echo ""
+fi
 
 # Print test summary
 echo "==========================================="
