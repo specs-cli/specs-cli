@@ -1,7 +1,7 @@
 <!--
 🚀 AI EXECUTABLE WORKFLOW 🚀
 This file contains executable instructions for AI agents
-Purpose: Systematic global system architecture and infrastructure design workflow for AI agents/assistants
+Purpose: Systematic system architecture and infrastructure design workflow for AI agents/assistants
 -->
 
 # System Architecture & Infrastructure Design Workflow: {{NAME}}

@@ -5,6 +5,16 @@ All notable changes to Specs CLI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.4] - 2025-09-25
+
+### Changed
+- README.md updated to represent the current state of the project
+- Archive AI workflows instead of deleting them after execution
+
+### Added
+- QUESTIONS.md template for question reporting during spec generation
+- New test for archiving workflow files
+
 ## [0.0.3] - 2025-09-24
 
 ### Changed

@@ -16,7 +16,7 @@ We welcome contributions from the community! This document provides guidelines f
    ```bash
    # Fork on GitHub, then clone your fork
    git clone https://github.com/YOUR_USERNAME/specs-cli.git
-cd specs-cli
+   cd specs-cli
    ```
 
 2. **Make the CLI executable**
@@ -75,9 +75,7 @@ cd specs-cli
 
 - **Use `{{NAME}}` placeholder** for project/feature name
 - **Use `{{SANITIZED_NAME}}` placeholder** for feature directory
-- **Include documentation** in template comments
 - **Maintain consistent structure** across similar templates
-- **Provide examples** where helpful
 - **Keep templates focused** on their specific purpose
 
 ## 🧪 Testing
@@ -127,22 +125,6 @@ test_your_feature() {
 }
 ```
 
-## 📚 Documentation
-
-### README Updates
-
-- **Keep examples current** with actual CLI behavior
-- **Update version numbers** when releasing
-- **Add new features** to appropriate sections
-- **Maintain consistent formatting**
-
-### Template Documentation
-
-- **Add header comments** explaining template purpose
-- **Include usage examples** in templates
-- **Document placeholder variables**
-- **Provide clear next steps**
-
 ## 🐛 Bug Reports
 
 ### Before Reporting
@@ -168,7 +150,7 @@ What you expected to happen.
 **Environment:**
 - OS: [e.g. macOS 12.0, Ubuntu 20.04, Windows 11]
 - Shell: [e.g. bash 5.1, zsh 5.8]
-- Specs CLI version: [e.g. 0.1.0]
+- Specs CLI version: [e.g. 0.0.3]
 
 **Additional context**
 Any other context about the problem.
@@ -232,35 +214,6 @@ We follow [Semantic Versioning](https://semver.org/):
 - **Use GitHub Discussions** for questions and ideas
 - **Be clear and concise** in communications
 - **Provide context** and examples
-
-## 🎯 Areas for Contribution
-
-### High Priority
-
-- **Bug fixes** and stability improvements
-- **Test coverage** expansion
-- **Documentation** improvements
-- **Cross-platform** compatibility
-
-### Medium Priority
-
-- **New templates** for different project structures
-- **CLI enhancements** and new commands
-- **Performance** optimizations
-- **Integration examples** with popular tools
-
-### Low Priority
-
-- **Advanced features** for power users
-- **Alternative output formats**
-- **Internationalization**
-
-## 📞 Getting Help
-
-- **Documentation**: Check README and template files
-- **Issues**: Search existing GitHub issues
-- **Discussions**: Join GitHub Discussions
-- **Direct Contact**: Open an issue for maintainer attention
 
 ---
 

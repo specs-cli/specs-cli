@@ -1,14 +1,16 @@
 # Specs CLI
 
-A tool-independent CLI for specification-driven development (SDD) that enables seamless agentic coding workflows in any AI-powered IDE. Specs CLI automates project initialization with structured specifications, optimizing AI-assisted development through systematic spec-first methodology that enhances collaboration between developers and AI coding agents.
+A tool-independent CLI for specification-driven development (SDD) that enables high quality agentic coding in any AI-powered IDE. Specs CLI needs no deep IDE integration as you can execute AI workflows easily at the surface keeping full control and transparency.
 
-## 🚀 Key Benefits
+- **Supports all AI-powered IDEs**: Roo Code, Cline, Trae AI, ...
+- **Easy to adapt**: Customize AI workflows and spec templates to fit your project needs
 
-- **Automated Setup**: Complete project initialization with optimal structure for AI collaboration
-- **Consistency**: Standardized templates ensure uniform development patterns across projects
-- **Time Efficiency**: Eliminates manual setup and reduces project initialization overhead
-- **AI Optimization**: Project layouts specifically designed for seamless AI assistance
-- **Production Focus**: Templates built for maintainable, scalable software systems
+## ⚙️ How It Works
+
+1. **Open IDE**: New project or existing codebase
+2. **IDE Terminal**: `specs init`
+3. **Open PROGRESS.md**: Follow the instructions
+4. AI executes workflows, you review and approve results
 
 ## 📦 Installation
 
@@ -23,31 +25,25 @@ cd specs-cli
 chmod +x specs.sh
 
 # Verify installation
-./specs.sh version
+./specs.sh help
 ```
 
 ### Install as System Command
 
-For easier access, you can install `specs` as a system-wide command:
+For direct access from your project directory:
 
 ```bash
-# Install specs commandglobally
+# Install specs command globally
 ./specs.sh install
 
-# Follow the instructions to update your current session
+# Update your current session
 export PATH="$HOME/.local/bin:$PATH"
 
-# Now you can use 'specs' from your target project directory
+# Now this works everywhere:
 specs help
 specs init
 specs add-feature "New Feature"
 ```
-
-**What the install command does:**
-- Creates a symbolic link to `specs` in your local bin directory
-- Automatically updates your shell configuration (`~/.zshrc`, `~/.bash_profile`, etc.)
-- Makes the `specs` command available system-wide
-- Provides instructions for immediate use in the current terminal session
 
 ### System Requirements
 
@@ -55,118 +51,46 @@ specs add-feature "New Feature"
 - **Windows**: Git Bash (comes with Git for Windows)
 - **Dependencies**: None - pure Bash implementation
 
-## 🛠️ Usage
+## 📁 Target Project Structure
 
-### Specs CLI Commands
-
-Specs CLI provides the following commands:
-
-```bash
-# Show help
-./specs.sh help
-
-# Initialize a new specs project
-./specs.sh init /path/to/my-project
-./specs.sh init /path/to/my-project --name "My Awesome Project"
-
-# Add a feature to existing project
-./specs.sh add-feature /path/to/project "User Authentication"
-./specs.sh add-feature /path/to/project "Product Catalog" --force
-
-# Install as system command (makes 'specs' available globally)
-./specs.sh install
-
-# Show version
-./specs.sh version
-```
-
-### Command Options
-
-- `-n, --name <name>`: Project name (for init command)
-- `-f, --force`: Force operation (overwrite existing files)
-- `-q, --quiet`: Suppress non-error output
-- `-h, --help`: Show help message
-
-## 📋 Target Project Structure
-
-Specs CLI creates a standardized project structure optimized for AI collaboration:
+This file structure will be created during AI workflow execution:
 
 ```
 my-project/
 ├── PROGRESS.md                # Main workflow - START HERE
-├── ISSUES.md                  # Automatic issue reporting
+├── ISSUES.md                  # Implementation issues reporting
+├── QUESTIONS.md               # Specification questions reporting
 ├── specs/                     # All specifications
 │   ├── system-overview.md     # High-level system design
 │   ├── infrastructure.md      # Infrastructure specifications
-│   └── [feature-name]/        # Feature-specific specs
+│   └── [feature-name]/        # Feature specifications
 │       ├── api-contract.md    # API definitions
 │       ├── data-model.md      # Data structures
 │       ├── ui-design.md       # UI/UX specifications
 │       └── business-logic.md  # Business rules
 ```
 
-## 🎯 Core Workflow
+## 📝 Customizing Spec Templates
 
-### 1. Initialize Your Project
+The AI workflows contain embedded specification templates that define the structure and content of generated documentation. If you need to adapt these templates to fit your project's specific needs, you can find them in the following workflow files:
 
-```bash
-# For new projects
-./specs.sh init ~/my-new-project --name "My Project"
+- **`templates/generate-system-specs.md`** - Contains templates for:
+  - system-overview.md
+  - infrastructure.md
 
-# For existing codebases
-./specs.sh init ~/existing-project --force
-```
+- **`templates/generate-feature-specs.md`** - Contains templates for:
+  - business-logic.md
+  - data-model.md
+  - api-contract.md
+  - ui-design.md
+  - QUESTIONS.md
 
-### 2. Follow PROGRESS.md
+- **`templates/generate-feature-code.md`** - Contains template for:
+  - ISSUES.md
 
-After initialization, **open `PROGRESS.md`** - this is your primary workflow file that provides:
+To customize these templates, simply edit the relevant workflow file. The AI will use your modified templates when generating specifications and code for your project.
 
-- ✅ **Structured Task Lists**: Pre-defined checklists for different project types
-- 🤖 **AI Collaboration Prompts**: Ready-to-use prompts for AI assistants
-- 📊 **Phase Management**: Clear separation between specification and implementation
-- 📈 **Progress Tracking**: Checkboxes to monitor completion
-
-### 3. Specification-Driven Development
-
-1. **Write Specifications First**: Always complete specs before implementation
-2. **Use AI Assistance**: Leverage provided prompts in `PROGRESS.md`
-3. **Iterative Refinement**: Refine specs based on implementation learnings
-4. **Feature Isolation**: Add new features using the `add-feature` command
-
-## 🤖 AI Collaboration Best Practices
-
-### Recommended AI-Powered IDEs
-
-- **VS Code + Cline** - Popular combination
-- **VS Code + Roo Code** - Popular combination
-- **Trae AI** - All-in-one IDE
-
-### Workflow Tips
-
-1. **Use Provided Prompts**: Leverage AI prompts in `PROGRESS.md`
-2. **Review Generated Specs**: Always review AI-generated specifications
-3. **Context Preservation**: The structured approach ensures AI has comprehensive context
-4. **Incremental Development**: Work through checklists systematically
-
-## 🧪 Testing
-
-Run the test suite to verify Specs CLI functionality:
-
-```bash
-# Run all tests
-./tests.sh
-
-# Tests cover:
-# - Project initialization
-# - Feature addition
-# - Template generation
-# - Error handling
-# - CLI argument parsing
-```
-
-## 🆘 Troubleshooting
-
-### Common Issues
+## 🔧 Troubleshooting
 
 **Permission Errors (Unix/Linux/macOS)**
 ```bash
@@ -182,14 +106,7 @@ bash specs.sh init /c/Users/username/my-project
 **Path Issues**
 - Use absolute paths: `/home/user/projects/myapp`
 - Tilde expansion supported: `~/projects/myapp`
-- Avoid spaces in paths or use quotes
-
-### Getting Help
-
-- 📖 **Documentation**: Check this README and template files
-- 🐛 **Issues**: Report bugs on GitHub Issues
-- 💬 **Discussions**: Join GitHub Discussions for questions
-- 📧 **Contact**: Open an issue for direct support
+- Avoid spaces in paths
 
 ## 🤝 Contributing
 
@@ -205,14 +122,7 @@ We welcome contributions! Here's how to get started:
 
 For detailed contribution guidelines, development setup, coding standards, and testing procedures, please see our [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
-### Development Guidelines
-
-- Follow existing code style and patterns
-- Add tests for new functionality
-- Update documentation for user-facing changes
-- Ensure backward compatibility
-
-## 📚 Acknowledgments
+## 🙏 Acknowledgments
 
 The Specs CLI templates and project structure methodology were originally developed and documented in the book [Mastering AI Agents](https://mastering-ai-agents.com). This CLI tool brings those proven concepts to life as a practical development toolkit.
 

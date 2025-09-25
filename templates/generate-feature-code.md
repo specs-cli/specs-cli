@@ -1,7 +1,7 @@
 <!--
 🚀 AI EXECUTABLE WORKFLOW 🚀
 This file contains executable instructions for AI agents
-Purpose: Systematic implementation workflow for AI agents/assistants
+Purpose: Systematic feature implementation workflow for AI agents/assistants
 -->
 
 # Feature Implementation Workflow: {{NAME}}
@@ -17,6 +17,7 @@ Purpose: Systematic implementation workflow for AI agents/assistants
    - `specs/{{SANITIZED_NAME}}/data-model.md`
    - `specs/{{SANITIZED_NAME}}/api-contract.md`
    - `specs/{{SANITIZED_NAME}}/ui-design.md`
+   - `QUESTIONS.md` (if exists - contains developer answers to specification questions)
 
 3. **SCOPE LIMITATION**: This workflow implements features based on existing specifications only. Do NOT generate new specifications.
 
@@ -87,6 +88,7 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 - `/specs/{{SANITIZED_NAME}}/data-model.md` - Data structures, relationships, and validation rules
 - `/specs/{{SANITIZED_NAME}}/api-contract.md` - API endpoints, request/response formats, and error handling
 - `/specs/{{SANITIZED_NAME}}/ui-design.md` - User interface components, flows, and design patterns
+- `QUESTIONS.md` - Developer answers to specification questions (if exists)
 
 ### Step 3: Integration Analysis (For Existing Projects)
 **AI Agent Tasks** (Skip if this is the first feature):
@@ -98,6 +100,7 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 
 ### Specification Quality Assessment
 **AI Agent Tasks** (Execute BEFORE any implementation):
+- **Read QUESTIONS.md** (if exists) to understand developer answers and decisions for any specification questions
 - **Completeness Validation**: Verify each specification file contains all required sections:
   - System Overview: Architecture, tech stack, coding standards, project structure
   - Infrastructure: Deployment strategy, security requirements, performance benchmarks
@@ -105,24 +108,28 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
   - Data Model: All entities with fields, types, constraints, relationships, validation rules
   - API Contract: All endpoints with parameters, responses, error codes, authentication
   - UI Design: All components with behavior, styling, responsive design, accessibility
+  - QUESTIONS.md: Developer answers to any open questions from specification phase (if exists)
 
 - **Consistency Validation**: Check for conflicts between specification files:
   - Data model entities match API contract references
   - UI design components align with business logic specifications
   - Infrastructure requirements support system architecture choices
   - Security requirements consistent across all specification files
+  - **Use QUESTIONS.md answers** to resolve any previously identified inconsistencies
 
 - **Clarity Assessment**: Identify ambiguous or incomplete requirements:
   - Vague language requiring interpretation ("should", "might", "could")
   - Missing edge case definitions or error handling specifications
   - Undefined integration points or external dependencies
   - Unclear success criteria or acceptance conditions
+  - **Reference QUESTIONS.md** for clarifications on previously identified unclear requirements
 
 - **Measurability Check**: Ensure all requirements have concrete validation criteria:
   - Business rules have testable conditions and outcomes
   - Performance requirements include specific benchmarks
   - User scenarios include measurable success indicators
   - Quality requirements define specific validation methods
+  - **Apply developer decisions from QUESTIONS.md** for any previously unclear criteria
 
 ### Validation Rules & Issue Documentation
 1. **Document all gaps and ambiguities** in specification quality assessment - never stop implementation
@@ -156,12 +163,14 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 #### [ ] Step 1.2: Data Layer Implementation
 **AI Agent Tasks**:
 - Read `/specs/{{SANITIZED_NAME}}/data-model.md` thoroughly and understand all entities and relationships
+- **Reference QUESTIONS.md** for any developer answers about data model clarifications or decisions
 - **Document missing entity definitions, unclear relationships, or incomplete validation rules** in ISSUES.md
 - **If first feature**: Implement all data models with exact specifications (fields, types, constraints)
 - **If additional feature**: Implement new data models and update existing ones if needed, ensuring backward compatibility
 - **If first feature**: Create database schemas, migrations, and indexes as required
 - **If additional feature**: Create new migrations for schema changes, ensuring existing data integrity
 - Implement all validation rules and business constraints from specifications
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear validation rules
 - **Document any assumed validation rules** when specifications are incomplete
 - **If first feature**: Set up data access patterns (repositories, DAOs, ORMs) following architecture guidelines
 - **If additional feature**: Follow existing data access patterns and extend them for new entities
@@ -178,10 +187,12 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 #### [ ] Step 1.3: API Foundation
 **AI Agent Tasks**:
 - Read `/specs/{{SANITIZED_NAME}}/api-contract.md` thoroughly
+- **Reference QUESTIONS.md** for any developer answers about API design clarifications or decisions
 - **Document missing endpoint specifications, unclear request/response formats, or incomplete error handling** in ISSUES.md
 - **If first feature**: Implement all specified API endpoints with correct signatures
 - **If additional feature**: Implement new API endpoints following existing patterns and conventions
 - Set up request/response data structures as defined
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear API specifications
 - **Document any assumed data structures** when specifications are incomplete
 - **If first feature**: Implement error handling patterns according to specifications
 - **If additional feature**: Follow existing error handling patterns and extend them for new endpoints
@@ -198,8 +209,10 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 #### [ ] Step 2.1: Core Business Rules & Services
 **AI Agent Tasks**:
 - Read `/specs/{{SANITIZED_NAME}}/business-logic.md` thoroughly and map all user scenarios
+- **Reference QUESTIONS.md** for any developer answers about business logic clarifications or decisions
 - **Document missing business rules, unclear specifications, or incomplete user scenarios** in ISSUES.md
 - Implement every business rule with exact "When/Then" logic as specified
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear business rules
 - **Document any assumed business logic** when specifications are unclear or missing
 - Create service layer components that orchestrate data and API interactions
 - Implement all workflow processes and state transitions as documented
@@ -219,8 +232,10 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 #### [ ] Step 2.2: User Scenarios & Integration
 **AI Agent Tasks**:
 - Implement each user scenario from `/specs/{{SANITIZED_NAME}}/business-logic.md` with complete "As a/I want/So that" flows
+- **Reference QUESTIONS.md** for any developer answers about user scenario clarifications or decisions
 - **Document any incomplete or unclear user scenarios** in ISSUES.md with implementation assumptions
 - Verify every success criteria is met and automatically testable
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear success criteria
 - **Log any missing success criteria** and document the validation approach used
 - Validate business rule enforcement works correctly across all scenarios
 - Test integration between business logic and data layer thoroughly
@@ -235,8 +250,10 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 #### [ ] Step 3.1: UI Components & Styling
 **AI Agent Tasks**:
 - Read `/specs/{{SANITIZED_NAME}}/ui-design.md` thoroughly
+- **Reference QUESTIONS.md** for any developer answers about UI design clarifications or decisions
 - **Document missing UI specifications, unclear design patterns, or incomplete styling guidelines** in ISSUES.md
 - Implement all specified UI components with exact specifications
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear UI requirements
 - **Document any assumed UI behaviors** when specifications are incomplete
 - Apply design patterns, styling guidelines, and responsive design
 - **Log any missing design system specifications** and document the design choices made
@@ -248,8 +265,10 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 #### [ ] Step 3.2: User Flows & State Management
 **AI Agent Tasks**:
 - Implement all user flows from `/specs/{{SANITIZED_NAME}}/ui-design.md`
+- **Reference QUESTIONS.md** for any developer answers about user flow clarifications or decisions
 - **Document missing user flow specifications or unclear navigation patterns** in ISSUES.md
 - Connect UI components to business logic layer
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear UI integration requirements
 - **Log any missing integration specifications** between UI and business logic
 - Implement state management according to architecture specifications
 - **Document any assumed state management patterns** when specifications are unclear
@@ -264,8 +283,10 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 #### [ ] Step 4.1: System Integration & Validation
 **AI Agent Tasks**:
 - Integrate all layers (data, business logic, API, UI) according to specifications
+- **Reference QUESTIONS.md** for any developer answers about integration clarifications or decisions
 - **Document any integration issues or missing integration specifications** in ISSUES.md
 - Verify all API contracts are correctly implemented and functional
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear integration requirements
 - **Log any API contract discrepancies** and document the implementation approach used
 - Test complete data flow through entire system
 - **Track any untestable data flows** due to incomplete specifications
@@ -339,10 +360,13 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
   - All validation rules enforced and tested
   - All CRUD operations functional and tested
   - All database constraints and indexes working correctly
+- **Reference QUESTIONS.md** for any developer answers about data model clarifications or decisions
 - **Document any missing data model specifications** and the implementation choices made in ISSUES.md
 - All API endpoints from `/specs/{{SANITIZED_NAME}}/api-contract.md` functional with comprehensive error handling
+- **Reference QUESTIONS.md** for any developer answers about API design clarifications or decisions
 - **Log any missing API specifications** and document the API design decisions made
 - Project structure exactly matches `/specs/system-overview.md` architecture specifications
+- **Reference QUESTIONS.md** for any developer answers about architecture clarifications or decisions
 - **Track any missing architecture specifications** and document the structural decisions made
 - All dependencies, build tools, and development environment configured correctly
 - Database schemas and migrations working properly
@@ -355,8 +379,10 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 ### Gate 2: Business Logic Complete
 **AI Agent Validation**:
 - Every user scenario from `/specs/{{SANITIZED_NAME}}/business-logic.md` fully implemented and tested
+- **Reference QUESTIONS.md** for any developer answers about business logic clarifications or decisions
 - **Document any missing or unclear user scenarios** and the implementation approach used in ISSUES.md
 - All business rules enforced with proper validation and error messages
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear business rules
 - **Log any missing business rules** and document the business logic implemented
 - Every edge case and exception scenario handled as specified
 - **Track any missing edge case specifications** and document the exception handling implemented
@@ -368,6 +394,7 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 - **Document any untestable service integrations** due to incomplete specifications
 - **If first feature**: Authorization and permission systems working correctly
 - **If additional feature**: New feature integrates with existing authorization without breaking existing permissions
+- **Reference QUESTIONS.md** for any developer answers about authorization clarifications or decisions
 - **Log any missing authorization specifications** and document the security model implemented
 - All workflow processes and state transitions functioning properly
 - **Track any missing workflow specifications** and document the process logic implemented
@@ -378,11 +405,14 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 ### Gate 3: UI Complete
 **AI Agent Validation**:
 - All UI components from `/specs/{{SANITIZED_NAME}}/ui-design.md` implemented and styled
+- **Reference QUESTIONS.md** for any developer answers about UI design clarifications or decisions
 - **Document any missing UI component specifications** and the design decisions made in ISSUES.md
 - All user flows functional and match `/specs/{{SANITIZED_NAME}}/ui-design.md` specifications
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear UI requirements
 - **Log any missing user flow specifications** and document the navigation logic implemented
 - **If first feature**: Accessibility requirements met as specified
 - **If additional feature**: New UI components follow existing design system and accessibility standards
+- **Reference QUESTIONS.md** for any developer answers about accessibility clarifications or decisions
 - **Track any missing accessibility specifications** and document the accessibility standards applied
 - Responsive design and cross-platform compatibility verified
 - **Document any missing responsive design specifications** and the responsive approach used
@@ -393,6 +423,7 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 ### Gate 4: Integration Complete
 **AI Agent Validation**:
 - End-to-end functionality verified for all user scenarios
+- **Reference QUESTIONS.md** for any developer answers about integration clarifications or decisions
 - **Document any untestable user scenarios** due to incomplete specifications in ISSUES.md
 - All unit, integration, and e2e tests passing with complete validation:
   - Every test suite executes without failures or errors
@@ -400,9 +431,11 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
   - All API endpoints tested with valid and invalid inputs
   - All UI components tested with user interaction scenarios
   - All integration points between system layers verified
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear testing requirements
 - **Log any test failures or gaps** and document workarounds or assumptions made
 - **If first feature**: Security requirements from `/specs/infrastructure.md` validated
 - **If additional feature**: New feature maintains existing security standards and doesn't introduce vulnerabilities
+- **Reference QUESTIONS.md** for any developer answers about security clarifications or decisions
 - **Track any missing security specifications** and document the security measures implemented
 - Performance benchmarks met if specified
 - **Document any missing performance requirements** and the benchmarks used for validation
@@ -415,9 +448,11 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 **AI Agent Validation**:
 - **If first feature**: Deployment successful according to `/specs/infrastructure.md`
 - **If additional feature**: New feature deployed successfully without affecting existing functionality
+- **Reference QUESTIONS.md** for any developer answers about deployment clarifications or decisions
 - **Document any missing deployment specifications** and the deployment approach used in ISSUES.md
 - **If first feature**: Monitoring and alerting configured and active
 - **If additional feature**: Monitoring extended to cover new feature metrics and health checks
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear monitoring requirements
 - **Log any missing monitoring specifications** and document the monitoring strategy implemented
 - All documentation updated and complete
 - **Track any missing documentation requirements** and document the documentation approach used
@@ -430,14 +465,19 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
 
 **Final Validation Checklist**:
 - All user scenarios from `/specs/{{SANITIZED_NAME}}/business-logic.md` are fully functional and tested
+- **Reference QUESTIONS.md** for any developer answers about user scenario clarifications or decisions
 - **All missing or unclear user scenarios documented** in ISSUES.md with implementation approach used
 - All API contracts from `/specs/{{SANITIZED_NAME}}/api-contract.md` are correctly implemented with proper error handling
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear API requirements
 - **All API specification gaps documented** in ISSUES.md with implementation decisions made
 - All data models from `/specs/{{SANITIZED_NAME}}/data-model.md` are properly implemented with validation
+- **Reference QUESTIONS.md** for any developer answers about data model clarifications or decisions
 - **All missing data model specifications documented** in ISSUES.md with validation rules implemented
 - All UI components from `/specs/{{SANITIZED_NAME}}/ui-design.md` match specifications exactly and are responsive
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear UI requirements
 - **All UI specification gaps documented** in ISSUES.md with design decisions made
 - All infrastructure requirements from `/specs/infrastructure.md` are met and operational
+- **Reference QUESTIONS.md** for any developer answers about infrastructure clarifications or decisions
 - **All missing infrastructure specifications documented** in ISSUES.md with deployment approach used
 - All 5 quality gates have been completed successfully with documented validation
 - **ISSUES.md contains comprehensive documentation** of all specification gaps, assumptions, and implementation decisions
@@ -448,8 +488,10 @@ This workflow provides a systematic 5-phase approach for AI agents to implement 
   - All end-to-end tests validate complete user scenarios
   - All API contracts tested with comprehensive input validation
   - All UI components tested with accessibility and responsiveness verification
+- **Apply developer decisions from QUESTIONS.md** for any previously unclear testing requirements
 - **All untestable scenarios documented** in ISSUES.md with workarounds applied
 - Security requirements validated and penetration testing completed if specified
+- **Reference QUESTIONS.md** for any developer answers about security clarifications or decisions
 - **All missing security specifications documented** in ISSUES.md with security measures implemented
 - Performance benchmarks met according to specifications
 - **All missing performance requirements documented** in ISSUES.md with benchmarks used

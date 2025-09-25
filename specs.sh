@@ -129,6 +129,33 @@ safe_copy_template() {
     print_success "Created: $target_path"
 }
 
+# Function to archive existing workflow files
+archive_workflow_files() {
+    print_info "Archiving existing workflow files..."
+    if find . -name "generate-*.md" -type f | grep -q .; then
+        # Create archive directory if it doesn't exist
+        mkdir -p .archive
+        
+        # Move workflow files to archive with timestamp
+        local timestamp=$(date +"%Y%m%d_%H%M%S")
+        find . -name "generate-*.md" -type f -exec sh -c '
+            timestamp="$1"
+            shift
+            for file; do
+                relative_path=$(echo "$file" | sed "s|^\./||")
+                archive_path=".archive/${timestamp}_${relative_path//\//_}"
+                mkdir -p "$(dirname "$archive_path")"
+                mv "$file" "$archive_path"
+                echo "  Archived: $relative_path -> $archive_path"
+            done
+        ' _ "$timestamp" {} +
+        
+        print_info "  Workflow files archived to .archive/ with timestamp $timestamp"
+    else
+        print_info "  No existing workflow files found to archive"
+    fi
+}
+
 # Function to validate path
 validate_path() {
     local path="$1"
@@ -275,9 +302,8 @@ add_feature() {
     # Change to project directory
     cd "$project_path"
     
-    # Clean up any existing ai-generate-*.md workflow files to avoid confusion
-    print_info "Cleaning up existing workflow files..."
-    find . -name "generate-*.md" -type f -exec rm -f {} \; 2>/dev/null || true
+    # Archive any existing generate-*.md workflow files to avoid AI context confusion
+    archive_workflow_files
     
     # Create feature structure
     print_info "Creating feature structure..."

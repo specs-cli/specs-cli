@@ -55,6 +55,11 @@ Note: This is an EXISTING CODEBASE. Analyze the actual project codebase, structu
 **Review:** Check all files in `specs/common/` directory
 **Validation:** Ensure no files were created in root `specs/` directory and no system-level files were duplicated
 
+**IMPORTANT - Answer Questions:** If `QUESTIONS.md` was created during documentation:
+- [ ] Review all questions in `QUESTIONS.md`
+- [ ] Provide clear answers to each question in the designated answer sections
+- [ ] Save the file with your answers before proceeding
+
 ## Phase 3: New Feature Development
 
 ### [ ] 3.1 Initialize New Feature
@@ -78,6 +83,11 @@ Feature requirements: [Describe what the feature should do]
 ```
 **Review:** Check all files in `specs/[Feature Directory]/` directory
 **Validation:** Ensure no files were created in root `specs/` directory and no system-level files were duplicated
+
+**IMPORTANT - Answer Questions:** If `QUESTIONS.md` was created during specification generation:
+- [ ] Review all questions in `QUESTIONS.md`
+- [ ] Provide clear answers to each question in the designated answer sections
+- [ ] Save the file with your answers before proceeding to implementation
 
 ### [ ] 3.3 Implement Feature
 **AI Prompt:**
@@ -112,5 +122,6 @@ IMPORTANT CONSTRAINTS:
 **Your Role:**
 - Provide clear requirements in AI prompts
 - Review and approve AI outputs
+- **Answer questions in QUESTIONS.md** when created during specification generation
 - Solve issues reported automatically in ISSUES.md
 - Test final implementations

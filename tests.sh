@@ -492,6 +492,160 @@ test_sanitized_name_placeholder() {
     cleanup_temp_dir "$temp_dir"
 }
 
+# Test archive existing workflow files
+test_archive_workflow_files() {
+    run_test "Archive Workflow Files Integration"
+    
+    local temp_dir=$(create_temp_dir)
+    local project_dir="$temp_dir/archive-test-project"
+    local output_file="$temp_dir/archive_output.log"
+    
+    # Test 1: Archive workflow files when adding a feature to a project with existing workflow files
+    test_info "Testing archive functionality when adding features"
+    
+    # First create a specs project
+    run_cli_command "\"$SPECS_SCRIPT\" init \"$project_dir\" --name \"ArchiveTest\" --quiet" "/dev/null"
+    
+    # Create some additional existing workflow files that should be archived (in addition to the default ones)
+    echo "# Existing Feature Specs" > "$project_dir/generate-old-feature-specs.md"
+    echo "# Existing Feature Code" > "$project_dir/generate-old-feature-code.md"
+    mkdir -p "$project_dir/nested"
+    echo "# Existing System Specs" > "$project_dir/nested/generate-system-workflow.md"
+    
+    # Add a feature (this should trigger archiving of existing workflow files)
+    if run_cli_command "\"$SPECS_SCRIPT\" add-feature \"$project_dir\" \"New Feature\"" "$output_file"; then
+        test_pass "Archive Integration: Feature addition succeeded"
+        
+        # Verify archive directory was created
+        verify_directory "$project_dir/.archive" "Archive Integration"
+        
+        # Verify original workflow files were archived (moved from root)
+        if [ ! -f "$project_dir/generate-old-feature-specs.md" ] && [ ! -f "$project_dir/generate-old-feature-code.md" ] && [ ! -f "$project_dir/nested/generate-system-workflow.md" ]; then
+            test_pass "Archive Integration: Original workflow files were moved to archive"
+        else
+            test_fail "Archive Integration: Original workflow files still exist after archiving"
+        fi
+        
+        # Verify archived files exist with timestamp prefix (should be 4: 3 custom + 1 default system specs)
+        local archive_count=$(find "$project_dir/.archive" -name "*generate-*.md" -type f | wc -l | tr -d ' ')
+        if [ "$archive_count" -eq 4 ]; then
+            test_pass "Archive Integration: All workflow files were archived (found $archive_count files)"
+        else
+            test_fail "Archive Integration: Expected 4 archived files, found $archive_count"
+        fi
+        
+        # Verify timestamp format in archived filenames
+        if find "$project_dir/.archive" -name "[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]_*" -type f | grep -q .; then
+            test_pass "Archive Integration: Archived files have correct timestamp format"
+        else
+            test_fail "Archive Integration: Archived files missing timestamp format"
+        fi
+        
+        # Verify archived files preserve original content
+        local archived_old_specs=$(find "$project_dir/.archive" -name "*generate-old-feature-specs.md" -type f | head -1)
+        if [ -f "$archived_old_specs" ] && grep -q "Existing Feature Specs" "$archived_old_specs"; then
+            test_pass "Archive Integration: Archived files preserve original content"
+        else
+            test_fail "Archive Integration: Archived files missing original content"
+        fi
+        
+        # Verify nested paths are flattened in archive
+        if find "$project_dir/.archive" -name "*nested_generate-system-workflow.md" -type f | grep -q .; then
+            test_pass "Archive Integration: Nested paths are flattened correctly in archive"
+        else
+            test_fail "Archive Integration: Nested paths not handled correctly"
+        fi
+        
+        # Verify new feature files were created (not archived)
+        verify_directory "$project_dir/specs/new-feature" "Archive Integration"
+        verify_file "$project_dir/specs/new-feature/generate-feature-specs.md" "" "Archive Integration"
+        verify_file "$project_dir/specs/new-feature/generate-feature-code.md" "" "Archive Integration"
+        
+        # Verify archiving message appears in output
+        if grep -q "Archiving existing workflow files" "$output_file"; then
+            test_pass "Archive Integration: Shows archiving message in CLI output"
+        else
+            test_fail "Archive Integration: Missing archiving message in CLI output"
+        fi
+        
+    else
+        test_fail "Archive Integration: Feature addition failed"
+        if [ -f "$output_file" ]; then
+            echo "Command output:"
+            cat "$output_file"
+        fi
+    fi
+    
+    # Test 2: Archive behavior with minimal workflow files (only default system specs)
+    test_info "Testing archiving with only default system specs"
+    
+    local minimal_project_dir="$temp_dir/minimal-project"
+    
+    # Create a project with only default files (no additional workflow files)
+    run_cli_command "\"$SPECS_SCRIPT\" init \"$minimal_project_dir\" --name \"MinimalTest\" --quiet" "/dev/null"
+    
+    # Add a feature (should archive the default system specs file)
+    if run_cli_command "\"$SPECS_SCRIPT\" add-feature \"$minimal_project_dir\" \"Minimal Feature\"" "$output_file"; then
+        test_pass "Archive Integration: Feature addition succeeded on minimal project"
+        
+        # Verify archive directory was created (because default system specs exist)
+        verify_directory "$minimal_project_dir/.archive" "Archive Integration"
+        
+        # Verify exactly 1 file was archived (the default system specs)
+        local minimal_archive_count=$(find "$minimal_project_dir/.archive" -name "*generate-*.md" -type f | wc -l | tr -d ' ')
+        if [ "$minimal_archive_count" -eq 1 ]; then
+            test_pass "Archive Integration: Default system specs file was archived (found $minimal_archive_count file)"
+        else
+            test_fail "Archive Integration: Expected 1 archived file, found $minimal_archive_count"
+        fi
+        
+        # Verify archiving message appears in output
+        if grep -q "Archiving existing workflow files" "$output_file"; then
+            test_pass "Archive Integration: Shows archiving message for default files"
+        else
+            test_fail "Archive Integration: Missing archiving message for default files"
+        fi
+        
+    else
+        test_fail "Archive Integration: Feature addition failed on minimal project"
+    fi
+    
+    # Test 3: Multiple feature additions create separate timestamped archives
+    test_info "Testing multiple archive operations create unique timestamps"
+    
+    # Add another workflow file to the original project
+    echo "# Another workflow file" > "$project_dir/generate-another-workflow.md"
+    
+    # Wait a second to ensure different timestamp
+    sleep 1
+    
+    # Add another feature
+    if run_cli_command "\"$SPECS_SCRIPT\" add-feature \"$project_dir\" \"Second Feature\"" "$output_file"; then
+        test_pass "Archive Integration: Second feature addition succeeded"
+        
+        # Count total archived files (should be 7 now - 4 from first test + 1 new + 2 feature files from first feature)
+        local total_archived=$(find "$project_dir/.archive" -name "*generate-*.md" -type f | wc -l | tr -d ' ')
+        if [ "$total_archived" -eq 7 ]; then
+            test_pass "Archive Integration: Multiple operations archive all workflow files (found $total_archived files)"
+        else
+            test_fail "Archive Integration: Expected 7 total archived files, found $total_archived"
+        fi
+        
+        # Verify different timestamps exist
+        local unique_timestamps=$(find "$project_dir/.archive" -name "[0-9]*_*" -type f | sed 's/.*\/\([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9]\)_.*/\1/' | sort -u | wc -l)
+        if [ "$unique_timestamps" -eq 2 ]; then
+            test_pass "Archive Integration: Multiple operations use unique timestamps"
+        else
+            test_fail "Archive Integration: Expected 2 unique timestamps, found $unique_timestamps"
+        fi
+        
+    else
+        test_fail "Archive Integration: Second feature addition failed"
+    fi
+    
+    cleanup_temp_dir "$temp_dir"
+}
+
 # Test invalid commands
 test_invalid_commands() {
     run_test "Invalid Commands"
@@ -568,6 +722,7 @@ if [ $# -eq 1 ]; then
         echo "  test_quiet_mode"
         echo "  test_force_mode"
         echo "  test_invalid_commands"
+        echo "  test_archive_workflow_files"
         exit 1
     fi
 else
@@ -593,6 +748,8 @@ else
     test_force_mode
     echo ""
     test_invalid_commands
+    echo ""
+    test_archive_workflow_files
     echo ""
 fi
 
