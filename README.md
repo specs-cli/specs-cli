@@ -6,17 +6,12 @@ Markdown slash commands for specification-driven development (SDD) using any AI-
 
 ### Register Slash Commands
 
-1. Clone the repo: `git clone https://github.com/specs-cli/specs-cli.git`
-2. Copy commands to your project's `.roo/` directory:
-    ```
-    cd specs-cli
-    mkdir -p ~/your-project/.roo/
-    cp -r commands ~/your-project/.roo/
-    ```
-3. Roo Code will register the commands automatically
-4. Slash commands can be used directly in the Roo Code panel
+1. Open your project and create `.roo/commands/` directory
+2. Clone the specs-cli repo
+3. Copy all files from `specs-cli/commands/` to `.roo/commands/`
+4. Roo Code will register slash commands automatically
 
-> **Tip**: Start a new AI session for each slash command. It helps keeping the AI context window as clean as possible for large codebases.
+> **Tip**: Start a new AI session when using the slash commands. It helps keeping the AI context window as clean as possible for large codebases.
 
 ### Existing Codebase (skip for new projects)
 
