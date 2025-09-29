@@ -5,73 +5,8 @@ All notable changes to Specs CLI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.4] - 2025-09-25
-
-### Changed
-- README.md updated to represent the current state of the project
-- Archive AI workflows instead of deleting them after execution
+## [0.1.0] - 2025-09-29
 
 ### Added
-- QUESTIONS.md template for question reporting during spec generation
-- New test for archiving workflow files
-
-## [0.0.3] - 2025-09-24
-
-### Changed
-- Switched to AI workflows for all development phases
-- Adapted PROGRESS.md to support new AI workflows
-- Adapted specs.sh and tests.sh to support new AI workflows
-
-### Added
-- generate-system-specs.md
-- generate-feature-specs.md
-- generate-feature-code.md
-
-## [0.0.2] - 2025-09-22
-
-### Changed
-- Simplified target project structure (no features folder)
-- Shared specs are added via `specs add-feature common`
-
-### Added
-- New AI workflow template (ai-workflow.md) for feature implementation
-- Automatic implementation issue documentation in ISSUES.md
-
-## [0.0.1] - 2025-09-19
-
-### Added
-- Initial release of Specs CLI
-- Specs CLI with `init` and `add-feature` commands
-- Complete set of specification templates
-- Support for both new projects and existing codebases
-- Automatic detection of existing code
-- MIT License for open source community use
-- Comprehensive test suite
-- Cross-platform support (Unix/Linux/macOS/Windows)
-
-### Features
-- **Project Initialization**: `specs.sh init` command
-- **Feature Addition**: `specs.sh add-feature` command
-- **Template System**: Modular specification templates
-- **Progress Tracking**: PROGRESS.md workflow files
-- **AI Optimization**: Structure designed for AI collaboration
-- **Force Mode**: Overwrite existing files when needed
-- **Quiet Mode**: Suppress non-error output
-- **Path Validation**: Robust path handling and validation
-
-### Templates
-- `PROGRESS_FROM_CODE.md` - For existing codebases
-- `PROGRESS_FROM_SCRATCH.md` - For new projects
-- `system-overview.md` - System architecture
-- `infrastructure.md` - Infrastructure specifications
-- `api-contract.md` - API design
-- `data-model.md` - Data structures
-- `ui-design.md` - UI/UX specifications
-- `business-logic.md` - Business rules
-
-### Documentation
-- Comprehensive README with installation and usage
-- Troubleshooting guide
-- Contributing guidelines
-- License information
-- This changelog
+- commands directory with slash commands
+- simple readme

@@ -1,131 +1,82 @@
-# Specs CLI
+# Specs CLI - 100% Markdown
 
-A tool-independent CLI for specification-driven development (SDD) that enables high quality agentic coding in any AI-powered IDE. Specs CLI needs no deep IDE integration as you can execute AI workflows easily at the surface keeping full control and transparency.
+Markdown slash commands for specification-driven development (SDD) using any AI-powered IDE.
 
-- **Supports all AI-powered IDEs**: Roo Code, Cline, Trae AI, ...
-- **Easy to adapt**: Customize AI workflows and spec templates to fit your project needs
+## Example Usage (Roo Code)
 
-## ⚙️ How It Works
+### Register Slash Commands
 
-1. **Open IDE**: New project or existing codebase
-2. **IDE Terminal**: `specs init`
-3. **Open PROGRESS.md**: Follow the instructions
-4. AI executes workflows, you review and approve results
+1. Clone the repo: `git clone https://github.com/specs-cli/specs-cli.git`
+2. Copy commands to your project's `.roo/` directory:
+    ```
+    cd specs-cli
+    mkdir -p ~/your-project/.roo/
+    cp -r commands ~/your-project/.roo/
+    ```
+3. Roo Code will register the commands automatically
+4. Slash commands can be used directly in the Roo Code panel
 
-## 📦 Installation
+> **Tip**: Start a new AI session for each slash command. It helps keeping the AI context window as clean as possible for large codebases.
 
-### Quick Start
+### Existing Codebase (skip for new projects)
 
-```bash
-# Clone the repo
-git clone https://github.com/specs-cli/specs-cli.git
-cd specs-cli
+**Run Slash Commands**:
+1. `/extract_business_logic`
+2. `/extract_data_model`
+3. `/extract_api_contract`
+4. `/extract_ui_design`
+5. `/extract_infrastructure`
 
-# Make the CLI executable (Unix/Linux/macOS)
-chmod +x specs.sh
+This will analyse your existing codebase and create 5 specification files. You need to review them precisely!
 
-# Verify installation
-./specs.sh help
+**Added structure**:
+```
+specs/
+├── api-contract.md
+├── business-logic.md
+├── data-model.md
+├── infrastructure.md
+└── ui-design.md
 ```
 
-### Install as System Command
+### Specify New Feature
 
-For direct access from your project directory:
+**Run Slash Commands**:
+1. `/create_feature_specs [Feature Name] [Feature Description]`
+2. `/create_feature_plan`
 
-```bash
-# Install specs command globally
-./specs.sh install
+This will create 2 new specification files. You need to review them precisely!
 
-# Update your current session
-export PATH="$HOME/.local/bin:$PATH"
-
-# Now this works everywhere:
-specs help
-specs init
-specs add-feature "New Feature"
+**Added structure**:
+```
+specs/
+├── [New Feature]/
+│   ├── feature-plan.md
+│   └── feature-specs.md
 ```
 
-### System Requirements
+### Implement New Feature
 
-- **Unix/Linux/macOS**: Bash shell (included by default)
-- **Windows**: Git Bash (comes with Git for Windows)
-- **Dependencies**: None - pure Bash implementation
+**Run Slash Command**: `/implement_feature_plan`
 
-## 📁 Target Project Structure
+This will generate the feature implementation code. You need to review it precisely!
 
-This file structure will be created during AI workflow execution:
-
-```
-my-project/
-├── PROGRESS.md                # Main workflow - START HERE
-├── ISSUES.md                  # Implementation issues reporting
-├── QUESTIONS.md               # Specification questions reporting
-├── specs/                     # All specifications
-│   ├── system-overview.md     # High-level system design
-│   ├── infrastructure.md      # Infrastructure specifications
-│   └── [feature-name]/        # Feature specifications
-│       ├── api-contract.md    # API definitions
-│       ├── data-model.md      # Data structures
-│       ├── ui-design.md       # UI/UX specifications
-│       └── business-logic.md  # Business rules
-```
-
-## 📝 Customizing Spec Templates
-
-The AI workflows contain embedded specification templates that define the structure and content of generated documentation. If you need to adapt these templates to fit your project's specific needs, you can find them in the following workflow files:
-
-- **`templates/generate-system-specs.md`** - Contains templates for:
-  - system-overview.md
-  - infrastructure.md
-
-- **`templates/generate-feature-specs.md`** - Contains templates for:
-  - business-logic.md
-  - data-model.md
-  - api-contract.md
-  - ui-design.md
-  - QUESTIONS.md
-
-- **`templates/generate-feature-code.md`** - Contains template for:
-  - ISSUES.md
-
-To customize these templates, simply edit the relevant workflow file. The AI will use your modified templates when generating specifications and code for your project.
-
-## 🔧 Troubleshooting
-
-**Permission Errors (Unix/Linux/macOS)**
-```bash
-chmod +x specs.sh
-```
-
-**Windows Usage**
-```bash
-# Use Git Bash (recommended)
-bash specs.sh init /c/Users/username/my-project
-```
-
-**Path Issues**
-- Use absolute paths: `/home/user/projects/myapp`
-- Tilde expansion supported: `~/projects/myapp`
-- Avoid spaces in paths
-
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Here's how to get started:
 
 1. **Fork the repository**
 2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Make your changes** and add tests
-4. **Run the test suite**: `./tests.sh`
+3. **Make your changes**
+4. **Test your changes**
 5. **Commit your changes**: `git commit -m 'Add amazing feature'`
 6. **Push to the branch**: `git push origin feature/amazing-feature`
 7. **Open a Pull Request**
 
-For detailed contribution guidelines, development setup, coding standards, and testing procedures, please see our [CONTRIBUTING.md](CONTRIBUTING.md) file.
+## Acknowledgments
 
-## 🙏 Acknowledgments
+The Specs CLI templates and project structure methodology were originally developed and documented in the book [Mastering AI Agents](https://mastering-ai-agents.com). This CLI brings those proven concepts to life for every-day development.
 
-The Specs CLI templates and project structure methodology were originally developed and documented in the book [Mastering AI Agents](https://mastering-ai-agents.com). This CLI tool brings those proven concepts to life as a practical development toolkit.
-
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
