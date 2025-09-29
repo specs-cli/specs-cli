@@ -6,12 +6,12 @@ Markdown slash commands for specification-driven development (SDD) using any AI-
 
 ### Register Slash Commands
 
-1. Open your project and create `.roo/commands/` directory
-2. Clone the specs-cli repo
-3. Copy all files from `specs-cli/commands/` to `.roo/commands/`
-4. Roo Code will register slash commands automatically
+1. Open your project and create the `.roo/commands/` directory
+2. Clone the specs-cli repository
+3. Copy all files from `specs-cli/commands/` into `.roo/commands/`
+4. Roo Code will automatically register the slash commands
 
-> **Tip**: Start a new AI session when using the slash commands. It helps keeping the AI context window as clean as possible for large codebases.
+> **Tip**: Start a new AI session when using slash commands. This helps keep the AI context window as clean as possible for large codebases.
 
 ### Existing Codebase (skip for new projects)
 
@@ -22,7 +22,7 @@ Markdown slash commands for specification-driven development (SDD) using any AI-
 4. `/extract_ui_design`
 5. `/extract_infrastructure`
 
-This will analyse your existing codebase and create 5 specification files. You need to review them precisely!
+This will analyze your existing codebase and create five specification files. Be sure to review them carefully!
 
 **Added structure**:
 ```
@@ -40,7 +40,7 @@ specs/
 1. `/create_feature_specs [Feature Name] [Feature Description]`
 2. `/create_feature_plan`
 
-This will create 2 new specification files. You need to review them precisely!
+This will create two new specification files. Review them carefully!
 
 **Added structure**:
 ```
@@ -54,7 +54,7 @@ specs/
 
 **Run Slash Command**: `/implement_feature_plan`
 
-This will generate the feature implementation code. You need to review it precisely!
+This will generate the feature implementation code. Review it carefully!
 
 ## Contributing
 
