@@ -1,8 +1,13 @@
 # Specs CLI
 
-**Slash Commands for Roo Code**
+**Slash Commands for Any AI-Powered IDE**  
+*(Works with Roo Code, Cline, Trae AI, and more)*
 
-This CLI provides Markdown slash commands for Specification-Driven Development (SDD). Commands can be used with **any AI-powered IDE**. Every new feature of your project can be implemented (semi-)automatically by following the **DSPI-Workflow**:
+Specs CLI provides Markdown slash commands for Spec-Driven Development (SDD). Commands can be used with any AI-powered IDE.
+
+Large existing codebases are supported by global spec-specific extraction commands.
+
+Every new feature of your project can be developed (semi-)automatically by following the **DSPI-Workflow**:
 
 - **D** escribe
 - **S** pecify
@@ -11,8 +16,8 @@ This CLI provides Markdown slash commands for Specification-Driven Development (
 
 ## Table of Contents
 
-- [Slash Command Registration (Roo Code)](#slash-command-registration-roo-code)
-- [Workaround Without Slash Commands](#workaround-without-slash-commands)
+- [Slash Command Registration (Roo Code Example)](#slash-command-registration-roo-code-example)
+- [Without Native Slash Commands](#without-native-slash-commands)
 - [Document Existing Codebase](#document-existing-codebase)
 - [Add New Feature](#add-new-feature)
   - [1. Describe Feature](#1-describe-feature)
@@ -24,7 +29,7 @@ This CLI provides Markdown slash commands for Specification-Driven Development (
 - [Acknowledgment](#acknowledgment)
 - [License](#license)
 
-## Slash Command Registration (Roo Code)
+## Slash Command Registration (Roo Code Example)
 
 1. Open your project and create `.roo/commands/` directory
 2. Clone the **specs-cli** repository
@@ -37,7 +42,7 @@ For example: `/extract_business_logic`
 
 > **Tip**: Keep the AI context window clean by starting a new task/chat each time using a slash command.
 
-## Workaround Without Slash Commands
+## Without Native Slash Commands
 
 If you're not using Roo Code, you can still use the Specs CLI commands. Simply run them as AI prompts, using `execute` followed by the command file.
 
