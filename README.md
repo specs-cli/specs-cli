@@ -1,6 +1,6 @@
 # Specs CLI
 
-**Don't code, just specify!**
+**Slash Commands for Roo Code**
 
 This CLI provides Markdown slash commands for Specification-Driven Development (SDD). Commands can be used with **any AI-powered IDE**. Every new feature of your project can be implemented (semi-)automatically by following the **DSPI-Workflow**:
 
