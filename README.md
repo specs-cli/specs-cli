@@ -1,60 +1,134 @@
-# Specs CLI - 100% Markdown
+# Specs CLI
 
-Markdown slash commands for specification-driven development (SDD) using any AI-powered IDE.
+**Don't code, just specify!**
 
-## Example Usage (Roo Code)
+This CLI provides Markdown slash commands for Specification-Driven Development (SDD). Commands can be used with **any AI-powered IDE**. Every new feature of your project can be implemented (semi-)automatically by following the **DSPI-Workflow**:
 
-### Register Slash Commands
+- **D** escribe
+- **S** pecify
+- **P** lan
+- **I** mplement
 
-1. Open your project and create the `.roo/commands/` directory
-2. Clone the specs-cli repository
+## Table of Contents
+
+- [Slash Command Registration (Roo Code)](#slash-command-registration-roo-code)
+- [Workaround Without Slash Commands](#workaround-without-slash-commands)
+- [Document Existing Codebase](#document-existing-codebase)
+- [Add New Feature](#add-new-feature)
+  - [1. Describe Feature](#1-describe-feature)
+  - [2. Specify Feature](#2-specify-feature)
+  - [3. Plan Feature Implementation](#3-plan-feature-implementation)
+  - [4. Implement Feature](#4-implement-feature)
+- [Recommended AI Models](#recommended-ai-models)
+- [Contributing](#contributing)
+- [Acknowledgment](#acknowledgment)
+- [License](#license)
+
+## Slash Command Registration (Roo Code)
+
+1. Open your project and create `.roo/commands/` directory
+2. Clone the **specs-cli** repository
 3. Copy all files from `specs-cli/commands/` into `.roo/commands/`
 4. Roo Code will automatically register the slash commands
 
-> **Tip**: Start a new AI session when using slash commands. This helps keep the AI context window as clean as possible for large codebases.
+Now you can use the slash commands in your Roo Code panel.
 
-### Existing Codebase (skip for new projects)
+For example: `/extract_business_logic`
 
-**Run Slash Commands**:
+> **Tip**: Keep the AI context window clean by starting a new task/chat each time using a slash command.
+
+## Workaround Without Slash Commands
+
+If you're not using Roo Code, you can still use the Specs CLI commands. Simply run them as AI prompts, using `execute` followed by the command file.
+
+For example: `execute extract_business_logic.md` (use @ or # to reference the file)
+
+## Document Existing Codebase
+
+**Run commands**:
 1. `/extract_business_logic`
 2. `/extract_data_model`
 3. `/extract_api_contract`
 4. `/extract_ui_design`
 5. `/extract_infrastructure`
 
-This will analyze your existing codebase and create five specification files. Be sure to review them carefully!
+This will analyze your existing codebase and create five specification files. Be sure to review and adapt them to your project needs!
 
 **Added structure**:
 ```
 specs/
-├── api-contract.md
-├── business-logic.md
-├── data-model.md
-├── infrastructure.md
-└── ui-design.md
+├── api-contract.md      # Interface specifications
+├── business-logic.md    # Business logic specifications
+├── data-model.md        # Data model specifications
+├── infrastructure.md    # Infrastructure specifications
+└── ui-design.md         # UI/UX design specifications
 ```
 
-### Specify New Feature
+## Add New Feature
 
-**Run Slash Commands**:
-1. `/create_feature_specs [Feature Name] [Feature Description]`
-2. `/create_feature_plan`
+### 1. Describe Feature
 
-This will create two new specification files. Review them carefully!
+**Write STORY.md**:
+```
+# [Feature Name]
+
+## Feature Description
+[Description of the feature in a few sentences]
+
+[Add more sections if appropriate]
+```
+
+Writing **STORY.md** manually is important as it serves as primary AI input.
+
+> **Tip**: For the first feature of a new project, it is recommended to use a very detailed **STORY.md** having multiple sections like **Vision Statement**, **General Architecture**, **Business Context**, **Technology Stack**, and **Feature Boundaries**. This first feature will serve as your initial project setup.
+
+### 2. Specify Feature
+
+**Run command**: `/create_feature_specs with STORY.md` (use @ to reference **STORY.md**)
+
+This will create a combined feature specification file consisting of business logic, data model, API contract, and UI/UX design. Review and adapt it to your needs!
+
+**Move STORY.md** into the new feature specs directory.
 
 **Added structure**:
 ```
 specs/
-├── [New Feature]/
-│   ├── feature-plan.md
-│   └── feature-specs.md
+└── [New Feature]/
+    ├── feature-specs.md    # Combined feature specifications
+    └── STORY.md            # Manual feature description
 ```
 
-### Implement New Feature
+### 3. Plan Feature Implementation
 
-**Run Slash Command**: `/implement_feature_plan`
+**Run command**: `/create_feature_plan with feature-specs.md` (use @ to reference **feature-specs.md**)
 
-This will generate the feature implementation code. Review it carefully!
+This will create a feature implementation plan file. Review and adapt it to your needs!
+
+**Added structure**:
+```
+specs/
+└── [New Feature]/
+    ├── feature-plan.md     # Feature implementation plan
+    ├── feature-specs.md    # Combined feature specifications
+    └── STORY.md            # Manual feature description
+```
+
+### 4. Implement Feature
+
+**Run command**: `/implement_feature_plan with feature-plan.md` (use @ to reference **feature-plan.md**)
+
+This will generate the feature implementation code. Review, adapt and test it carefully!
+
+**After each feature**: Consider extracting or updating global specifications like described in [Document Existing Codebase](#document-existing-codebase)
+
+## Recommended AI Models
+
+For optimal results with Specs CLI commands, we recommend using:
+- **Claude Sonnet 4**: Excellent at documenting, specifying and coding
+- **DeepSeek V3.1**: Excellent at documenting
+- **GPT-5**: Very good at documenting
+
+Let us know your experience with other models and we will consider adding them to the list.
 
 ## Contributing
 
@@ -70,7 +144,8 @@ We welcome contributions! Here's how to get started:
 
 ## Acknowledgments
 
-The Specs CLI templates and project structure methodology were originally developed and documented in the book [Mastering AI Agents](https://mastering-ai-agents.com). This CLI brings those proven concepts to life for every-day development.
+- **Mastering AI Agents**: Specs CLI templates and project structure were originally developed and documented in the book [Mastering AI Agents](https://mastering-ai-agents.com)
+- **HumanLayer**: Specs CLI command structure was heavily influenced by the [HumanLayer](https://www.humanlayer.dev) Claude Code setup
 
 ## License
 
