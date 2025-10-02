@@ -9,10 +9,7 @@ Large existing codebases are supported by global spec-specific extraction comman
 
 Every new feature of your project can be developed (semi-)automatically by following the **DSPI-Workflow**:
 
-- **D** escribe
-- **S** pecify
-- **P** lan
-- **I** mplement
+**D**escribe → **S**pecify → **P**lan → **I**mplement
 
 ## Table of Contents
 
@@ -50,6 +47,8 @@ For example: `execute extract_business_logic.md` (use @ or # to reference the fi
 
 ## Document Existing Codebase
 
+This phase is mandatory for projects with existing codebase. Essential specs are extracted to be used later during the DSPI-Workflow.
+
 **Run commands**:
 1. `/extract_business_logic`
 2. `/extract_data_model`
@@ -57,7 +56,7 @@ For example: `execute extract_business_logic.md` (use @ or # to reference the fi
 4. `/extract_ui_design`
 5. `/extract_infrastructure`
 
-This will analyze your existing codebase and create five specification files. Be sure to review and adapt them to your project needs!
+This will analyze your existing codebase and create five specification files. Review and adapt them to your project needs!
 
 **Added structure**:
 ```
@@ -70,6 +69,8 @@ specs/
 ```
 
 ## Add New Feature
+
+We are applying the DSPI-Workflow for efficient feature development:
 
 ### 1. Describe Feature
 
