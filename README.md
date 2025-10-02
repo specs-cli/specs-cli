@@ -5,9 +5,9 @@
 
 Specs CLI provides Markdown slash commands for Spec-Driven Development (SDD). Commands can be used with any AI-powered IDE.
 
-Large existing codebases are supported by global spec-specific extraction commands.
+Large existing codebases are supported by global specs extraction commands.
 
-Every new feature of your project can be developed (semi-)automatically by following the **DSPI-Workflow**:
+Every new feature of your project can be developed (semi-)automatically by following the **DSPI**-Workflow:
 
 **D**escribe → **S**pecify → **P**lan → **I**mplement
 
