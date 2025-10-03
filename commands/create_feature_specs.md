@@ -207,19 +207,22 @@ From now on you should work in this new subdirectory. All new files must be crea
     - For each question in the **Open Questions** specifications section, ask the developer for clarification.
     - Provide context about how the answer might affect integration with existing specifications or codebase.
     - Consider questions about consistency with established patterns and architectural decisions.
-    - Add the developer's response to the question in the **Open Questions** specifications section.
+    - **IMMEDIATELY** after receiving each answer, update the **Open Questions** section in `feature-specs.md` with the developer's response.
     - Always map the right question and answer together.
     - If the developer provides additional information or a different perspective, update the question and answer accordingly.
+    - **NEVER wait for the developer to ask you to save the answers - persist them automatically as soon as they are provided.**
 
 **Bootstrap Mode**:
 1. **Review open questions with future considerations**:
     - For each question in the **Open Questions** specifications section, ask the developer for clarification.
     - Provide context about how the answer might affect future feature development and general specifications extraction.
     - Consider questions about foundational patterns and extensibility decisions.
-    - Add the developer's response to the question in the **Open Questions** specifications section.
+    - **IMMEDIATELY** after receiving each answer, update the **Open Questions** section in `feature-specs.md` with the developer's response.
     - Always map the right question and answer together.
     - If the developer provides additional information or a different perspective, update the question and answer accordingly.
+    - **NEVER wait for the developer to ask you to save the answers - persist them automatically as soon as they are provided.**
 
 2. **Update specifications (Mode-dependent)**:
     - **Full Mode**: Make sure to update the file `feature-specs.md` with the developer's responses, ensuring consistency with existing specifications.
     - **Bootstrap Mode**: Make sure to update the file `feature-specs.md` with the developer's responses, considering how they establish foundational patterns for the project.
+    - **Critical**: This update must happen immediately after each answer is received, not at the end of the conversation.

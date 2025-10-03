@@ -2,6 +2,17 @@
 
 All notable changes to Specs CLI will be documented in this file.
 
+## 2025-10-03
+
+## Added
+- generic agent and Roo Code mode
+- detailed DSPI workflow documentation
+
+## Changed
+- stripped README
+
+## Fixed
+- persist interactive developer answers automatically
 
 ## 2025-10-01
 
@@ -15,4 +26,4 @@ All notable changes to Specs CLI will be documented in this file.
 
 ### Added
 - commands directory with slash commands
-- simple readme
+- simple README
