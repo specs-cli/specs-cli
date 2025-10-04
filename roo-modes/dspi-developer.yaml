@@ -30,7 +30,7 @@ customModes:
       - **Source**: `https://github.com/specs-cli/specs-cli/`
 
       - **Base URL**:
-      `https://raw.githubusercontent.com/specs-cli/specs-cli/main/commands/`
+      `https://raw.githubusercontent.com/specs-cli/specs-cli/v1/commands/`
 
       - **Runtime Generation**: Agent creates OS-specific commands at execution
       time

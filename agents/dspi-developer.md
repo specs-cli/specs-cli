@@ -12,7 +12,7 @@ The agent manages command files through runtime-generated OS-aware bulk download
 
 ### Repository Integration
 - **Source**: `https://github.com/specs-cli/specs-cli/`
-- **Base URL**: `https://raw.githubusercontent.com/specs-cli/specs-cli/main/commands/`
+- **Base URL**: `https://raw.githubusercontent.com/specs-cli/specs-cli/v1/commands/`
 - **Runtime Generation**: Agent creates OS-specific commands at execution time
 - **Local Storage**: Commands stored in `commands/` directory
 
