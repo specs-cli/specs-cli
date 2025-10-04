@@ -68,7 +68,7 @@ From now on you should work in this new subdirectory. All new files must be crea
 
 1. **Remember the feature specifications template**:
 
-    Keep the following Markdown structure in mind as it represents the template for the file `feature-specs.md`:
+    Keep the following Markdown structure in mind as it represents the template for the file `[sanitized-feature-name]-specs.md`:
 
     ```
     # Business Logic
@@ -164,7 +164,7 @@ From now on you should work in this new subdirectory. All new files must be crea
 
 2. **Analyze requirements and create specifications file (Mode-dependent)**:
 
-    - You are now working on the specifications file: `feature-specs.md`. Be careful, using the correct directory defined in Step 1.
+    - You are now working on the specifications file: `[sanitized-feature-name]-specs.md`. Be careful, using the correct directory defined in Step 1.
     - As you don't know yet the technologies and frameworks being used for implementation, you must describe all specifications technology-agnostic.
     
     **Full Mode - Comprehensive Analysis**:
@@ -180,19 +180,19 @@ From now on you should work in this new subdirectory. All new files must be crea
     - Consider extensibility and how general specifications might be extracted later.
     
     - Analyze the feature description given by the developer and create detailed specifications for all sections defined by the specifications template.
-    - Write all specifications to the target file `feature-specs.md`.
+    - Write all specifications to the target file `[sanitized-feature-name]-specs.md`.
 
 3. **Review and finalize specifications (Mode-dependent)**:
 
     **Full Mode**:
-    - Review the completed `feature-specs.md` file and make sure all specifications are complete, accurate, and technology-agnostic.
+    - Review the completed `[sanitized-feature-name]-specs.md` file and make sure all specifications are complete, accurate, and technology-agnostic.
     - Verify that the feature integrates properly with existing specifications and architectural patterns.
     - Ensure consistency with established naming conventions and data models.
     - Check that API interfaces follow existing patterns and don't conflict with current endpoints.
     - Validate that UI components align with existing design patterns and user flows.
     
     **Bootstrap Mode**:
-    - Review the completed `feature-specs.md` file and make sure all specifications are complete, accurate, and technology-agnostic.
+    - Review the completed `[sanitized-feature-name]-specs.md` file and make sure all specifications are complete, accurate, and technology-agnostic.
     - Verify that the specifications establish good foundational patterns for the project.
     - Ensure that model elements, API interfaces, and UI components are designed for extensibility.
     - Check that the specifications can serve as templates for future feature development.
@@ -207,7 +207,7 @@ From now on you should work in this new subdirectory. All new files must be crea
     - For each question in the **Open Questions** specifications section, ask the developer for clarification.
     - Provide context about how the answer might affect integration with existing specifications or codebase.
     - Consider questions about consistency with established patterns and architectural decisions.
-    - **IMMEDIATELY** after receiving each answer, update the **Open Questions** section in `feature-specs.md` with the developer's response.
+    - **IMMEDIATELY** after receiving each answer, update the **Open Questions** section in `[sanitized-feature-name]-specs.md` with the developer's response.
     - Always map the right question and answer together.
     - If the developer provides additional information or a different perspective, update the question and answer accordingly.
     - **NEVER wait for the developer to ask you to save the answers - persist them automatically as soon as they are provided.**
@@ -217,12 +217,12 @@ From now on you should work in this new subdirectory. All new files must be crea
     - For each question in the **Open Questions** specifications section, ask the developer for clarification.
     - Provide context about how the answer might affect future feature development and general specifications extraction.
     - Consider questions about foundational patterns and extensibility decisions.
-    - **IMMEDIATELY** after receiving each answer, update the **Open Questions** section in `feature-specs.md` with the developer's response.
+    - **IMMEDIATELY** after receiving each answer, update the **Open Questions** section in `[sanitized-feature-name]-specs.md` with the developer's response.
     - Always map the right question and answer together.
     - If the developer provides additional information or a different perspective, update the question and answer accordingly.
     - **NEVER wait for the developer to ask you to save the answers - persist them automatically as soon as they are provided.**
 
 2. **Update specifications (Mode-dependent)**:
-    - **Full Mode**: Make sure to update the file `feature-specs.md` with the developer's responses, ensuring consistency with existing specifications.
-    - **Bootstrap Mode**: Make sure to update the file `feature-specs.md` with the developer's responses, considering how they establish foundational patterns for the project.
+    - **Full Mode**: Make sure to update the file `[sanitized-feature-name]-specs.md` with the developer's responses, ensuring consistency with existing specifications.
+    - **Bootstrap Mode**: Make sure to update the file `[sanitized-feature-name]-specs.md` with the developer's responses, considering how they establish foundational patterns for the project.
     - **Critical**: This update must happen immediately after each answer is received, not at the end of the conversation.

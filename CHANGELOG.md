@@ -2,6 +2,16 @@
 
 All notable changes to Specs CLI will be documented in this file.
 
+
+## 2025-10-04
+
+## Added
+- agent version
+
+## Fixed
+- feature specs and plan file prefix now unique to avoid wrong file references during workflow
+
+
 ## 2025-10-03
 
 ## Added
@@ -13,6 +23,7 @@ All notable changes to Specs CLI will be documented in this file.
 
 ## Fixed
 - persist interactive developer answers automatically
+
 
 ## 2025-10-01
 

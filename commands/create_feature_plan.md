@@ -11,7 +11,7 @@ As this command workflow needs initial parameters from the developer, check if t
     - [technology stack]
 
 1. **Check if corresponding specifications file exists**
-    - If the parameter is a feature name, check if a file `feature-specs.md` exists in the subdirectory `specs/[sanitized-feature-name]/`
+    - If the parameter is a feature name, check if a file `[sanitized-feature-name]-specs.md` exists in the subdirectory `specs/[sanitized-feature-name]/`
     - If the parameter is a feature specs file reference, check if the file exists
 
 2. **Check if the technology stack is supported**
@@ -37,7 +37,7 @@ As this command workflow needs initial parameters from the developer, check if t
 ### Phase 1: Analyze the feature specifications file
 
 1. **Read the feature specifications file**
-    - If the parameter is a feature name, read the file `feature-specs.md` in the subdirectory `specs/[sanitized-feature-name]/`
+    - If the parameter is a feature name, read the file `[sanitized-feature-name]-specs.md` in the subdirectory `specs/[sanitized-feature-name]/`
     - If the parameter is a feature specs file reference, read the file
     - Read the file completely to make sure all required information is included
 
@@ -304,7 +304,7 @@ As this command workflow needs initial parameters from the developer, check if t
     - **Future Migration**: [Potential refactoring needs as project grows]
 
     ## Resources
-    - [Feature Specifications](./feature-specs.md) - Complete feature requirements and user scenarios
+    - [Feature Specifications](./[sanitized-feature-name]-specs.md) - Complete feature requirements and user scenarios
     - [Technology Documentation] - Framework and library documentation
     - [Development Setup Guide] - Environment setup instructions
     
@@ -315,7 +315,7 @@ As this command workflow needs initial parameters from the developer, check if t
     ```
 
 2. **Create the feature implementation plan (Mode-dependent)**:
-    - Create a new file in your workspace: `feature-plan.md`
+    - Create a new file in your workspace: `[sanitized-feature-name]-plan.md`
     - **Full Mode**: Fill in the comprehensive template with information from all analysis steps
         - Use the comprehensive phase-based structure to organize implementation tasks
         - Include detailed implementation sections based on codebase and dependency analysis

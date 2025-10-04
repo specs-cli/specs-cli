@@ -10,7 +10,7 @@ As this command workflow needs initial parameters from the developer, check if t
     - [feature name or plan file reference]
 
 1. **Check if corresponding plan file exists**
-    - If the parameter is a feature name, check if a file `feature-plan.md` exists in the subdirectory `specs/[sanitized-feature-name]/`
+    - If the parameter is a feature name, check if a file `[sanitized-feature-name]-plan.md` exists in the subdirectory `specs/[sanitized-feature-name]/`
     - If the parameter is a feature plan file reference, check if the file exists
 
 2. **Decide whether to continue with the feature implementation**
@@ -22,7 +22,7 @@ As this command workflow needs initial parameters from the developer, check if t
 ### Phase 1: Analyze the feature implementation plan
 
 1. **Read the feature implementation plan**
-    - If the parameter is a feature name, read `feature-plan.md` from the subdirectory `specs/[sanitized-feature-name]/`
+    - If the parameter is a feature name, read `[sanitized-feature-name]-plan.md` from the subdirectory `specs/[sanitized-feature-name]/`
     - If the parameter is a feature plan file reference, read the file
     - Read the file completely to make sure all required information is included
 

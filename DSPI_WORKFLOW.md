@@ -39,16 +39,16 @@ The DSPI Workflow creates and maintains a specific project structure:
 ```
 project-root/
 ├── specs/
-│   ├── api-contract.md         # Global API specifications
-│   ├── business-logic.md       # Global business logic specifications
-│   ├── data-model.md           # Global data model specifications
-│   ├── infrastructure.md       # Global infrastructure specifications
-│   ├── ui-design.md            # Global UI/UX design specifications
+│   ├── api-contract.md                # Global API specifications
+│   ├── business-logic.md              # Global business logic specifications
+│   ├── data-model.md                  # Global data model specifications
+│   ├── infrastructure.md              # Global infrastructure specifications
+│   ├── ui-design.md                   # Global UI/UX design specifications
 │   └── [feature-name]/
-│       ├── STORY.md            # Manual feature description
-│       ├── feature-specs.md    # Combined feature specifications
-│       └── feature-plan.md     # Feature implementation plan
-├── commands/                   # Workflow command files
+│       ├── STORY.md                   # Manual feature description
+│       ├── [feature-name]-specs.md    # Combined feature specifications
+│       └── [feature-name]-plan.md     # Feature implementation plan
+├── commands/                          # Workflow command files
 │   ├── create_feature_plan.md
 │   ├── create_feature_specs.md
 │   ├── extract_api_contract.md
@@ -135,7 +135,7 @@ project-root/
 
 2. **Specification Generation**
    - Analyzes STORY.md and existing global specifications
-   - Creates comprehensive `feature-specs.md` with sections:
+   - Creates comprehensive `[feature-name]-specs.md` with sections:
      - Business Logic Specifications
      - Data Model Specifications
      - API Contract Specifications
@@ -160,7 +160,7 @@ project-root/
 - Consider impact on existing functionality
 
 ### Quality Gates
-- Complete feature-specs.md following template structure
+- Complete `[feature-name]-specs.md` following template structure
 - All open questions resolved and documented
 - Technology-agnostic specifications
 - Consistency with global specifications (if applicable)
@@ -172,12 +172,12 @@ project-root/
 ### Process
 
 1. **Command Execution**
-   - Command: `create_feature_plan with feature-specs.md`
+   - Command: `create_feature_plan with [feature-name]-specs.md`
    - Analyzes feature specifications and technical context
    - Determines appropriate technology stack and patterns
 
 2. **Plan Generation**
-   - Creates `feature-plan.md` with structured implementation approach:
+   - Creates `[feature-name]-plan.md` with structured implementation approach:
      - Implementation Phases (logical groupings of work)
      - Specific Tasks and Deliverables
      - Technical Approach and Patterns
@@ -190,7 +190,7 @@ project-root/
    - **Full Mode**: Emphasize integration points, risk assessment, and consistency maintenance
 
 ### Quality Gates
-- Complete feature-plan.md following template structure
+- Complete `[feature-name]-plan.md` following template structure
 - Logical phase organization with clear dependencies
 - All requirements from specifications addressed
 - Comprehensive testing strategy included
@@ -203,7 +203,7 @@ project-root/
 ### Process
 
 1. **Command Execution**
-   - Command: `implement_feature_plan with feature-plan.md`
+   - Command: `implement_feature_plan with [feature-name]-plan.md`
    - Follows the plan phases in sequential order
    - Maintains consistency with existing codebase patterns
 

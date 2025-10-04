@@ -49,7 +49,7 @@ Writing **STORY.md** manually is important as it serves as primary AI input.
 
 ### 2. Specify Feature
 
-**Run command**: `/create_feature_specs with STORY.md` (use @ to reference **STORY.md**)
+**Run command**: `/create_feature_specs with STORY.md` (use @ to reference the file)
 
 This will create a combined feature specification file consisting of business logic, data model, API contract, and UI/UX design. Review and adapt it to your needs!
 
@@ -58,29 +58,29 @@ This will create a combined feature specification file consisting of business lo
 **Added structure**:
 ```
 specs/
-└── [New Feature]/
-    ├── feature-specs.md    # Combined feature specifications
-    └── STORY.md            # Manual feature description
+└── [feature-name]/
+    ├── [feature-name]-specs.md    # Combined feature specifications
+    └── STORY.md                   # Manual feature description
 ```
 
 ### 3. Plan Feature Implementation
 
-**Run command**: `/create_feature_plan with feature-specs.md` (use @ to reference **feature-specs.md**)
+**Run command**: `/create_feature_plan with [feature-name]-specs.md` (use @ to reference the file)
 
 This will create a feature implementation plan file. Review and adapt it to your needs!
 
 **Added structure**:
 ```
 specs/
-└── [New Feature]/
-    ├── feature-plan.md     # Feature implementation plan
-    ├── feature-specs.md    # Combined feature specifications
-    └── STORY.md            # Manual feature description
+└── [feature-name]/
+    ├── [feature-name]-plan.md     # Feature implementation plan
+    ├── [feature-name]-specs.md    # Combined feature specifications
+    └── STORY.md                   # Manual feature description
 ```
 
 ### 4. Implement Feature
 
-**Run command**: `/implement_feature_plan with feature-plan.md` (use @ to reference **feature-plan.md**)
+**Run command**: `/implement_feature_plan with [feature-name]-plan.md` (use @ to reference the file)
 
 This will generate the feature implementation code. Review, adapt and test it carefully!
 
