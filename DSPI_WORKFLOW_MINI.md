@@ -2,9 +2,9 @@
 
 **Describe → Specify → Plan → Implement**
 
-The DSPI Workflow is a systematic approach to Specification-Driven Development (SDD).
+The DSPI Workflow is a structured, AI-assisted approach to Specification-Driven Development (SDD).
 
-## Document Existing Codebase
+## Phase 0: Document Existing Codebase
 
 This phase is mandatory for projects with existing codebase. Essential specs are extracted to be used later during the DSPI Workflow.
 
@@ -27,11 +27,7 @@ specs/
 └── ui-design.md         # UI/UX design specifications
 ```
 
-## Add New Feature
-
-We are applying the DSPI Workflow for efficient feature development:
-
-### 1. Describe Feature
+## Phase 1: Describe New Feature
 
 **Write STORY.md**:
 ```
@@ -47,9 +43,9 @@ Writing **STORY.md** manually is important as it serves as primary AI input.
 
 > **Tip**: For the first feature of a new project, it is recommended to use a very detailed **STORY.md** having multiple sections like **Vision Statement**, **General Architecture**, **Business Context**, **Technology Stack**, and **Feature Boundaries**. This first feature will serve as your initial project setup.
 
-### 2. Specify Feature
+## Phase 2: Specify New Feature
 
-**Run command**: `/create_feature_specs with STORY.md` (use @ to reference the file)
+**Run command**: `/create_feature_specs with STORY.md` (use @ or # to reference the file)
 
 This will create a combined feature specification file consisting of business logic, data model, API contract, and UI/UX design. Review and adapt it to your needs!
 
@@ -63,9 +59,9 @@ specs/
     └── STORY.md                   # Manual feature description
 ```
 
-### 3. Plan Feature Implementation
+## Phase 3: Plan Feature Implementation
 
-**Run command**: `/create_feature_plan with [feature-name]-specs.md` (use @ to reference the file)
+**Run command**: `/create_feature_plan with [feature-name]-specs.md` (use @ or # to reference the file)
 
 This will create a feature implementation plan file. Review and adapt it to your needs!
 
@@ -78,9 +74,9 @@ specs/
     └── STORY.md                   # Manual feature description
 ```
 
-### 4. Implement Feature
+## Phase 4: Implement Feature
 
-**Run command**: `/implement_feature_plan with [feature-name]-plan.md` (use @ to reference the file)
+**Run command**: `/implement_feature_plan with [feature-name]-plan.md` (use @ or # to reference the file)
 
 This will generate the feature implementation code. Review, adapt and test it carefully!
 

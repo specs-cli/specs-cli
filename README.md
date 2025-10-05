@@ -38,6 +38,8 @@ You are now ready. Just ask the Agent what to do next and it will guide you thro
 - Make sure to use the IDE-specific location (e.g. `.roo/commands/` for Roo Code)
 - Apply the DSPI workflow manually: [DSPI_WORKFLOW_MINI.md](DSPI_WORKFLOW_MINI.md)
 
+> **Note**: If your IDE does not support slash commands, you can use `execute` followed by the command file and arguments. For example: `execute create_feature_specs.md with STORY.md` (use @ or # to reference the files).
+
 ## Recommended AI Models
 
 For optimal results with Specs CLI commands, we recommend using:

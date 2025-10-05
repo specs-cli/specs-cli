@@ -2,53 +2,84 @@
 
 **Describe → Specify → Plan → Implement**
 
-The DSPI Workflow is a systematic approach to Specification-Driven Development (SDD) that ensures high-quality, maintainable software through comprehensive documentation and structured implementation phases.
+The **DSPI Workflow** is a structured, **AI-assisted framework for Specification-Driven Development (SDD)**.  
+It ensures that every software feature — from idea to implementation — is **fully described, precisely specified, strategically planned, and rigorously implemented**, with AI agents assisting developers at each step while maintaining **human review and control**.
+
 
 ## Overview
 
-The DSPI Workflow consists of four sequential phases that must be followed in order:
+The DSPI Workflow defines four sequential phases that guide the entire lifecycle of feature development:
 
-1. **Describe (D)**: Define the feature requirements and context
-2. **Specify (S)**: Create detailed technical specifications
-3. **Plan (P)**: Develop implementation strategy and roadmap
-4. **Implement (I)**: Execute the plan with quality assurance
+1. **Describe (D)** – Define feature intent, scope, and business context.  
+2. **Specify (S)** – Convert descriptions into detailed, technology-agnostic specifications.  
+3. **Plan (P)** – Translate specifications into actionable, technology-specific implementation plans.  
+4. **Implement (I)** – Execute the plan through code, testing, and integration.
 
-Each phase builds upon the previous one, ensuring that all aspects of feature development are thoroughly considered before implementation begins.
+Each phase builds on the previous one, ensuring that all technical and business aspects are clarified before code is written.  
+AI tools accelerate documentation, validation, and transformation between phases — but **developers remain the final authority** on every decision.
+
 
 ## Core Principles
 
-### 1. Specification-First Development
-- All development begins with comprehensive, technology-agnostic specifications
-- Specifications serve as the single source of truth for feature requirements
-- Implementation follows specifications exactly, not the other way around
+### 1. AI-Assisted, Human-Controlled Development
+- AI agents help generate, refine, and validate specifications, plans, and code.  
+- Human developers retain full ownership of design decisions and quality assurance.  
+- Automation increases consistency and speed, but responsibility remains with the team.
 
-### 2. Sequential Workflow Adherence
-- Phases must be completed in order: D → S → P → I
-- No phase can be skipped or rushed
-- Each phase has specific quality gates that must be met before proceeding
+### 2. Specification-First Approach
+- Development begins with **clear, technology-neutral specifications**.  
+- Specifications act as the **single source of truth** connecting business logic, data, APIs, and UI.  
+- Code is derived from specifications — never the other way around.
 
-### 3. Quality and Consistency
-- Maintain high standards throughout all phases
-- Follow established templates and patterns rigorously
-- Validate completeness at each transition point
+### 3. Sequential but Iterative Flow
+- Phases follow the sequence **D → S → P → I** for clarity and traceability.  
+- Iteration is expected: insights from later phases can refine earlier ones through controlled feedback loops.  
+- Each phase must meet its **quality gates** before transitioning forward.
+
+### 4. Quality and Traceability
+- Every deliverable (story, spec, plan, implementation) is versioned and traceable.  
+- Templates and structured documentation ensure consistency across teams.  
+- AI validation assists in detecting ambiguity, missing coverage, or spec drift.
+
+
+## 🔍 Quality Gate Philosophy
+
+Quality gates define **when** a phase is complete and ready to transition to the next.  
+In the AI-assisted DSPI Workflow, quality gates combine **automated validation** with **human review**, ensuring both consistency and accountability.
+
+### Key Principles
+
+- **AI-Assisted Validation:**  
+  AI tools can check completeness, structure, and consistency between story, specs, plan, and code.
+
+- **Human Judgment Remains Final:**  
+  Developers confirm correctness, feasibility, and alignment with business goals.
+
+- **Iterative Improvement Allowed:**  
+  Teams can revisit earlier phases when issues are found without breaking the workflow’s integrity.
+
+- **Measurable Completion:**  
+  Each phase defines clear validation criteria — all must pass before moving forward.
+
+- **Documentation Synchronization:**  
+  Updated outputs must always reflect the current, agreed-upon state.
+
 
 ## Project Structure
-
-The DSPI Workflow creates and maintains a specific project structure:
 
 ```
 project-root/
 ├── specs/
-│   ├── api-contract.md                # Global API specifications
-│   ├── business-logic.md              # Global business logic specifications
-│   ├── data-model.md                  # Global data model specifications
-│   ├── infrastructure.md              # Global infrastructure specifications
-│   ├── ui-design.md                   # Global UI/UX design specifications
+│   ├── api-contract.md
+│   ├── business-logic.md
+│   ├── data-model.md
+│   ├── infrastructure.md
+│   ├── ui-design.md
 │   └── [feature-name]/
-│       ├── STORY.md                   # Manual feature description
-│       ├── [feature-name]-specs.md    # Combined feature specifications
-│       └── [feature-name]-plan.md     # Feature implementation plan
-├── commands/                          # Workflow command files
+│       ├── STORY.md
+│       ├── [feature-name]-specs.md
+│       └── [feature-name]-plan.md
+├── commands/
 │   ├── create_feature_plan.md
 │   ├── create_feature_specs.md
 │   ├── extract_api_contract.md
@@ -60,280 +91,179 @@ project-root/
 └── [source code directories]
 ```
 
+
 ## Phase 0: Global Specification Extraction (Existing Codebases)
 
-**Purpose**: Extract comprehensive specifications from existing codebases to establish a baseline for future development.
+**Purpose:** Extract comprehensive specifications from existing codebases to establish a baseline for future development.
 
-**When Required**: MANDATORY for all existing codebases before any feature development begins.
+**When Required:** Mandatory for all existing codebases before any feature development begins.
 
 ### Process
-
-1. **Business Logic Extraction**
-   - Command: `extract_business_logic`
-   - Output: `specs/business-logic.md`
-   - Analyzes core business rules, workflows, and domain logic
-
-2. **Data Model Extraction**
-   - Command: `extract_data_model`
-   - Output: `specs/data-model.md`
-   - Documents entities, relationships, and data structures
-
-3. **API Contract Extraction**
-   - Command: `extract_api_contract`
-   - Output: `specs/api-contract.md`
-   - Captures interface specifications and communication protocols
-
-4. **UI Design Extraction**
-   - Command: `extract_ui_design`
-   - Output: `specs/ui-design.md`
-   - Documents user interface patterns and design systems
-
-5. **Infrastructure Extraction**
-   - Command: `extract_infrastructure`
-   - Output: `specs/infrastructure.md`
-   - Captures deployment, configuration, and operational requirements
+1. **Business Logic Extraction** – `extract_business_logic` → `specs/business-logic.md`  
+2. **Data Model Extraction** – `extract_data_model` → `specs/data-model.md`  
+3. **API Contract Extraction** – `extract_api_contract` → `specs/api-contract.md`  
+4. **UI Design Extraction** – `extract_ui_design` → `specs/ui-design.md`  
+5. **Infrastructure Extraction** – `extract_infrastructure` → `specs/infrastructure.md`
 
 ### Quality Gates
-- All five global specification files must exist and be complete
-- Specifications must accurately reflect the current codebase
-- No feature development can proceed without complete global specifications
+| Check Type | Description |
+|-------------|-------------|
+| **AI Validation** | All five global specification files exist and follow structure |
+| **Human Review** | Specifications accurately reflect the current codebase |
+| **Cross-Phase Consistency** | All components align and no contradictions exist |
+| **Sign-Off Condition** | All specs approved before any new feature begins |
+
 
 ## Phase 1: Describe (D)
 
-**Purpose**: Define the feature requirements, context, and boundaries through manual documentation.
+**Purpose:** Define feature requirements, context, and boundaries through manual documentation.
 
 ### Process
-
-1. **Create STORY.md**
-   - Developer manually creates comprehensive feature description
-   - Must include clear feature description and business value
-   - For first feature: Include vision statement, architecture, business context, technology stack, and feature boundaries
-
-2. **Content Requirements**
-   - Feature Description (mandatory)
-   - Business Context and Value
-   - User Stories or Use Cases
-   - Success Criteria
-   - Feature Boundaries and Constraints
+1. Create `STORY.md` manually with business and functional context.  
+2. Include: feature description, business value, use cases, success criteria, and constraints.  
 
 ### Quality Gates
-- STORY.md exists with clear, comprehensive description
-- Business value is articulated
-- Feature boundaries are well-defined
-- Requirements are unambiguous
+| Check Type | Description |
+|-------------|-------------|
+| **AI Validation** | Story completeness, clarity, missing fields |
+| **Human Review** | Business value and boundaries validated |
+| **Cross-Phase Consistency** | Aligns with global specs and project vision |
+| **Sign-Off Condition** | STORY.md finalized and versioned |
+
 
 ## Phase 2: Specify (S)
 
-**Purpose**: Transform the feature description into detailed, technology-agnostic specifications.
+**Purpose:** Transform the feature description into detailed, technology-agnostic specifications.
 
 ### Process
-
-1. **Command Execution**
-   - Command: `create_feature_specs with STORY.md`
-   - Creates feature-specific directory structure
-   - Moves STORY.md into the feature directory
-
-2. **Specification Generation**
-   - Analyzes STORY.md and existing global specifications
-   - Creates comprehensive `[feature-name]-specs.md` with sections:
-     - Business Logic Specifications
-     - Data Model Specifications
-     - API Contract Specifications
-     - UI/UX Design Specifications
-     - Open Questions and Clarifications
-
-3. **Interactive Clarification**
-   - Resolve all open questions through developer interaction
-   - Update specifications with clarified requirements
-   - Ensure all ambiguities are eliminated
-
-### Operating Modes
-
-**Bootstrap Mode** (New Projects):
-- Focus on foundational patterns and extensibility
-- Establish architectural principles
-- Create templates for future features
-
-**Full Mode** (Existing Projects):
-- Analyze integration with existing specifications
-- Maintain consistency with established patterns
-- Consider impact on existing functionality
+1. Run: `create_feature_specs with STORY.md`  
+2. Generates `[feature-name]-specs.md` covering:  
+   - Business Logic  
+   - Data Model  
+   - API Contracts  
+   - UI/UX Design  
+   - Open Questions  
+3. Clarify all open items via interactive refinement.  
 
 ### Quality Gates
-- Complete `[feature-name]-specs.md` following template structure
-- All open questions resolved and documented
-- Technology-agnostic specifications
-- Consistency with global specifications (if applicable)
+| Check Type | Description |
+|-------------|-------------|
+| **AI Validation** | All sections present, consistent, and linked |
+| **Human Review** | Requirements unambiguous and correct |
+| **Cross-Phase Consistency** | Matches STORY.md and global specifications |
+| **Sign-Off Condition** | All open questions resolved; specs finalized |
+
 
 ## Phase 3: Plan (P)
 
-**Purpose**: Create a detailed implementation strategy and roadmap based on the specifications.
+**Purpose:** Create a detailed, actionable implementation roadmap.
 
 ### Process
-
-1. **Command Execution**
-   - Command: `create_feature_plan with [feature-name]-specs.md`
-   - Analyzes feature specifications and technical context
-   - Determines appropriate technology stack and patterns
-
-2. **Plan Generation**
-   - Creates `[feature-name]-plan.md` with structured implementation approach:
-     - Implementation Phases (logical groupings of work)
-     - Specific Tasks and Deliverables
-     - Technical Approach and Patterns
-     - Testing Strategies
-     - Risk Assessment and Mitigation
-     - Integration Considerations
-
-3. **Mode-Specific Planning**
-   - **Bootstrap Mode**: Focus on foundation establishment and extensibility patterns
-   - **Full Mode**: Emphasize integration points, risk assessment, and consistency maintenance
+1. Run: `create_feature_plan with [feature-name]-specs.md`  
+2. Generates `[feature-name]-plan.md` with:  
+   - Implementation phases  
+   - Tasks and deliverables  
+   - Testing strategy  
+   - Risk assessment  
+   - Integration details  
 
 ### Quality Gates
-- Complete `[feature-name]-plan.md` following template structure
-- Logical phase organization with clear dependencies
-- All requirements from specifications addressed
-- Comprehensive testing strategy included
-- Risk mitigation strategies defined
+| Check Type | Description |
+|-------------|-------------|
+| **AI Validation** | Tasks traceable to specs, coverage complete |
+| **Human Review** | Technical approach validated and feasible |
+| **Cross-Phase Consistency** | Plan aligns with specs and architecture |
+| **Sign-Off Condition** | Plan finalized; ready for implementation |
+
 
 ## Phase 4: Implement (I)
 
-**Purpose**: Execute the implementation plan with rigorous quality assurance.
+**Purpose:** Execute the plan with high quality and alignment to specifications.
 
 ### Process
-
-1. **Command Execution**
-   - Command: `implement_feature_plan with [feature-name]-plan.md`
-   - Follows the plan phases in sequential order
-   - Maintains consistency with existing codebase patterns
-
-2. **Implementation Execution**
-   - Execute each phase according to the plan
-   - Implement all specified functionality
-   - Follow established coding patterns and conventions
-   - Handle both new code creation and existing code modifications
-
-3. **Quality Assurance**
-   - Implement comprehensive testing as specified
-   - Run all existing and new tests
-   - Validate implementation against specifications
-   - Ensure end-to-end functionality
-
-4. **Completion Validation**
-   - Build and deploy processes
-   - Generate necessary artifacts
-   - Validate complete feature functionality
-   - Update documentation as needed
+1. Run: `implement_feature_plan with [feature-name]-plan.md`  
+2. Follow defined phases and deliverables.  
+3. Validate implementation with automated and manual testing.  
+4. Ensure documentation and code stay synchronized.
 
 ### Quality Gates
-- All plan phases completed successfully
-- Code follows established patterns and conventions
-- All tests pass (existing and new)
-- Implementation matches specifications exactly
-- Feature functions end-to-end as specified
+| Check Type | Description |
+|-------------|-------------|
+| **AI Validation** | Implementation matches specifications and passes tests |
+| **Human Review** | Code reviewed for style, design, and maintainability |
+| **Cross-Phase Consistency** | Code fully satisfies specs and plan |
+| **Sign-Off Condition** | All tests pass; implementation complete and documented |
+
 
 ## Command System
 
-The DSPI Workflow is supported by eight command files that automate various aspects of the process:
-
 ### Extraction Commands (Phase 0)
-- `extract_business_logic.md`
-- `extract_data_model.md`
-- `extract_api_contract.md`
-- `extract_ui_design.md`
+- `extract_business_logic.md`  
+- `extract_data_model.md`  
+- `extract_api_contract.md`  
+- `extract_ui_design.md`  
 - `extract_infrastructure.md`
 
-### Development Commands (Phases 2-4)
-- `create_feature_specs.md`
-- `create_feature_plan.md`
+### Development Commands (Phases 2–4)
+- `create_feature_specs.md`  
+- `create_feature_plan.md`  
 - `implement_feature_plan.md`
 
 ### Command Management
-- Commands should be available locally in the `commands/` directory
-- Can be downloaded from the specs-cli repository as needed
-- Commands are designed to work with any AI-powered IDE or development environment
+- Commands reside in the `commands/` directory.  
+- Can be downloaded from the **Specs CLI** repository.  
+- Compatible with **any AI-powered IDE** (e.g., Roo Code, Trae AI, etc.).
+
 
 ## Best Practices
 
 ### For New Projects (Bootstrap Mode)
-- Start with a comprehensive first feature that establishes architectural foundations
-- Design for extensibility and future feature development
-- Create reusable patterns and templates
-- Plan for eventual global specification extraction
+- Start with a foundational feature defining architecture and standards.  
+- Focus on extensibility and reusable templates.  
+- Establish early quality gates for consistency.
 
 ### For Existing Projects (Full Mode)
-- ALWAYS complete global specification extraction before feature development
-- Maintain consistency with existing patterns and conventions
-- Analyze integration points thoroughly
-- Update global specifications after each feature
-- Consider impact on existing functionality
+- Perform full global extraction before new features.  
+- Keep global specifications updated continuously.  
+- Maintain consistency and review integration points carefully.
 
 ### Universal Best Practices
-- Never skip phases or rush through specifications
-- Maintain technology-agnostic specifications until implementation
-- Follow templates and patterns exactly
-- Validate quality at every transition point
-- Keep specifications and code synchronized
-- Use clear, descriptive naming conventions (kebab-case recommended)
+- Never skip documentation or validation steps.  
+- Keep specs technology-agnostic until implementation.  
+- Use AI for acceleration, not delegation.  
+- Maintain traceability between story, specs, plan, and code.  
+- Prefer clear, consistent naming conventions (`kebab-case` recommended).
+
 
 ## Success Metrics
 
-### Specification Quality
-- Templates followed completely
-- Technology-agnostic until implementation
-- Comprehensive coverage of all requirements
-- Clear, unambiguous documentation
+| Category | Goals |
+|-----------|-------|
+| **Specification Quality** | Complete templates, technology-agnostic clarity, full requirement coverage |
+| **Workflow Adherence** | Sequential yet flexible phase flow, validated transitions |
+| **Implementation Success** | Code matches specs, all tests pass, maintainable and consistent design |
 
-### Workflow Adherence
-- Sequential completion of all phases
-- Proper validation at each quality gate
-- Complete documentation at each step
-- No shortcuts or skipped phases
-
-### Implementation Success
-- Code matches specifications exactly
-- All tests pass consistently
-- Seamless integration with existing systems
-- Maintainable, high-quality code
 
 ## Error Handling and Recovery
 
-### Common Issues and Solutions
+| Issue | Resolution |
+|--------|-------------|
+| **Missing Global Specs** | Stop work, complete Phase 0 extraction |
+| **Incomplete Specs** | Return to “Specify” phase and clarify |
+| **Implementation Deviations** | Adjust code to match specs; not vice versa |
+| **Quality Gate Failures** | Fix issues and revalidate before continuing |
 
-**Missing Global Specifications**:
-- For existing codebases, halt all feature work
-- Complete Phase 0 extraction process
-- Validate all five global specifications exist
-
-**Incomplete Specifications**:
-- Return to specification phase
-- Resolve all open questions
-- Update documentation before proceeding
-
-**Implementation Deviations**:
-- Compare implementation against specifications
-- Update code to match specifications (not vice versa)
-- Re-run quality assurance processes
-
-**Quality Gate Failures**:
-- Identify specific failure points
-- Address issues systematically
-- Re-validate before proceeding
 
 ## Maintenance and Evolution
 
-### Ongoing Responsibilities
-- Update global specifications after each feature
-- Extract new patterns and conventions
-- Maintain consistency across all documentation
-- Regular validation of specification accuracy
-
-### Continuous Improvement
-- Refine templates based on experience
-- Update command files as needed
-- Enhance quality gates and validation processes
-- Gather feedback and iterate on the workflow
+- Update global specs after each feature.  
+- Regularly extract new architectural patterns.  
+- Keep command files updated with evolving templates.  
+- Gather feedback and iterate the workflow.  
 
 ---
 
-The DSPI Workflow ensures systematic, high-quality software development through comprehensive specification-driven practices. By following this workflow rigorously, teams can achieve consistent, maintainable, and well-documented software systems that meet requirements precisely and integrate seamlessly with existing codebases.
+### Summary
+
+The **AI-assisted DSPI Workflow** provides a repeatable, human-centered framework for Specification-Driven Development.  
+By combining structured documentation, iterative flexibility, and AI-powered validation, it helps teams produce **clear, maintainable, and high-quality software** — feature by feature, spec by spec.
