@@ -1,10 +1,12 @@
 # Specs CLI
 
-An IDE-agnostic framework for AI-assisted Specification-Driven Development (SDD) applying the DSPI Workflow:
+Specs CLI is an Agentic CLI — an IDE-agnostic framework for AI-assisted Specification-Driven Development (SDD).
+It applies the DSPI Workflow:
 
 **Describe → Specify → Plan → Implement**
 
-Specs CLI supports large existing codebases and of course starting a new project from scratch. For more details see: [DSPI_WORKFLOW.md](DSPI_WORKFLOW.md)
+Use Specs CLI inside any AI-powered IDE to structure feature development for both large existing codebases and brand-new projects.
+Learn more in [DSPI_WORKFLOW.md](DSPI_WORKFLOW.md)
 
 ## Usage With Mode/Agent (recommended)
 
