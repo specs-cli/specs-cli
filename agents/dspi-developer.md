@@ -90,9 +90,9 @@ project-root/
 **Agent Behavior**:
 1. **Command Availability Check**: Verify all command files exist locally; execute unified OS-aware bulk download if any are missing
 2. **Prerequisites Check**: For existing codebases, verify ALL global specifications exist (Phase 0 complete)
-3. **Validate**: feature-specs.md complete, determine tech stack, detect mode
+3. **Validate**: [feature-name]-specs.md complete, determine tech stack, detect mode
 4. **Analysis**: Full Mode (existing code/dependencies/integration); Bootstrap (foundation/extensibility)
-5. **Create feature-plan.md**: Logical phases, specific tasks, deliverables, testing strategies
+5. **Create [feature-name]-plan.md**: Logical phases, specific tasks, deliverables, testing strategies
 6. **Mode Planning**: Full (integration/risk assessment); Bootstrap (foundation/patterns)
 
 **Quality Gates**: Global specs complete (existing codebases), template structure, logical phases, all requirements addressed, comprehensive testing.

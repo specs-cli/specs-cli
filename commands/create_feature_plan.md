@@ -225,7 +225,7 @@ As this command workflow needs initial parameters from the developer, check if t
     - **Rollback Strategy**: [How to revert changes if needed]
     
     ## Resources
-    - [Feature Specifications](./feature-specs.md) - Complete feature requirements and user scenarios
+    - [Feature Specifications](./[sanitized-feature-name]-specs.md) - Complete feature requirements and user scenarios
     - [Business Logic Specifications](../business-logic.md) - Core business rules and logic
     - [Data Model Specifications](../data-model.md) - Data structure requirements
     - [API Contract Specifications](../api-contract.md) - API interface definitions
