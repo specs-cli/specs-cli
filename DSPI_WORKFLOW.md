@@ -82,11 +82,7 @@ project-root/
 ├── commands/
 │   ├── create_feature_plan.md
 │   ├── create_feature_specs.md
-│   ├── extract_api_contract.md
-│   ├── extract_business_logic.md
-│   ├── extract_data_model.md
-│   ├── extract_infrastructure.md
-│   ├── extract_ui_design.md
+│   ├── extract_global_specs.md
 │   └── implement_feature_plan.md
 └── [source code directories]
 ```
@@ -99,11 +95,12 @@ project-root/
 **When Required:** Mandatory for all existing codebases before any feature development begins.
 
 ### Process
-1. **Business Logic Extraction** – `extract_business_logic` → `specs/business-logic.md`  
-2. **Data Model Extraction** – `extract_data_model` → `specs/data-model.md`  
-3. **API Contract Extraction** – `extract_api_contract` → `specs/api-contract.md`  
-4. **UI Design Extraction** – `extract_ui_design` → `specs/ui-design.md`  
-5. **Infrastructure Extraction** – `extract_infrastructure` → `specs/infrastructure.md`
+1. **Global Specs Extraction** – `extract_global_specs` → `specs/` directory with all specification files:
+   - `specs/business-logic.md`
+   - `specs/data-model.md`
+   - `specs/api-contract.md`
+   - `specs/ui-design.md`
+   - `specs/infrastructure.md`
 
 ### Quality Gates
 | Check Type | Description |
@@ -198,11 +195,7 @@ project-root/
 ## Command System
 
 ### Extraction Commands (Phase 0)
-- `extract_business_logic.md`  
-- `extract_data_model.md`  
-- `extract_api_contract.md`  
-- `extract_ui_design.md`  
-- `extract_infrastructure.md`
+- `extract_global_specs.md`
 
 ### Development Commands (Phases 2–4)
 - `create_feature_specs.md`  

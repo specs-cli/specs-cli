@@ -3,6 +3,20 @@
 All notable changes to Specs CLI will be documented in this file.
 
 
+## 2025-10-07
+
+## Improved
+- agent behavior during command managment
+- more compact agent definition
+
+## Added
+- `/extract_global_specs` command to extract all global specs in one go
+- `/rate_specs_accuracy` command to rate the accuracy of the extracted specs
+
+## Removed
+- type-specific spec extraction commands
+
+
 ## 2025-10-04
 
 ## Added

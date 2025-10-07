@@ -4,16 +4,11 @@
 
 The DSPI Workflow is a structured, AI-assisted approach to Specification-Driven Development (SDD).
 
-## Phase 0: Document Existing Codebase
+## Phase 0: Global Specification Extraction (Existing Codebase)
 
 This phase is mandatory for projects with existing codebase. Essential specs are extracted to be used later during the DSPI Workflow.
 
-**Run commands**:
-1. `/extract_business_logic`
-2. `/extract_data_model`
-3. `/extract_api_contract`
-4. `/extract_ui_design`
-5. `/extract_infrastructure`
+**Run command**: `/extract_global_specs`
 
 This will analyze your existing codebase and create five specification files. Review and adapt them to your project needs!
 
@@ -27,7 +22,7 @@ specs/
 └── ui-design.md         # UI/UX design specifications
 ```
 
-## Phase 1: Describe New Feature
+## Phase 1: Describe (D) New Feature
 
 **Write STORY.md**:
 ```
@@ -43,7 +38,7 @@ Writing **STORY.md** manually is important as it serves as primary AI input.
 
 > **Tip**: For the first feature of a new project, it is recommended to use a very detailed **STORY.md** having multiple sections like **Vision Statement**, **General Architecture**, **Business Context**, **Technology Stack**, and **Feature Boundaries**. This first feature will serve as your initial project setup.
 
-## Phase 2: Specify New Feature
+## Phase 2: Specify (S) New Feature
 
 **Run command**: `/create_feature_specs with STORY.md` (use @ or # to reference the file)
 
@@ -59,7 +54,7 @@ specs/
     └── STORY.md                   # Manual feature description
 ```
 
-## Phase 3: Plan Feature Implementation
+## Phase 3: Plan (P) Feature Implementation
 
 **Run command**: `/create_feature_plan with [feature-name]-specs.md` (use @ or # to reference the file)
 
@@ -74,7 +69,7 @@ specs/
     └── STORY.md                   # Manual feature description
 ```
 
-## Phase 4: Implement Feature
+## Phase 4: Implement (I) Feature
 
 **Run command**: `/implement_feature_plan with [feature-name]-plan.md` (use @ or # to reference the file)
 
