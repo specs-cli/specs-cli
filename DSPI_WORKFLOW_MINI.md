@@ -42,7 +42,7 @@ Writing **STORY.md** manually is important as it serves as primary AI input.
 
 **Run command**: `/create_feature_specs with STORY.md` (use @ or # to reference the file)
 
-This will create a combined feature specification file consisting of business logic, data model, API contract, and UI/UX design. Review and adapt it to your needs!
+This will create separate specification type files covering business logic, data model, API contract, and UI/UX design. Additional specification types can be supported as needed. Review and adapt them to your needs!
 
 **Move STORY.md** into the new feature specs directory.
 
@@ -50,13 +50,16 @@ This will create a combined feature specification file consisting of business lo
 ```
 specs/
 └── [feature-name]/
-    ├── [feature-name]-specs.md    # Combined feature specifications
-    └── STORY.md                   # Manual feature description
+    ├── [feature-name]-business-logic.md    # Business rules and scenarios
+    ├── [feature-name]-data-model.md        # Data structures and relationships
+    ├── [feature-name]-api-contract.md      # API endpoints and contracts
+    ├── [feature-name]-ui-design.md         # UI/UX design specifications
+    └── STORY.md                            # Manual feature description
 ```
 
 ## Phase 3: Plan (P) Feature Implementation
 
-**Run command**: `/create_feature_plan with [feature-name]-specs.md` (use @ or # to reference the file)
+**Run command**: `/create_feature_plan with [feature-name]` (use @ or # to reference the feature folder)
 
 This will create a feature implementation plan file. Review and adapt it to your needs!
 
@@ -64,9 +67,12 @@ This will create a feature implementation plan file. Review and adapt it to your
 ```
 specs/
 └── [feature-name]/
-    ├── [feature-name]-plan.md     # Feature implementation plan
-    ├── [feature-name]-specs.md    # Combined feature specifications
-    └── STORY.md                   # Manual feature description
+    ├── [feature-name]-plan.md              # Feature implementation plan
+    ├── [feature-name]-business-logic.md    # Business rules and scenarios
+    ├── [feature-name]-data-model.md        # Data structures and relationships
+    ├── [feature-name]-api-contract.md      # API endpoints and contracts
+    ├── [feature-name]-ui-design.md         # UI/UX design specifications
+    └── STORY.md                            # Manual feature description
 ```
 
 ## Phase 4: Implement (I) Feature

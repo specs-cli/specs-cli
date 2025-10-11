@@ -1,30 +1,28 @@
-# Specs CLI
+# [x] Specs CLI
 
-Specs CLI is an Agentic CLI — an IDE-agnostic framework for AI-assisted Specification-Driven Development (SDD).
-It applies the DSPI Workflow:
+Specs CLI is an Agentic CLI for AI-assisted Specification-Driven Development (SDD). It applies the DSPI Workflow:
 
 **Describe → Specify → Plan → Implement**
 
-Use Specs CLI inside any AI-powered IDE to structure feature development for both large existing codebases and brand-new projects.
-Learn more in [DSPI_WORKFLOW.md](DSPI_WORKFLOW.md)
+Use Specs CLI inside any AI-powered IDE with any AI model to immediately start spec-driven feature development for large existing codebases or brand-new projects. Learn more in [DSPI_WORKFLOW.md](DSPI_WORKFLOW.md)
 
-## Usage With Mode/Agent (recommended)
+## Usage With Agent (recommended)
 
-**Install the Mode (for Roo Code)**:
+**Install the Agent (Mode for Roo Code)**:
 - Open your project and go to the Roo Code panel
 - Click the three-dot menu (⋯) in the panel
 - Select Modes from the dropdown menu
 - Scroll down and click **Import Mode**
 - Navigate to `specs-cli/roo-modes/`
-- Select the `dspi-developer-2.yaml` file
+- Select the `dspi-developer-[version].yaml` file
 
 **Install the Agent (for other IDEs)**:
-- Copy the file content of `specs-cli/agents/dspi-developer-2.md` to your clipboard
+- Copy the file content of `specs-cli/agents/dspi-developer-[version].md` to your clipboard
 - Go to your IDE's AI panel
 - Open the settings and search for the option to create a new Agent or System Prompt
 - Create the new Agent or System Prompt with
-    - **Name**: DSPI Developer [version] (e.g. DSPI Developer 2.0)
-    - **Prompt**: [Paste the content of `specs-cli/agents/dspi-developer-2.md`]
+    - **Name**: DSPI Developer [version] (e.g. DSPI Developer X.0)
+    - **Prompt**: [Paste the content of `specs-cli/agents/dspi-developer-[version].md`]
 - Save the new Agent or System Prompt
 
 **Install Commands**:
@@ -34,22 +32,13 @@ Learn more in [DSPI_WORKFLOW.md](DSPI_WORKFLOW.md)
 
 You are now ready. Just ask the Agent what to do next and it will guide you through the DSPI Workflow.
 
-## Usage Without Mode/Agent
+## Usage Without Agent
 
 - Copy the `commands/` directory from `specs-cli/` to your project
 - Make sure to use the IDE-specific location (e.g. `.roo/commands/` for Roo Code)
 - Apply the DSPI workflow manually: [DSPI_WORKFLOW_MINI.md](DSPI_WORKFLOW_MINI.md)
 
-> **Note**: If your IDE does not support slash commands, you can use `execute` followed by the command file and arguments. For example: `execute create_feature_specs.md with STORY.md` (use @ or # to reference the files).
-
-## Recommended AI Models
-
-For optimal results with Specs CLI commands, we recommend using:
-- **Claude Sonnet 4**: Excellent at documenting, specifying and coding
-- **DeepSeek V3.1**: Excellent at documenting
-- **GPT-5**: Very good at documenting
-
-Let us know your experience with other models and we will consider adding them to the list.
+> **Note**: If your IDE does not support slash commands, you can run them like this: `execute [command file].md [arguments]` (use @ or # to reference files or folders).
 
 ## Contributing
 

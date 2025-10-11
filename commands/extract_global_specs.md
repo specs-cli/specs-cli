@@ -96,7 +96,7 @@ This sequential approach ensures that each specification can properly reference 
    - **Extract business rules and constraints** from code logic
    - **Note validation patterns and error handling** approaches
 
-### Step 2: Domain-Specific Deep Dive Analysis
+### Step 2: Specification Type-Specific Deep Dive Analysis
 
 #### API Contract Analysis
 1. **Route examination**: Analyze all route files completely

@@ -134,4 +134,4 @@ This command can be adapted for different project types by:
 - Adjusting the specification categories based on what's found in `specs/`
 - Modifying weight distributions based on project focus (API-heavy vs UI-heavy)
 - Adding technology-specific validation steps (e.g., GraphQL schema validation)
-- Customizing the rating criteria for different domains (mobile apps, microservices, etc.)
+- Customizing the rating criteria for different application types (mobile apps, microservices, etc.)

@@ -1,6 +1,6 @@
 # Feature Specifications Creator
 
-Your task is to gather all required information about the new feature and produce a high-quality combined specification file that contains everything needed to plan the feature implementation.
+Your task is to gather all required information about the new feature and produce high-quality specification files - one for each specification type - that contain everything needed to plan the feature implementation.
 
 ## Initial Response
 
@@ -64,107 +64,128 @@ From now on you should work in this new subdirectory. All new files must be crea
 
 **Your workspace from now on is**: `specs/[sanitized-feature-name]/`
 
-### Phase 3: Create new feature specifications
+### Phase 3: Create separate specification files for each type
 
-1. **Remember the feature specifications template**:
+For each specification type template defined below, create a separate file in the feature subdirectory. The file naming convention is: `[sanitized-feature-name]-[type-name].md`
 
-    Keep the following Markdown structure in mind as it represents the template for the file `[sanitized-feature-name]-specs.md`:
+## Specification Type Templates
 
-    ```
-    # Business Logic
+### TYPE: business-logic
+**File Output**: `[sanitized-feature-name]-business-logic.md`
 
-    ## Overview
-    [One paragraph describing purpose and business value]
+```markdown
+# Business Logic
 
-    ## User Scenarios
+## Overview
+[One paragraph describing purpose and business value]
 
-    ### [Scenario Name]
-    **As a** [user type]
-    **I want** [capability]
-    **So that** [business value]
+## User Scenarios
 
-    #### Success Criteria
-    - [Measurable outcome]
+### [Scenario Name]
+**As a** [user type]
+**I want** [capability]
+**So that** [business value]
 
-    #### Business Rules
-    - **When** [condition] **Then** [expected behavior]
+#### Success Criteria
+- [Measurable outcome]
 
-    #### Edge Cases & Exceptions
-    - **When** [condition] **Then** [expected behavior] **Because** [business reason]
+#### Business Rules
+- **When** [condition] **Then** [expected behavior]
 
-    ---
+#### Edge Cases & Exceptions
+- **When** [condition] **Then** [expected behavior] **Because** [business reason]
 
-    # Data Model
+## Open Questions
+[Add any business logic related questions or areas of uncertainty that need to be addressed]
+```
 
-    ## Model Elements
+### TYPE: data-model
+**File Output**: `[sanitized-feature-name]-data-model.md`
 
-    ### [Element Name]
-    [General information about the model element/entity and its purpose]
+```markdown
+# Data Model
 
-    #### Structure
-    [Use an appropriate notation to describe the model element structure containing all fields, each with a name and data type]
+## Model Elements
 
-    #### Validation Rules
-    - **[Field Name]**: [Data validation rule]
+### [Element Name]
+[General information about the model element/entity and its purpose]
 
-    #### Relationships
-    - **[Field Name]**: [Describe relationships to other model]
+#### Structure
+[Use an appropriate notation to describe the model element structure containing all fields, each with a name and data type]
 
-    #### Other Characteristics
-    [Specify other characteristics that are important for the model element]
+#### Validation Rules
+- **[Field Name]**: [Data validation rule]
 
-    ---
+#### Relationships
+- **[Field Name]**: [Describe relationships to other model]
 
-    # API Contract
+#### Other Characteristics
+[Specify other characteristics that are important for the model element]
 
-    ## Interfaces
+## Open Questions
+[Add any data model related questions or areas of uncertainty that need to be addressed]
+```
 
-    ### [Interface Name]
-    [General information about the interface that includes its purpose, interface type and how to access/use it]
+### TYPE: api-contract
+**File Output**: `[sanitized-feature-name]-api-contract.md`
 
-    #### Input/Call
-    [Describe parameters and input data model]
+```markdown
+# API Contract
 
-    #### Output/Response
-    [Describe output data model]
+## Interfaces
 
-    #### Event/Message
-    [Describe event or message data model]
+### [Interface Name]
+[General information about the interface that includes its purpose, interface type and how to access/use it]
 
-    #### Error Handling
-    [Describe error types, error structure and interface behavior]
+#### Input/Call
+[Describe parameters and input data model]
 
-    #### Other Characteristics
-    [Specify other characteristics that are important for the interface]
+#### Output/Response
+[Describe output data model]
 
-    ---
+#### Event/Message
+[Describe event or message data model]
 
-    # UI/UX Design
+#### Error Handling
+[Describe error types, error structure and interface behavior]
 
-    ## UI Components
+#### Other Characteristics
+[Specify other characteristics that are important for the interface]
 
-    ### [Component Name]
-    [Specify the UI component]
+## Open Questions
+[Add any API contract related questions or areas of uncertainty that need to be addressed]
+```
 
-    ## User Flows
+### TYPE: ui-design
+**File Output**: `[sanitized-feature-name]-ui-design.md`
 
-    ### [Flow Name]
-    [Use Mermaid syntax to describe the user flow]
+```markdown
+# UI Design
 
-    ## UX Patterns
+## UI Components
 
-    ### [Pattern Name]
-    [Specify the UX pattern]
+### [Component Name]
+[Specify the UI component]
 
-    ---
+## User Flows
 
-    # Open Questions
-    [Add any open questions or areas of uncertainty that need to be addressed]
-    ```
+### [Flow Name]
+[Use Mermaid syntax to describe the user flow]
 
-2. **Analyze requirements and create specifications file (Mode-dependent)**:
+## UX Patterns
 
-    - You are now working on the specifications file: `[sanitized-feature-name]-specs.md`. Be careful, using the correct directory defined in Step 1.
+### [Pattern Name]
+[Specify the UX pattern]
+
+## Open Questions
+[Add any UI/UX design related questions or areas of uncertainty that need to be addressed]
+```
+
+### Phase 4: Generate specification files (Mode-dependent)
+
+1. **Analyze requirements and create specification files**:
+
+    - For each specification type template defined above, create the corresponding file in the feature subdirectory: `specs/[sanitized-feature-name]/`
     - As you don't know yet the technologies and frameworks being used for implementation, you must describe all specifications technology-agnostic.
     
     **Full Mode - Comprehensive Analysis**:
@@ -179,50 +200,50 @@ From now on you should work in this new subdirectory. All new files must be crea
     - Design model elements, API interfaces, and UI components that can serve as templates for future features.
     - Consider extensibility and how general specifications might be extracted later.
     
-    - Analyze the feature description given by the developer and create detailed specifications for all sections defined by the specifications template.
-    - Write all specifications to the target file `[sanitized-feature-name]-specs.md`.
+    - Analyze the feature description given by the developer and create detailed specifications for all sections defined by each template.
+    - Write specifications to the appropriate type-specific files.
 
-3. **Review and finalize specifications (Mode-dependent)**:
+2. **Review and finalize specifications (Mode-dependent)**:
 
     **Full Mode**:
-    - Review the completed `[sanitized-feature-name]-specs.md` file and make sure all specifications are complete, accurate, and technology-agnostic.
+    - Review each completed specification file and make sure all specifications are complete, accurate, and technology-agnostic.
     - Verify that the feature integrates properly with existing specifications and architectural patterns.
     - Ensure consistency with established naming conventions and data models.
     - Check that API interfaces follow existing patterns and don't conflict with current endpoints.
     - Validate that UI components align with existing design patterns and user flows.
     
     **Bootstrap Mode**:
-    - Review the completed `[sanitized-feature-name]-specs.md` file and make sure all specifications are complete, accurate, and technology-agnostic.
+    - Review each completed specification file and make sure all specifications are complete, accurate, and technology-agnostic.
     - Verify that the specifications establish good foundational patterns for the project.
     - Ensure that model elements, API interfaces, and UI components are designed for extensibility.
     - Check that the specifications can serve as templates for future feature development.
     - Consider how general specifications might be extracted from this feature later.
     
-    - If there are any open questions or areas of uncertainty, add them to the **Open Questions** specifications section.
+    - If there are any open questions or areas of uncertainty, add them to the appropriate **Open Questions** section in the relevant specification file.
 
-### Phase 4: Ask the developer for clarification (Mode-dependent)
+### Phase 5: Ask the developer for clarification (Mode-dependent)
 
 **Full Mode**:
 1. **Review open questions with context**:
-    - For each question in the **Open Questions** specifications section, ask the developer for clarification.
+    - For each question in any **Open Questions** section across all specification files, ask the developer for clarification.
     - Provide context about how the answer might affect integration with existing specifications or codebase.
     - Consider questions about consistency with established patterns and architectural decisions.
-    - **IMMEDIATELY** after receiving each answer, update the **Open Questions** section in `[sanitized-feature-name]-specs.md` with the developer's response.
+    - **IMMEDIATELY** after receiving each answer, update the appropriate **Open Questions** section in the relevant specification file with the developer's response.
     - Always map the right question and answer together.
     - If the developer provides additional information or a different perspective, update the question and answer accordingly.
     - **NEVER wait for the developer to ask you to save the answers - persist them automatically as soon as they are provided.**
 
 **Bootstrap Mode**:
 1. **Review open questions with future considerations**:
-    - For each question in the **Open Questions** specifications section, ask the developer for clarification.
+    - For each question in any **Open Questions** section across all specification files, ask the developer for clarification.
     - Provide context about how the answer might affect future feature development and general specifications extraction.
     - Consider questions about foundational patterns and extensibility decisions.
-    - **IMMEDIATELY** after receiving each answer, update the **Open Questions** section in `[sanitized-feature-name]-specs.md` with the developer's response.
+    - **IMMEDIATELY** after receiving each answer, update the appropriate **Open Questions** section in the relevant specification file with the developer's response.
     - Always map the right question and answer together.
     - If the developer provides additional information or a different perspective, update the question and answer accordingly.
     - **NEVER wait for the developer to ask you to save the answers - persist them automatically as soon as they are provided.**
 
 2. **Update specifications (Mode-dependent)**:
-    - **Full Mode**: Make sure to update the file `[sanitized-feature-name]-specs.md` with the developer's responses, ensuring consistency with existing specifications.
-    - **Bootstrap Mode**: Make sure to update the file `[sanitized-feature-name]-specs.md` with the developer's responses, considering how they establish foundational patterns for the project.
+    - **Full Mode**: Make sure to update the appropriate specification files with the developer's responses, ensuring consistency with existing specifications.
+    - **Bootstrap Mode**: Make sure to update the appropriate specification files with the developer's responses, considering how they establish foundational patterns for the project.
     - **Critical**: This update must happen immediately after each answer is received, not at the end of the conversation.
