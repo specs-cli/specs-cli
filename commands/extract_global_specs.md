@@ -224,391 +224,144 @@ Before creating specifications, ensure you have:
 
 ### API Contract Extraction
 
-**Enhanced Template for `specs/api-contract.md`:**
+**Template for `specs/api-contract.md`:**
 ```markdown
 # API Contract
 
 ## Interfaces
 
 ### [Interface Name]
-[Detailed description of the interface including its purpose, technology stack, and access patterns based on actual implementation]
+[General information about the interface that includes its purpose, interface type and how to access/use it]
 
 #### Input/Call
-[Document actual request structures from route handlers and controllers]
-- **Endpoint**: [HTTP method and path from route definitions]
-- **Headers**: [Required headers from middleware analysis]
-- **Parameters**: [Path, query, and body parameters from actual code]
-- **Validation**: [Actual validation rules from middleware/controllers]
+[Describe parameters and input data model]
 
 #### Output/Response
-[Document actual response structures from controller implementations]
-- **Success Response**: [Actual response format from code]
-- **Response Headers**: [Headers set by middleware/controllers]
-- **Status Codes**: [All possible status codes from implementation]
+[Describe output data model]
+
+#### Event/Message
+[Describe event or message data model]
 
 #### Error Handling
-[Document actual error handling from code analysis]
-- **Error Types**: [Specific error types thrown in code]
-- **Error Structure**: [Actual error response format]
-- **Status Codes**: [Error status codes from implementation]
-- **Error Middleware**: [Error handling middleware behavior]
-
-#### Authentication & Authorization
-[Document actual auth implementation]
-- **Authentication Method**: [JWT, session, etc. from middleware]
-- **Required Permissions**: [Role/permission checks from code]
-- **Token Handling**: [Token validation and refresh logic]
-
-#### Rate Limiting & Security
-[Document actual security implementations]
-- **Rate Limits**: [Actual rate limiting configuration]
-- **CORS Settings**: [CORS middleware configuration]
-- **Security Headers**: [Helmet or security middleware settings]
+[Describe error types, error structure and interface behavior]
 
 #### Other Characteristics
-[Implementation-specific details from code analysis]
-- **Middleware Chain**: [Actual middleware order and behavior]
-- **Database Interactions**: [Query patterns and transactions]
-- **Performance Considerations**: [Caching, pagination, optimization]
-
-## Implementation Notes
-[Document any discrepancies between expected and actual behavior]
-
-## Cross-References
-- **Data Models**: Reference specific entities and fields from `specs/data-model.md`
-- **Business Logic**: Reference specific scenarios and rules from `specs/business-logic.md`
-- **Infrastructure**: Reference deployment and security from `specs/infrastructure.md`
+[Specify other characteristics that are important for the interface]
 
 ## Open Questions
-[Specific questions about unclear implementation details]
+[Add any API contract related questions or areas of uncertainty that need to be addressed]
 ```
 
 ### Business Logic Extraction
 
-**Enhanced Template for `specs/business-logic.md`:**
+**Template for `specs/business-logic.md`:**
 ```markdown
 # Business Logic
 
 ## Overview
-[Comprehensive description based on actual implementation analysis, including business value and user impact]
+[One paragraph describing purpose and business value]
 
 ## User Scenarios
 
 ### [Scenario Name]
-**As a** [user type from actual user model]
-**I want** [capability from actual feature implementation]
-**So that** [business value from actual use cases]
-
-#### Implementation Details
-[How this scenario is actually implemented in the codebase]
-- **Entry Points**: [Controllers/routes that handle this scenario]
-- **Service Layer**: [Services and business logic implementations]
-- **Data Layer**: [Models and database interactions involved]
+**As a** [user type]
+**I want** [capability]
+**So that** [business value]
 
 #### Success Criteria
-[Measurable outcomes based on actual implementation]
-- [Specific success conditions from code logic]
+- [Measurable outcome]
 
 #### Business Rules
-[Actual business rules extracted from code implementation]
-- **When** [condition from actual validation/logic] **Then** [behavior from actual code] **Because** [business reason from comments/context]
-
-#### Validation Rules
-[Actual validation from models, middleware, and controllers]
-- **Field Validation**: [Specific validation rules from code]
-- **Business Validation**: [Complex business rule validation]
-- **Cross-Entity Validation**: [Validation involving multiple models]
+- **When** [condition] **Then** [expected behavior]
 
 #### Edge Cases & Exceptions
-[Actual edge case handling from code analysis]
-- **When** [condition from actual error handling] **Then** [behavior from actual code] **Because** [business reason from implementation]
-
-#### Error Scenarios
-[Actual error handling patterns from implementation]
-- **Validation Errors**: [How validation failures are handled]
-- **Business Rule Violations**: [How business rule violations are handled]
-- **System Errors**: [How system errors are handled and communicated]
-
-## Workflow Patterns
-[Actual workflow implementations from service layer]
-
-### [Workflow Name]
-[Step-by-step workflow based on actual service implementations]
-
-## Cross-References
-- **API Contract**: Reference specific endpoints from `specs/api-contract.md`
-- **Data Model**: Reference specific entities and relationships from `specs/data-model.md`
-- **UI Design**: Reference specific user flows from `specs/ui-design.md`
-
-## Implementation Notes
-[Notes about implementation patterns, design decisions, and technical debt]
+- **When** [condition] **Then** [expected behavior] **Because** [business reason]
 
 ## Open Questions
-[Specific questions about business logic that need clarification]
+[Add any business logic related questions or areas of uncertainty that need to be addressed]
 ```
 
 ### Data Model Extraction
 
-**Enhanced Template for `specs/data-model.md`:**
+**Template for `specs/data-model.md`:**
 ```markdown
 # Data Model
 
 ## Model Elements
 
 ### [Element Name]
-[Comprehensive description of the model element based on actual schema definition and usage patterns]
+[General information about the model element/entity and its purpose]
 
 #### Structure
-[Complete field definition from actual model/schema]
-```javascript
-// Actual schema structure from code
-{
-  fieldName: {
-    type: DataType,
-    required: boolean,
-    default: value,
-    validate: validationFunction,
-    // ... other actual properties
-  }
-}
-```
+[Use an appropriate notation to describe the model element structure containing all fields, each with a name and data type]
 
 #### Validation Rules
-[Actual validation rules from schema and application code]
-- **[Field Name]**: [Specific validation rule from code]
-- **Schema Validation**: [Mongoose/ORM validation from model definition]
-- **Application Validation**: [Additional validation in controllers/services]
+- **[Field Name]**: [Data validation rule]
 
 #### Relationships
-[Actual relationships from schema definitions and population logic]
-- **[Field Name]**: [Relationship type and target model from actual code]
-- **Population Logic**: [How relationships are populated in queries]
-- **Cascade Behavior**: [Actual cascade delete/update behavior]
-
-#### Indexes and Performance
-[Actual database indexes and performance optimizations]
-- **Indexes**: [Actual index definitions from schema]
-- **Query Patterns**: [Common query patterns from repository/service code]
-- **Performance Considerations**: [Actual performance optimizations]
-
-#### Business Logic Integration
-[How this model is used in business logic]
-- **Creation Logic**: [How instances are created in services]
-- **Update Logic**: [How instances are updated and validated]
-- **Deletion Logic**: [Soft delete, cascade behavior, etc.]
+- **[Field Name]**: [Describe relationships to other model]
 
 #### Other Characteristics
-[Implementation-specific details from model analysis]
-- **Middleware**: [Pre/post hooks and middleware from schema]
-- **Virtual Fields**: [Computed fields and virtual properties]
-- **Instance Methods**: [Custom methods defined on the model]
-- **Static Methods**: [Static methods for queries and operations]
-
-## Data Flow Patterns
-[How data flows through the application based on actual implementation]
-
-## Cross-References
-- **API Contract**: Reference endpoints that use this model from `specs/api-contract.md`
-- **Business Logic**: Reference scenarios involving this model from `specs/business-logic.md`
-- **Infrastructure**: Reference storage and persistence from `specs/infrastructure.md`
-
-## Implementation Notes
-[Notes about model design decisions, migrations, and technical considerations]
+[Specify other characteristics that are important for the model element]
 
 ## Open Questions
-[Specific questions about data model design and relationships]
+[Add any data model related questions or areas of uncertainty that need to be addressed]
 ```
 
 ### Infrastructure Extraction
 
-**Enhanced Template for `specs/infrastructure.md`:**
+**Template for `specs/infrastructure.md`:**
 ```markdown
 # Infrastructure
 
 ## Deployment
-[Actual deployment configuration from Docker, docker-compose, and build scripts]
-
-### Development Environment
-[Actual development setup from docker-compose and package.json]
-- **Services**: [Actual services defined in docker-compose]
-- **Dependencies**: [Service dependencies and startup order]
-- **Port Configuration**: [Actual port mappings and networking]
-- **Volume Mounts**: [Data persistence and file sharing]
-
-### Production Considerations
-[Production-ready configurations and considerations]
-- **Environment Variables**: [Required environment variables from .env files]
-- **Build Process**: [Actual build steps from Dockerfile and scripts]
-- **Health Checks**: [Health check implementations]
+[Deployment approach, tools, environments, processes and configurations]
 
 ## Storage
-[Actual storage configuration and database setup]
-
-### Database Configuration
-[Actual database setup from config files and connection logic]
-- **Database Type**: [MongoDB, PostgreSQL, etc. from actual config]
-- **Connection Configuration**: [Connection strings and pool settings]
-- **Migration Strategy**: [How schema changes are handled]
-
-### File Storage
-[Actual file storage implementation if present]
-- **Storage Type**: [Local, cloud storage, etc.]
-- **Upload Handling**: [File upload middleware and processing]
+[Storage solutions, technologies and configurations]
 
 ## Network
-[Actual network configuration from server setup and middleware]
-
-### API Configuration
-[Actual API server configuration]
-- **Server Framework**: [Express, Fastify, etc. from actual implementation]
-- **Port Configuration**: [Actual port settings from server.js]
-- **Middleware Stack**: [Actual middleware order and configuration]
-
-### CORS and Security
-[Actual CORS and security middleware configuration]
-- **CORS Settings**: [Actual CORS configuration from middleware]
-- **Security Headers**: [Helmet configuration and security headers]
-- **Rate Limiting**: [Actual rate limiting implementation]
+[Network solutions, technologies and configurations]
 
 ## Security
-[Actual security implementations from middleware and configuration]
+[Security solutions, technologies and configurations]
 
-### Authentication
-[Actual authentication implementation]
-- **JWT Configuration**: [JWT secret, expiration, and validation]
-- **Password Security**: [Hashing algorithm and salt rounds]
-- **Session Management**: [How sessions are managed]
-
-### Authorization
-[Actual authorization patterns from middleware]
-- **Role-Based Access**: [How roles and permissions are implemented]
-- **Route Protection**: [How routes are protected]
+## Compliance
+[Compliance requirements, standards, and certifications]
 
 ## Monitoring
-[Actual monitoring and logging implementation]
+[Monitoring and observability solutions, technologies and configurations]
 
-### Logging
-[Actual logging configuration and patterns]
-- **Log Levels**: [Configured log levels and output]
-- **Log Format**: [Log format and structured logging]
-- **Error Tracking**: [How errors are logged and tracked]
-
-### Health Monitoring
-[Actual health check and monitoring implementation]
-- **Health Endpoints**: [Health check endpoints and logic]
-- **Performance Monitoring**: [Performance tracking implementation]
-
-## Cross-References
-- **API Contract**: Reference security and deployment from `specs/api-contract.md`
-- **Data Model**: Reference storage and persistence from `specs/data-model.md`
-- **UI Design**: Reference frontend deployment from `specs/ui-design.md`
-
-## Implementation Notes
-[Notes about infrastructure decisions, technical debt, and improvements needed]
+## Disaster Recovery
+[Disaster backup strategy, recovery planning, procedures, and tools]
 
 ## Open Questions
-[Specific questions about infrastructure configuration and deployment]
+[Add any open questions or areas of uncertainty that need to be addressed]
 ```
 
-### UI/UX Design Extraction
+### UI Design Extraction
 
-**Enhanced Template for `specs/ui-design.md`:**
+**Template for `specs/ui-design.md`:**
 ```markdown
-# UI/UX Design
-
-## Technology Stack
-[Actual frontend technology stack from package.json and implementation]
-- **Framework**: [React, Vue, Angular, etc. from actual code]
-- **Build Tool**: [Vite, Webpack, etc. from actual configuration]
-- **Styling**: [CSS, Tailwind, styled-components, etc. from actual implementation]
-- **State Management**: [Context, Redux, Zustand, etc. from actual code]
+# UI Design
 
 ## UI Components
 
 ### [Component Name]
-[Detailed component description based on actual implementation]
-
-#### Component Structure
-[Actual component structure from code]
-```jsx
-// Actual component signature and props from code
-function ComponentName({ prop1, prop2, ...props }) {
-  // Key implementation details
-}
-```
-
-#### Props and State
-[Actual props and state management from component code]
-- **Props**: [Actual prop types and usage from code]
-- **State**: [Local state management patterns from code]
-- **Context Usage**: [How component uses global state/context]
-
-#### Styling and Theming
-[Actual styling implementation from component files]
-- **CSS Classes**: [Actual CSS classes and styling approach]
-- **Responsive Design**: [Breakpoints and responsive patterns]
-- **Theme Integration**: [How theming is implemented]
-
-#### Event Handling
-[Actual event handling patterns from component code]
-- **User Interactions**: [Click, form submission, etc. from actual handlers]
-- **API Integration**: [How component interacts with backend]
-- **State Updates**: [How user actions update state]
+[Specify the UI component]
 
 ## User Flows
 
 ### [Flow Name]
-[Actual user flow based on routing and component interactions]
-
-#### Flow Implementation
-[How the flow is actually implemented in code]
-- **Route Configuration**: [Actual routes from router configuration]
-- **Component Sequence**: [Components involved in the flow]
-- **State Management**: [How state flows through the user journey]
-- **API Interactions**: [Backend calls during the flow]
-
-#### Authentication Flow
-[Actual authentication flow from auth context and components]
-```mermaid
-graph TD
-    A[Actual flow from code analysis]
-    B[Based on router and auth logic]
-    C[Including error handling]
-```
+[Use Mermaid syntax to describe the user flow]
 
 ## UX Patterns
 
 ### [Pattern Name]
-[Actual UX pattern implementation from component analysis]
-
-#### Implementation Details
-[How the pattern is actually implemented]
-- **Component Structure**: [Components that implement the pattern]
-- **State Management**: [How pattern state is managed]
-- **User Feedback**: [Loading states, error messages, success feedback]
-
-#### Accessibility
-[Actual accessibility implementation from component code]
-- **ARIA Labels**: [Actual ARIA implementation from code]
-- **Keyboard Navigation**: [Keyboard support implementation]
-- **Screen Reader Support**: [Screen reader considerations]
-
-## Performance Patterns
-[Actual performance optimizations from code]
-- **Code Splitting**: [Lazy loading and code splitting implementation]
-- **Memoization**: [React.memo, useMemo, useCallback usage]
-- **Bundle Optimization**: [Build optimization from vite.config.js]
-
-## Cross-References
-- **Business Logic**: Reference user scenarios from `specs/business-logic.md`
-- **API Contract**: Reference client-server interactions from `specs/api-contract.md`
-- **Infrastructure**: Reference frontend deployment from `specs/infrastructure.md`
-
-## Implementation Notes
-[Notes about UI/UX decisions, technical debt, and improvement opportunities]
+[Specify the UX pattern]
 
 ## Open Questions
-[Specific questions about UI/UX implementation and design decisions]
+[Add any UI/UX design related questions or areas of uncertainty that need to be addressed]
 ```
 
 ## Phase 3: Cross-Reference Integration

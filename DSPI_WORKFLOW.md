@@ -1,18 +1,18 @@
 # DSPI Workflow
 
-**Describe → Specify → Plan → Implement**
+**Discovery → Specification → Planning → Implementation**
 
 The **DSPI Workflow** is a structured, **AI-assisted framework for Specification-Driven Development (SDD)**.  
-It ensures that every software feature — from idea to implementation — is **fully described, precisely specified, strategically planned, and rigorously implemented**, with AI agents assisting developers at each step while maintaining **human review and control**.
+It ensures that every software feature — from idea to implementation — is **fully discovered, precisely specified, strategically planned, and rigorously implemented**, with AI agents assisting developers at each step while maintaining **human review and control**.
 
 ## Overview
 
 The DSPI Workflow defines four sequential phases that guide the entire lifecycle of feature development:
 
-1. **Describe (D)** – Define feature intent, scope, and business context
-2. **Specify (S)** – Convert descriptions into detailed, technology-agnostic specifications
-3. **Plan (P)** – Translate specifications into actionable, technology-specific implementation plans
-4. **Implement (I)** – Execute the plan through code, testing, and integration
+1. **Discovery (D)** – Discover and understand the codebase and define feature intent, scope, and business context
+2. **Specification (S)** – Convert descriptions into detailed, technology-agnostic specifications
+3. **Planning (P)** – Translate specifications into actionable, technology-specific implementation plans
+4. **Implementation (I)** – Execute the plan through code, testing, and integration
 
 Each phase builds on the previous one, ensuring that all technical and business aspects are clarified before code is written.  
 AI tools accelerate documentation, validation, and transformation between phases — but **developers remain the final authority** on every decision.
@@ -86,13 +86,15 @@ project-root/
 └── [source code directories]
 ```
 
-## Phase 0: Global Specification Extraction (Existing Codebases)
+## Phase 1: Discovery (D)
 
-**Purpose:** Extract comprehensive specifications from existing codebases to establish a baseline for future development.
+**Purpose:** Discover and understand the existing codebase and define new feature requirements, context, and boundaries.
+
+### 1.1 Codebase Discovery (for existing codebases)
 
 **When Required:** Mandatory for all existing codebases before any feature development begins.
 
-### Process
+#### Process
 1. **Global Specs Extraction** – `/extract_global_specs` → `specs/` directory with all specification files:
    - `specs/business-logic.md`
    - `specs/data-model.md`
@@ -100,7 +102,7 @@ project-root/
    - `specs/ui-design.md`
    - `specs/infrastructure.md`
 
-### Quality Gates
+#### Quality Gates
 | Check Type | Description |
 |-------------|-------------|
 | **AI Validation** | All five global specification files exist and follow structure |
@@ -108,15 +110,15 @@ project-root/
 | **Cross-Phase Consistency** | All components align and no contradictions exist |
 | **Sign-Off Condition** | All specs approved before any new feature begins |
 
-## Phase 1: Describe (D)
+### 1.2 Feature Discovery
 
 **Purpose:** Define feature requirements, context, and boundaries through manual documentation.
 
-### Process
+#### Process
 1. Create `STORY.md` manually with business and functional context
 2. Include: feature description, business value, use cases, success criteria, and constraints
 
-### Quality Gates
+#### Quality Gates
 | Check Type | Description |
 |-------------|-------------|
 | **AI Validation** | Story completeness, clarity, missing fields |
@@ -124,7 +126,7 @@ project-root/
 | **Cross-Phase Consistency** | Aligns with global specs and project vision |
 | **Sign-Off Condition** | STORY.md finalized and versioned |
 
-## Phase 2: Specify (S)
+## Phase 2: Specification (S)
 
 **Purpose:** Transform the feature description into detailed, technology-agnostic specifications across multiple specification types.
 
@@ -147,7 +149,7 @@ project-root/
 | **Cross-Phase Consistency** | Matches STORY.md and global specifications |
 | **Sign-Off Condition** | All open questions resolved; all spec types finalized |
 
-## Phase 3: Plan (P)
+## Phase 3: Planning (P)
 
 **Purpose:** Create a detailed, actionable implementation roadmap.
 
@@ -168,7 +170,7 @@ project-root/
 | **Cross-Phase Consistency** | Plan aligns with all spec types and architecture |
 | **Sign-Off Condition** | Plan finalized; ready for implementation |
 
-## Phase 4: Implement (I)
+## Phase 4: Implementation (I)
 
 **Purpose:** Execute the plan with high quality and alignment to specifications.
 
@@ -188,7 +190,7 @@ project-root/
 
 ## Command System
 
-### Extraction Commands (Phase 0)
+### Discovery Commands (Phase 1)
 - `extract_global_specs.md`
 
 ### Development Commands (Phases 2–4)
@@ -235,8 +237,8 @@ project-root/
 
 | Issue | Resolution |
 |--------|-------------|
-| **Missing Global Specs** | Stop work, complete Phase 0 extraction |
-| **Incomplete Specs** | Return to "Specify" phase and clarify missing specification types |
+| **Missing Global Specs** | Stop work, complete Phase 1.1 (Codebase Discovery) |
+| **Incomplete Specs** | Return to "Specification" phase and clarify missing specification types |
 | **Implementation Deviations** | Adjust code to match spec types; not vice versa |
 | **Quality Gate Failures** | Fix issues and revalidate before continuing |
 
