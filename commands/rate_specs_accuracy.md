@@ -25,10 +25,11 @@ Analyze and rate the accuracy of global specifications in the `specs/` directory
 ### Phase 2: Accuracy Assessment Framework
 
 #### Rating Dimensions (Weighted Scoring)
-- **Structural Accuracy (25%)**: Code structure matches specification descriptions
-- **Functional Accuracy (30%)**: Described functionality is actually implemented and working
+- **Structural Accuracy (20%)**: Code structure matches specification descriptions
+- **Functional Accuracy (25%)**: Described functionality is actually implemented and working
 - **API Contract Accuracy (20%)**: API endpoints, request/response formats match specifications
 - **Data Model Accuracy (15%)**: Database schemas align with documented models
+- **Technology Agnostic (10%)**: Specifications avoid language-specific or implementation-specific details, focusing on behavior and requirements rather than technical implementation choices
 - **Completeness (10%)**: Coverage of implemented features vs. documented features
 
 #### Rating Scale (1-5 Points)
@@ -46,16 +47,19 @@ Analyze and rate the accuracy of global specifications in the `specs/` directory
    - Verify API endpoints exist and match documented contracts
    - Check data models against actual database schemas
    - Validate business logic implementation against documented rules
+   - Assess technology agnosticism by identifying language-specific or framework-specific details that could be generalized
 
 2. **Gap Identification**
    - Document features described in specs but not implemented
    - Identify implemented features not covered in specifications
    - Note discrepancies in technical details (validation rules, data types, etc.)
+   - Flag specifications that contain unnecessary technical implementation details
 
 3. **Implementation Verification**
    - Test that described functionality actually works as specified
    - Verify configuration settings match documented values
    - Check that security measures are implemented as described
+   - Evaluate whether specifications focus on "what" (behavior/requirements) rather than "how" (implementation details)
 
 ### Phase 4: Scoring and Reporting
 

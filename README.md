@@ -14,19 +14,19 @@ Use Specs CLI inside any AI-powered IDE with any AI model to immediately start s
 - Select Modes from the dropdown menu
 - Scroll down and click **Import Mode**
 - Navigate to `specs-cli/roo-modes/`
-- Select the `dspi-developer-[version].yaml` file
+- Select the `dspi-developer.yaml` file
 
 **Install the Agent (for other IDEs)**:
-- Copy the file content of `specs-cli/agents/dspi-developer-[version].md` to your clipboard
+- Copy the file content of `specs-cli/agents/dspi-developer.md` to your clipboard
 - Go to your IDE's AI panel
 - Open the settings and search for the option to create a new Agent or System Prompt
 - Create the new Agent or System Prompt with
-    - **Name**: DSPI Developer [version] (e.g. DSPI Developer X.0)
-    - **Prompt**: [Paste the content of `specs-cli/agents/dspi-developer-[version].md`]
+    - **Name**: DSPI Developer [version]
+    - **Prompt**: [Paste the content of `specs-cli/agents/dspi-developer.md`]
 - Save the new Agent or System Prompt
 
 **Install Commands**:
-- Switch to the new Agent **DSPI Developer [version]** in your AI panel
+- Switch to the new Agent **DSPI Developer** in your AI panel
 - Enter this prompt: `install commands`
 - Follow the instructions provided by the Agent
 
