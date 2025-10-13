@@ -44,18 +44,18 @@ You are now ready. Just ask the Agent what to do next and it will guide you thro
 
 This is how you can customize Specs CLI for your specific needs:
 
-1. **Clone to your public repository**:
-    - Clone the Specs CLI repository to a public repository on your GitHub account.
+1. **Fork the repository**:
+    - Fork the Specs CLI repository to your GitHub account.
     - This allows you to make changes and share them with others.
 
-2. **Adapt Agent command management**:
-    - Change section `Command Management` in `agents/dspi-developer.md` to match your public repository.
+2. **Adapt command management**:
+    - Change section `Command Management` in `agents/dspi-developer.md` to match your fork.
     - Do the same change in `roo-modes/dspi-developer.yaml`.
     - The URL should look like this in both Agents:
         ```
         https://raw.githubusercontent.com/[your-username]/specs-cli/v3/commands/
         ```
-    - Commands will now be downloaded from your public repository when using your Agent.
+    - Commands will now be downloaded from your fork when using your Agent.
 
 3. **Customize specification templates**:
     - Templates are embedded into `extract_global_specs.md` and `create_feature_specs.md`.
