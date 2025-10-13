@@ -40,17 +40,32 @@ You are now ready. Just ask the Agent what to do next and it will guide you thro
 
 > **Note**: If your IDE does not support slash commands, you can run them like this: `execute [command file].md [arguments]` (use @ or # to reference files or folders).
 
-## Contributing
+## Customization
 
-We welcome contributions! Here's how to get started:
+This is how you can customize Specs CLI for your specific needs:
 
-- **Fork the repository**
-- **Create a feature branch**: `git checkout -b feature/amazing-feature`
-- **Make your changes**
-- **Test your changes**
-- **Commit your changes**: `git commit -m 'Add amazing feature'`
-- **Push to the branch**: `git push origin feature/amazing-feature`
-- **Open a Pull Request**
+1. **Clone to your public repository**:
+    - Clone the Specs CLI repository to a public repository on your GitHub account.
+    - This allows you to make changes and share them with others.
+
+2. **Adapt Agent command management**:
+    - Change section `Command Management` in `agents/dspi-developer.md` to match your public repository.
+    - Do the same change in `roo-modes/dspi-developer.yaml`.
+    - The URL should look like this in both Agents:
+        ```
+        https://raw.githubusercontent.com/[your-username]/specs-cli/v3/commands/
+        ```
+    - Commands will now be downloaded from your public repository when using your Agent.
+
+3. **Customize specification templates**:
+    - Templates are embedded into `extract_global_specs.md` and `create_feature_specs.md`.
+    - Customize existing templates or add new templates as needed.
+    - Push to a new version branch (e.g. `custom1`).
+    - Update the URL in `agents/dspi-developer.md` and `roo-modes/dspi-developer.yaml` to point to the new branch.
+    - Example:
+        ```
+        https://raw.githubusercontent.com/[your-username]/specs-cli/custom1/commands/
+        ```
 
 ## Acknowledgments
 
