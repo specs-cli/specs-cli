@@ -147,7 +147,7 @@ project-root/
 | **AI Validation** | All specification type files present, consistent, and linked |
 | **Human Review** | Requirements unambiguous and correct across all specification types |
 | **Cross-Phase Consistency** | Matches STORY.md and global specifications |
-| **Sign-Off Condition** | All open questions resolved; all spec types finalized |
+| **Sign-Off Condition** | All open questions resolved; all specs finalized |
 
 ## Phase 3: Planning (P)
 
@@ -165,9 +165,9 @@ project-root/
 ### Quality Gates
 | Check Type | Description |
 |-------------|-------------|
-| **AI Validation** | Tasks traceable to spec types, coverage complete |
+| **AI Validation** | Tasks traceable to specs, coverage complete |
 | **Human Review** | Technical approach validated and feasible |
-| **Cross-Phase Consistency** | Plan aligns with all spec types and architecture |
+| **Cross-Phase Consistency** | Plan aligns with all specs and architecture |
 | **Sign-Off Condition** | Plan finalized; ready for implementation |
 
 ## Phase 4: Implementation (I)
@@ -183,9 +183,9 @@ project-root/
 ### Quality Gates
 | Check Type | Description |
 |-------------|-------------|
-| **AI Validation** | Implementation matches specification types and passes tests |
+| **AI Validation** | Implementation matches specifications and passes tests |
 | **Human Review** | Code reviewed for style, design, and maintainability |
-| **Cross-Phase Consistency** | Code fully satisfies all spec types and plan |
+| **Cross-Phase Consistency** | Code fully satisfies all specs and plan |
 | **Sign-Off Condition** | All tests pass; implementation complete and documented |
 
 ## Command System
@@ -230,7 +230,7 @@ project-root/
 |-----------|-------|
 | **Specification Quality** | Complete templates, technology-agnostic clarity, full requirement coverage |
 | **Workflow Adherence** | Sequential yet flexible phase flow, validated transitions |
-| **Implementation Success** | Code matches spec types, all tests pass, maintainable and consistent design |
+| **Implementation Success** | Code matches specs, all tests pass, maintainable and consistent design |
 
 
 ## Error Handling and Recovery
@@ -238,16 +238,9 @@ project-root/
 | Issue | Resolution |
 |--------|-------------|
 | **Missing Global Specs** | Stop work, complete Phase 1.1 (Codebase Discovery) |
-| **Incomplete Specs** | Return to "Specification" phase and clarify missing specification types |
-| **Implementation Deviations** | Adjust code to match spec types; not vice versa |
+| **Incomplete Specs** | Return to "Specification" phase and clarify missing specs |
+| **Implementation Deviations** | Adjust code to match specs or update specs as needed |
 | **Quality Gate Failures** | Fix issues and revalidate before continuing |
-
-## Maintenance and Evolution
-
-- Update global specs after each feature
-- Regularly extract new architectural patterns
-- Keep command files updated with evolving templates
-- Gather feedback and iterate the workflow
 
 ---
 

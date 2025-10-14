@@ -53,19 +53,24 @@ This is how you can customize Specs CLI for your specific needs:
     - Do the same change in `roo-modes/dspi-developer.yaml`.
     - The URL should look like this in both Agents:
         ```
-        https://raw.githubusercontent.com/[your-username]/specs-cli/v3/commands/
+        https://raw.githubusercontent.com/[your-username]/specs-cli/main/commands/
         ```
     - Commands will now be downloaded from your fork when using your Agent.
 
 3. **Customize specification templates**:
     - Templates are embedded into `extract_global_specs.md` and `create_feature_specs.md`.
     - Customize existing templates or add new templates as needed.
-    - Push to a new version branch (e.g. `custom1`).
+    - Changing command structure and logic is not recommended but of course possible.
+
+4. **Create a stable version**:
+    - Create a new version branch in your fork (e.g. `custom1`).
+    - Push to the new branch (e.g. `custom1`).
     - Update the URL in `agents/dspi-developer.md` and `roo-modes/dspi-developer.yaml` to point to the new branch.
     - Example:
         ```
         https://raw.githubusercontent.com/[your-username]/specs-cli/custom1/commands/
         ```
+    - Agents are now using the stable version of your fork during command installation.
 
 ## Acknowledgments
 
