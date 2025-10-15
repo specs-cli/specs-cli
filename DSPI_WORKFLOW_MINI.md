@@ -4,6 +4,13 @@
 
 The DSPI Workflow is a structured, AI-assisted approach to Specification-Driven Development (SDD).
 
+## Install Slash Commands
+
+- Copy files from `specs-cli/commands/` into your project
+- Use specific target directory for Slash Commands:
+  - Roo Code: `.roo/commands/`
+- If no Slash Commands supported, use `execute @[command].md [arguments]` instead
+
 ## Phase 1: Discovery (D)
 
 ### 1.1 Codebase Discovery (for existing codebases)
@@ -42,7 +49,7 @@ Writing **STORY.md** manually is important as it serves as primary AI input.
 
 ## Phase 2: Specification (S)
 
-**Run command**: `/create_feature_specs with STORY.md` (use @ or # to reference the file)
+**Run command**: `/create_feature_specs with @STORY.md`
 
 This will create separate specification files covering business logic, data model, API contract, and UI/UX design of the new feature. Additional specification types can be supported as needed. Review and adapt them to your needs!
 
@@ -61,7 +68,7 @@ specs/
 
 ## Phase 3: Planning (P)
 
-**Run command**: `/create_feature_plan with [feature-name]` (use @ or # to reference the feature folder)
+**Run command**: `/create_feature_plan with @[feature-folder]`
 
 This will create a feature implementation plan file. Review and adapt it to your needs!
 
@@ -79,6 +86,6 @@ specs/
 
 ## Phase 4: Implementation (I)
 
-**Run command**: `/implement_feature_plan with [feature-name]-plan.md` (use @ or # to reference the file)
+**Run command**: `/implement_feature_plan with @[feature-name]-plan.md`
 
 This will generate the feature implementation (code). Review, adapt and test it carefully!

@@ -131,7 +131,7 @@ project-root/
 **Purpose:** Transform the feature description into detailed, technology-agnostic specifications across multiple specification types.
 
 ### Process
-1. Run: `/create_feature_specs with STORY.md`  
+1. Run: `/create_feature_specs with @STORY.md`  
 2. Generates separate specification type files:  
    - `[feature-name]-business-logic.md` – Business rules, scenarios, and logic  
    - `[feature-name]-data-model.md` – Data structures and relationships  
@@ -154,7 +154,7 @@ project-root/
 **Purpose:** Create a detailed, actionable implementation roadmap.
 
 ### Process
-1. Run: `/create_feature_plan with [feature-name]`  
+1. Run: `/create_feature_plan with @[feature-folder]`  
 2. Generates `[feature-name]-plan.md` with:  
    - Implementation phases  
    - Tasks and deliverables  
@@ -175,7 +175,7 @@ project-root/
 **Purpose:** Execute the plan with high quality and alignment to specifications.
 
 ### Process
-1. Run: `/implement_feature_plan with [feature-name]-plan.md`  
+1. Run: `/implement_feature_plan with @[feature-name]-plan.md`  
 2. Follow defined phases and deliverables
 3. Validate implementation with automated and manual testing
 4. Ensure documentation and code stay synchronized
@@ -201,9 +201,8 @@ project-root/
 ### Command Management
 - Commands reside in the `commands/` directory
 - Can be downloaded from the **Specs CLI** repository 
-- Compatible with **any AI-powered IDE** (e.g., Roo Code, Trae AI, etc.)
-- Registered as slash commands if placed inside the IDE-specific folder (e.g., `.roo/commands/` for Roo Code)
-- If no slash commands supported by the IDE run them like this: `execute [command file].md [arguments]` (use @ or # to reference files or folders)
+- Registered as Slash Commands if placed inside the IDE-specific folder (e.g., `.roo/commands/` for Roo Code)
+- If no Slash Commands supported by the IDE run them like this: `execute @[command].md [arguments]`
 
 ## Best Practices
 
@@ -222,7 +221,6 @@ project-root/
 - Keep specs technology-agnostic until implementation
 - Use AI for acceleration, not delegation
 - Maintain traceability between story, specs, plan, and code
-- Prefer clear, consistent naming conventions (`kebab-case` recommended)
 
 ## Success Metrics
 
