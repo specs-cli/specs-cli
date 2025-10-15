@@ -15,7 +15,9 @@ Learn how it works in detail: [DSPI_WORKFLOW.md](DSPI_WORKFLOW.md)
 | Cline | Copy `agents/dspi-developer.md` into your project | Type task: `@dspi-developer.md install commands` |
 | Windsurf | Copy `agents/dspi-developer.md` into your project | Ask: `@dspi-developer.md install commands` |
 
-Ask the Agent what to do next and it will guide you through the DSPI Workflow or you can apply it manually using Slash Commands: [DSPI_WORKFLOW_MINI.md](DSPI_WORKFLOW_MINI.md)
+Ask the Agent what to do next and it will guide you through the DSPI Workflow.
+
+If you want to apply the workflow manually, here is how: [DSPI_WORKFLOW_MINI.md](DSPI_WORKFLOW_MINI.md)
 
 ## Customization
 
