@@ -1,5 +1,13 @@
 # Changelog
 
+## 2025-10-17
+
+- agent version: 4.0
+- renamed commands and added namespace `sc_`
+- improved readme intro and installation guide
+- agent metadata: name (general), trigger (Windsurf)
+- Discord community invite link
+
 ## 2025-10-12
 - agent version: 3.1
 - removed version from agent file name
@@ -14,8 +22,8 @@
 - agent version: 2.0
 - improved agent behavior during command managment
 - more compact agent definition
-- `/extract_global_specs` command to extract all global specs in one go
-- `/rate_specs_accuracy` command to rate the accuracy of the extracted specs
+- new command to extract all global specs in one go
+- new command to rate the accuracy of the extracted specs
 - removed type-specific spec extraction commands
 
 ## 2025-10-04

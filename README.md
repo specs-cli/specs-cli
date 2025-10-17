@@ -1,23 +1,37 @@
 # [x] Specs CLI
 
-Specs CLI is an Agentic CLI for AI-assisted Specification-Driven Development (SDD). It applies the DSPI Workflow:
+Specs CLI is an agentic CLI for AI-assisted specification-driven development. It applies the DSPI Workflow.
 
-**Discovery → Specification → Planning → Implementation**
+## DSPI Workflow
 
-Learn how it works in detail: [DSPI_WORKFLOW.md](DSPI_WORKFLOW.md)
+Ship features deliberately. DSPI is an AI-assisted, specification-first workflow that turns ideas into well-defined specs, actionable plans, and tested code — with traceability at every step. Instead of diving straight into code, you capture intent, specify neutral requirements, plan confidently, and implement with quality gates that keep docs and code in sync.
+
+With Specs CLI, each phase has a simple command. Outputs live in your repo, are reviewable, and remain versioned. The agent accelerates documentation and validation; you make the decisions.
+
+- Discovery — Understand the system and define the feature. Extract global specs (`specs/business-logic.md`, `specs/data-model.md`, `specs/api-contract.md`, `specs/ui-design.md`, `specs/infrastructure.md`) and write a clear `STORY.md` describing intent, value, and boundaries.
+- Specification — Convert the story into precise, technology‑agnostic specifications split by type: business logic, data model, API contract, and UI design. Resolve open questions early and link decisions back to the story.
+- Planning — Translate specifications into an implementation plan: phases, tasks, testing strategy, risks, and integration notes. Every task maps to a spec, making scope and success measurable.
+- Implementation — Execute the plan iteratively. Keep documentation and code synchronized; validate with automated checks and human review. When tests pass and specs are satisfied, the feature is complete.
+
+Why teams use DSPI:
+- Clarity: specifications are the single source of truth.
+- Control: humans approve; AI assists.
+- Consistency: templates reduce ambiguity and prevent drift.
+- Traceability: every change links back to story and specs.
 
 ## Installation
 
-| IDE | Agent Installation | Commands Installation |
+| IDE | 1. Agent Installation | 2. Commands Installation (agentic) |
 | --- | --- | --- |
-| Roo Code | Click [⋯] → Modes → Import Mode → Select `specs-cli/roo-modes/dspi-developer.yaml` | Switch to DSPI Developer and type task: `install commands` |
-| Trae AI | Create new Agent with name: DSPI Developer → Paste content of [agents/dspi-developer.md](agents/dspi-developer.md) | Switch to DSPI Developer and enter: `install commands` |
-| Cline | Copy `agents/dspi-developer.md` into your project | Type task: `@dspi-developer.md install commands` |
-| Windsurf | Copy `agents/dspi-developer.md` into your project | Ask: `@dspi-developer.md install commands` |
+| Roo Code | Click [⋯] → Modes → Import Mode → Select [dspi-developer.yaml](roo-modes/dspi-developer.yaml) | Switch to DSPI Developer and type task: `install commands` |
+| Cline | Copy [dspi-developer.md](agents/dspi-developer.md) into `your-project/.clinerules/` | Type task: `install DSPI commands` |
+| Windsurf | Copy [dspi-developer.md](agents/dspi-developer.md) into `your-project/.windsurf/rules/` | Type task: `install DSPI commands` |
+| Trae AI | Create new Agent with name: *DSPI Developer* → Paste content of [dspi-developer.md](agents/dspi-developer.md) | Switch to DSPI Developer and enter: `install commands` |
+| Others | Copy [dspi-developer.md](agents/dspi-developer.md) into your project | Ask: `@dspi-developer.md install commands` |
 
-Ask the Agent what to do next and it will guide you through the DSPI Workflow.
+Now ask the Agent what to do next and it will guide you through the DSPI Workflow.
 
-If you want to apply the workflow manually, here is how: [DSPI_WORKFLOW_MINI.md](DSPI_WORKFLOW_MINI.md)
+Want to apply the workflow manually, here is how: [DSPI_WORKFLOW.md](DSPI_WORKFLOW.md)
 
 ## Customization
 
@@ -37,7 +51,7 @@ This is how you can customize Specs CLI for your specific needs:
     - Commands will now be downloaded from your fork when using your Agent.
 
 3. **Customize specification templates**:
-    - Templates are embedded into `extract_global_specs.md` and `create_feature_specs.md`.
+    - Templates are embedded into `sc_discover.md` and `sc_specify.md`.
     - Customize existing templates or add new templates as needed.
     - Changing command structure and logic is not recommended but of course possible.
 
@@ -50,6 +64,10 @@ This is how you can customize Specs CLI for your specific needs:
         https://raw.githubusercontent.com/[your-username]/specs-cli/custom1/commands/
         ```
     - Agents are now using the stable version of your fork during command installation.
+
+## Community
+
+Join our Discord to discuss Specs CLI, share your experiences, and get help from other users. → https://discord.gg/WemsX7CsuG
 
 ## Acknowledgments
 
