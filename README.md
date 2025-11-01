@@ -65,10 +65,6 @@ This is how you can customize Specs CLI for your specific needs:
         ```
     - Agents are now using the stable version of your fork during command installation.
 
-## Community
-
-Join our Discord to discuss Specs CLI, share your experiences, and get help from other users. → https://discord.gg/WemsX7CsuG
-
 ## Acknowledgments
 
 - **Mastering AI Agents**: Specs CLI templates and project structure were originally developed and documented in the book [Mastering AI Agents](https://mastering-ai-agents.com)
