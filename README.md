@@ -27,6 +27,7 @@ Why teams use DSPI:
 | Cline | Copy [dspi-developer.md](agents/dspi-developer.md) into `your-project/.clinerules/` | Type task: `install DSPI commands` |
 | Windsurf | Copy [dspi-developer.md](agents/dspi-developer.md) into `your-project/.windsurf/rules/` | Type task: `install DSPI commands` |
 | Trae AI | Create new Agent with name: *DSPI Developer* → Paste content of [dspi-developer.md](agents/dspi-developer.md) | Switch to DSPI Developer and enter: `install commands` |
+| Visual Studio Code | Copy [dspi-developer.md](agents/dspi-developer.md) to `your-project/.github/agents/dspi-developer.agent.md` |  |
 | Others | Copy [dspi-developer.md](agents/dspi-developer.md) into your project | Ask: `@dspi-developer.md install commands` |
 
 Now ask the Agent what to do next and it will guide you through the DSPI Workflow.
